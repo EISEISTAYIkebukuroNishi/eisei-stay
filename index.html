@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EISEI STAY|Ikebukuro Nishi</title>
+  <title>EISEI STAY | Ikebukuro Nishi</title>
   <meta name="description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
   <link rel="icon" href="https://img.icons8.com/color/48/hotel-information.png" type="image/png">
 
@@ -33,7 +33,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center; /* ← 完全中央 */
+      align-items: center;
       padding: 18px 10px;
       position: fixed;
       top: 0;
@@ -56,39 +56,16 @@
       letter-spacing: 1px;
     }
 
-    /* ナビゲーション */
-    nav {
-      margin-top: 90px;
-      text-align: center;
-      background: #f2e8d5;
-      padding: 10px;
-      position: sticky;
-      top: 90px;
-      z-index: 999;
-    }
-
-    nav a {
-      margin: 0 12px;
-      color: #0e0a52;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    nav a:hover {
-      color: #ffcc00;
-    }
-
     main {
       max-width: 900px;
       margin: 20px auto;
-      padding: 40px 20px;
+      padding: 140px 20px 40px; /* ヘッダー固定分の余白を確保 */
     }
 
     .page-title {
       font-size: 1.8em;
       font-weight: 700;
       margin-bottom: 20px;
-      border-bottom: 2px solid #0e0a52;
-      padding-bottom: 5px;
       text-align: center;
     }
 
@@ -147,34 +124,14 @@
       font-size: 0.85em;
     }
 
-    /* レスポンシブ対応 */
     @media(max-width: 600px){
-      header .hotel-name {
-        font-size: 1.6em;
-      }
-      header .hotel-sub {
-        font-size: 1em;
-      }
-      nav {
-        font-size: 0.9em;
-      }
-      .page-title {
-        font-size: 1.5em;
-      }
-      .section h2 {
-        font-size: 1.2em;
-      }
-      .item img {
-        width: 18px;
-        height: 18px;
-        margin-right: 6px;
-      }
-      .item p {
-        font-size: 0.95em;
-      }
-      .item span {
-        font-size: 0.75em;
-      }
+      header .hotel-name { font-size: 1.6em; }
+      header .hotel-sub { font-size: 1em; }
+      .page-title { font-size: 1.5em; }
+      .section h2 { font-size: 1.2em; }
+      .item img { width: 18px; height: 18px; margin-right: 6px; }
+      .item p { font-size: 0.95em; }
+      .item span { font-size: 0.75em; }
     }
   </style>
 </head>
@@ -184,13 +141,6 @@
   <div class="hotel-name">EISEI STAY</div>
   <div class="hotel-sub">Ikebukuro Nishi</div>
 </header>
-
-<nav>
-  <a href="#room">客室設備</a>
-  <a href="#services">館内サービス</a>
-  <a href="#amenities">館内施設</a>
-  <a href="#nearby">周辺情報</a>
-</nav>
 
 <main>
   <div class="page-title">館内案内 / Facilities</div>
@@ -250,7 +200,7 @@
 
 <footer>
   &copy; 2025 EISEI STAY Ikebukuro Nishi
-  <small>〒171-0014 東京都豊島区池袋2丁目16-19 | TEL: 03-1234-5678</small>
+  <small>〒171-0014 東京都豊島区池袋2-12-10</small>
 </footer>
 
 </body>
