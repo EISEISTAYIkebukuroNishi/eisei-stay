@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EISEI STAY | Ikebukuro Nishi</title>
   <meta name="description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
+  <meta name="keywords" content="EISEI STAY, 池袋ホテル, Ikebukuro Hotel, 館内案内, ホテル案内, Tokyo Hotel">
+
   <link rel="icon" href="https://img.icons8.com/color/48/hotel-information.png" type="image/png">
 
   <!-- OGP -->
@@ -12,6 +14,13 @@
   <meta property="og:description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://img.icons8.com/color/96/hotel-information.png">
+  <meta property="og:url" content="https://yourdomain.github.io/eisei-stay/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EISEI STAY Ikebukuro Nishi | 館内案内">
+  <meta name="twitter:description" content="池袋西口のホテルEISEI STAY。館内サービス・設備・周辺情報をご案内します。">
+  <meta name="twitter:image" content="https://img.icons8.com/color/96/hotel-information.png">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,6 +33,7 @@
       background-color: #b9a788;
       color: #0e0a52;
       scroll-behavior: smooth;
+      line-height: 1.6;
     }
 
     /* 固定ヘッダー */
@@ -40,27 +50,29 @@
     }
 
     header .hotel-name {
-      font-size: 2em;
+      display: block;
+      font-size: 2.5em; /* PCで大きめ */
       font-weight: 700;
       line-height: 1.2;
     }
 
     header .hotel-sub {
+      display: block;
       font-size: 1.2em;
       font-weight: 500;
-      color: rgba(185, 167, 136, 0.7); /* 薄めのベージュ */
+      color: rgba(185, 167, 136, 0.8); /* 薄めのベージュ */
       margin-top: 4px;
       letter-spacing: 1px;
     }
 
     /* ナビゲーション */
     nav {
-      margin-top: 90px;
+      margin-top: 95px;
       text-align: center;
       background: #f2e8d5;
       padding: 10px;
       position: sticky;
-      top: 90px;
+      top: 95px;
       z-index: 999;
     }
 
@@ -71,7 +83,7 @@
       text-decoration: none;
     }
     nav a:hover {
-      color: #ffcc00;
+      color: #d4af37; /* ゴールド */
     }
 
     main {
@@ -83,14 +95,14 @@
     .page-title {
       font-size: 1.8em;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       border-bottom: 2px solid #0e0a52;
-      padding-bottom: 5px;
+      padding-bottom: 6px;
       text-align: center;
     }
 
     .section {
-      margin-bottom: 35px;
+      margin-bottom: 45px;
     }
 
     .section h2 {
@@ -98,27 +110,27 @@
       font-weight: 700;
       border-bottom: 2px solid #0e0a52;
       padding-bottom: 5px;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .item {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      line-height: 1.4em;
       transition: transform 0.2s, background 0.2s;
-      padding: 5px;
+      padding: 6px;
       border-radius: 6px;
     }
     .item:hover {
-      background: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.25);
       transform: scale(1.02);
     }
 
     .item img {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       margin-right: 10px;
+      flex-shrink: 0;
     }
 
     .item p {
@@ -133,7 +145,7 @@
 
     footer {
       text-align: center;
-      padding: 15px 0;
+      padding: 18px 0;
       background-color: #0e0a52;
       color: #b9a788;
       font-weight: 500;
@@ -147,7 +159,7 @@
     /* レスポンシブ対応 */
     @media(max-width: 600px){
       header .hotel-name {
-        font-size: 1.6em;
+        font-size: 1.8em;
       }
       header .hotel-sub {
         font-size: 1em;
@@ -162,9 +174,9 @@
         font-size: 1.2em;
       }
       .item img {
-        width: 18px;
-        height: 18px;
-        margin-right: 6px;
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
       }
       .item p {
         font-size: 0.95em;
