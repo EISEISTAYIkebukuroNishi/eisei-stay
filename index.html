@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EISEI STAY Ikebukuro Nishi | 館内案内</title>
+  <title>EISEI STAY | Ikebukuro Nishi</title>
   <meta name="description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
   <link rel="icon" href="https://img.icons8.com/color/48/hotel-information.png" type="image/png">
 
@@ -31,9 +31,7 @@
       background-color: #0e0a52;
       color: #b9a788;
       text-align: center;
-      padding: 20px;
-      font-size: 2em;
-      font-weight: 700;
+      padding: 18px 10px;
       position: fixed;
       top: 0;
       left: 0;
@@ -41,14 +39,28 @@
       z-index: 1000;
     }
 
+    header .hotel-name {
+      font-size: 2em;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    header .hotel-sub {
+      font-size: 1.2em;
+      font-weight: 500;
+      color: rgba(185, 167, 136, 0.7); /* 薄めのベージュ */
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
     /* ナビゲーション */
     nav {
-      margin-top: 70px;
+      margin-top: 90px;
       text-align: center;
       background: #f2e8d5;
       padding: 10px;
       position: sticky;
-      top: 70px;
+      top: 90px;
       z-index: 999;
     }
 
@@ -134,9 +146,11 @@
 
     /* レスポンシブ対応 */
     @media(max-width: 600px){
-      header {
+      header .hotel-name {
         font-size: 1.6em;
-        padding: 15px;
+      }
+      header .hotel-sub {
+        font-size: 1em;
       }
       nav {
         font-size: 0.9em;
@@ -163,7 +177,10 @@
 </head>
 <body>
 
-<header>EISEI STAY Ikebukuro Nishi</header>
+<header>
+  <div class="hotel-name">EISEI STAY</div>
+  <div class="hotel-sub">Ikebukuro Nishi</div>
+</header>
 
 <nav>
   <a href="#room">客室設備</a>
