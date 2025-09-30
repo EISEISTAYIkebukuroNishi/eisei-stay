@@ -1,137 +1,181 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EISEI STAY Ikebukuro Nishi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EISEI STAY Ikebukuro Nishi | 館内案内</title>
+  <meta name="description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
+  <link rel="icon" href="https://img.icons8.com/color/48/hotel-information.png" type="image/png">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- OGP -->
+  <meta property="og:title" content="EISEI STAY Ikebukuro Nishi | 館内案内">
+  <meta property="og:description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://img.icons8.com/color/96/hotel-information.png">
 
-<style>
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #b9a788;
-    color: #0e0a52;
-  }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-  /* 固定ヘッダー */
-  header {
-    background-color: #0e0a52;
-    color: #b9a788;
-    text-align: center;
-    padding: 25px;
-    font-size: 2.2em;
-    font-weight: 700;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-  }
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #b9a788;
+      color: #0e0a52;
+      scroll-behavior: smooth;
+    }
 
-  main {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 120px 20px 20px 20px;
-  }
-
-  .page-title {
-    font-size: 1.8em;
-    font-weight: 700;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #0e0a52;
-    padding-bottom: 5px;
-  }
-
-  .section {
-    margin-bottom: 25px;
-  }
-
-  .section h2 {
-    font-size: 1.4em;
-    font-weight: 700;
-    border-bottom: 2px solid #0e0a52;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-  }
-
-  .item {
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 1.3em;
-  }
-
-  .item img {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-  }
-
-  .item p {
-    margin: 0;
-  }
-
-  .item span {
-    font-size: 0.85em;
-    display: block;
-    margin-top: 2px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 12px 0;
-    background-color: #0e0a52;
-    color: #b9a788;
-    margin-top: 35px;
-    font-weight: 500;
-  }
-
-  /* レスポンシブ対応 */
-  @media(max-width: 600px){
+    /* 固定ヘッダー */
     header {
-      font-size: 1.8em;
+      background-color: #0e0a52;
+      color: #b9a788;
+      text-align: center;
       padding: 20px;
+      font-size: 2em;
+      font-weight: 700;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
     }
+
+    /* ナビゲーション */
+    nav {
+      margin-top: 70px;
+      text-align: center;
+      background: #f2e8d5;
+      padding: 10px;
+      position: sticky;
+      top: 70px;
+      z-index: 999;
+    }
+
+    nav a {
+      margin: 0 12px;
+      color: #0e0a52;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+
     main {
-      padding: 100px 15px 20px 15px;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 40px 20px;
     }
+
     .page-title {
-      font-size: 1.5em;
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #0e0a52;
+      padding-bottom: 5px;
+      text-align: center;
     }
+
+    .section {
+      margin-bottom: 35px;
+    }
+
     .section h2 {
-      font-size: 1.2em;
+      font-size: 1.4em;
+      font-weight: 700;
+      border-bottom: 2px solid #0e0a52;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
     }
+
     .item {
-      line-height: 1.2em;
-      margin-bottom: 6px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      line-height: 1.4em;
+      transition: transform 0.2s, background 0.2s;
+      padding: 5px;
+      border-radius: 6px;
     }
+    .item:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.02);
+    }
+
     .item img {
-      width: 16px;
-      height: 16px;
-      margin-right: 6px;
+      width: 22px;
+      height: 22px;
+      margin-right: 10px;
     }
+
     .item p {
-      font-size: 0.95em;
+      margin: 0;
     }
+
     .item span {
-      font-size: 0.75em;
+      font-size: 0.85em;
+      display: block;
+      margin-top: 2px;
     }
-  }
-</style>
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background-color: #0e0a52;
+      color: #b9a788;
+      font-weight: 500;
+    }
+    footer small {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.85em;
+    }
+
+    /* レスポンシブ対応 */
+    @media(max-width: 600px){
+      header {
+        font-size: 1.6em;
+        padding: 15px;
+      }
+      nav {
+        font-size: 0.9em;
+      }
+      .page-title {
+        font-size: 1.5em;
+      }
+      .section h2 {
+        font-size: 1.2em;
+      }
+      .item img {
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
+      }
+      .item p {
+        font-size: 0.95em;
+      }
+      .item span {
+        font-size: 0.75em;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header>EISEI STAY Ikebukuro Nishi</header>
 
-<main>
+<nav>
+  <a href="#room">客室設備</a>
+  <a href="#services">館内サービス</a>
+  <a href="#amenities">館内施設</a>
+  <a href="#nearby">周辺情報</a>
+</nav>
 
+<main>
   <div class="page-title">館内案内 / Facilities</div>
 
-  <div class="section">
+  <div id="room" class="section">
     <h2>客室設備 / Room Facilities</h2>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="ベッド">
@@ -139,69 +183,55 @@
     </div>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/kitchen.png" alt="キッチン">
-      <p>キッチン完備（冷蔵庫、電子レンジ、コンロ） <span>Kitchen equipped (fridge, microwave, stove)</span></p>
+      <p>キッチン完備（冷蔵庫、電子レンジ、コンロ） <span>Kitchen equipped</span></p>
     </div>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/bath.png" alt="浴室設備">
-      <p>浴室設備（バスタブ、シャワー、トイレ） <span>Bathroom facilities (bathtub, shower, toilet)</span></p>
-    </div>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/air-conditioner.png" alt="空調">
-      <p>全室ナノイー / ナノイーX設置 <span>All rooms with Nanoe/NanoeX</span></p>
+      <img src="https://img.icons8.com/material-rounded/24/0e0a52/bath.png" alt="浴室">
+      <p>浴室設備（バスタブ、シャワー、トイレ） <span>Bathroom facilities</span></p>
     </div>
   </div>
 
-  <div class="section">
+  <div id="services" class="section">
     <h2>館内サービス / Services</h2>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/wifi.png" alt="Wi-Fi">
       <p>無料Wi-Fi <span>Free Wi-Fi</span></p>
     </div>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/clock.png" alt="24時間">
+      <img src="https://img.icons8.com/material-rounded/24/0e0a52/clock.png" alt="フロント">
       <p>24時間フロントデスク <span>24-hour front desk</span></p>
-    </div>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="ランドリー">
-      <p>ランドリーサービス <span>Laundry service</span></p>
-    </div>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/dumbbell.png" alt="ジム">
-      <p>簡易ジム <span>Small gym</span></p>
     </div>
   </div>
 
-  <div class="section">
+  <div id="amenities" class="section">
     <h2>館内施設 / Amenities</h2>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/sofa.png" alt="ラウンジ">
       <p>ラウンジスペース <span>Lounge area</span></p>
     </div>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/kitchen.png" alt="キッチン">
+      <img src="https://img.icons8.com/material-rounded/24/0e0a52/kitchen.png" alt="共有キッチン">
       <p>共有キッチン <span>Shared kitchen</span></p>
     </div>
   </div>
 
-  <div class="section">
+  <div id="nearby" class="section">
     <h2>周辺情報 / Nearby Spots</h2>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/map-pin.png" alt="地図">
-      <p>池袋駅西口から徒歩約7分 <span>7-minute walk from Ikebukuro Station West Exit</span></p>
+      <img src="https://img.icons8.com/material-rounded/24/0e0a52/map-pin.png" alt="アクセス">
+      <p>池袋駅西口から徒歩約7分 <span>7 min walk from Ikebukuro Station</span></p>
     </div>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/restaurant.png" alt="レストラン">
-      <p>周辺にレストラン・カフェ多数 <span>Many restaurants and cafes nearby</span></p>
-    </div>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/passenger-with-baggage.png" alt="観光">
-      <p>観光スポット：サンシャインシティ、池袋西口公園 <span>Nearby attractions: Sunshine City, Ikebukuro West Park</span></p>
+      <img src="https://img.icons8.com/material-rounded/24/0e0a52/restaurant.png" alt="飲食店">
+      <p>周辺にレストラン・カフェ多数 <span>Many restaurants nearby</span></p>
     </div>
   </div>
-
 </main>
 
-<footer>&copy; 2025 EISEI STAY Ikebukuro Nishi</footer>
+<footer>
+  &copy; 2025 EISEI STAY Ikebukuro Nishi
+  <small>〒171-0014 東京都豊島区池袋2丁目16-19 | TEL: 03-1234-5678</small>
+</footer>
 
 </body>
 </html>
