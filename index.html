@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EISEI STAY | Ikebukuro Nishi</title>
   <meta name="description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
-  <meta name="keywords" content="EISEI STAY, 池袋ホテル, Ikebukuro Hotel, 館内案内, ホテル案内, Tokyo Hotel">
-
   <link rel="icon" href="https://img.icons8.com/color/48/hotel-information.png" type="image/png">
 
   <!-- OGP -->
@@ -14,13 +12,6 @@
   <meta property="og:description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://img.icons8.com/color/96/hotel-information.png">
-  <meta property="og:url" content="https://yourdomain.github.io/eisei-stay/">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EISEI STAY Ikebukuro Nishi | 館内案内">
-  <meta name="twitter:description" content="池袋西口のホテルEISEI STAY。館内サービス・設備・周辺情報をご案内します。">
-  <meta name="twitter:image" content="https://img.icons8.com/color/96/hotel-information.png">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -33,14 +24,16 @@
       background-color: #b9a788;
       color: #0e0a52;
       scroll-behavior: smooth;
-      line-height: 1.6;
     }
 
     /* 固定ヘッダー */
     header {
       background-color: #0e0a52;
       color: #b9a788;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; /* ← 完全中央 */
       padding: 18px 10px;
       position: fixed;
       top: 0;
@@ -50,29 +43,27 @@
     }
 
     header .hotel-name {
-      display: block;
-      font-size: 2.5em; /* PCで大きめ */
+      font-size: 2em;
       font-weight: 700;
       line-height: 1.2;
     }
 
     header .hotel-sub {
-      display: block;
       font-size: 1.2em;
       font-weight: 500;
-      color: rgba(185, 167, 136, 0.8); /* 薄めのベージュ */
+      color: rgba(185, 167, 136, 0.7);
       margin-top: 4px;
       letter-spacing: 1px;
     }
 
     /* ナビゲーション */
     nav {
-      margin-top: 95px;
+      margin-top: 90px;
       text-align: center;
       background: #f2e8d5;
       padding: 10px;
       position: sticky;
-      top: 95px;
+      top: 90px;
       z-index: 999;
     }
 
@@ -83,7 +74,7 @@
       text-decoration: none;
     }
     nav a:hover {
-      color: #d4af37; /* ゴールド */
+      color: #ffcc00;
     }
 
     main {
@@ -95,14 +86,14 @@
     .page-title {
       font-size: 1.8em;
       font-weight: 700;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       border-bottom: 2px solid #0e0a52;
-      padding-bottom: 6px;
+      padding-bottom: 5px;
       text-align: center;
     }
 
     .section {
-      margin-bottom: 45px;
+      margin-bottom: 35px;
     }
 
     .section h2 {
@@ -110,27 +101,27 @@
       font-weight: 700;
       border-bottom: 2px solid #0e0a52;
       padding-bottom: 5px;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
 
     .item {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
+      line-height: 1.4em;
       transition: transform 0.2s, background 0.2s;
-      padding: 6px;
+      padding: 5px;
       border-radius: 6px;
     }
     .item:hover {
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.3);
       transform: scale(1.02);
     }
 
     .item img {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       margin-right: 10px;
-      flex-shrink: 0;
     }
 
     .item p {
@@ -145,7 +136,7 @@
 
     footer {
       text-align: center;
-      padding: 18px 0;
+      padding: 15px 0;
       background-color: #0e0a52;
       color: #b9a788;
       font-weight: 500;
@@ -159,7 +150,7 @@
     /* レスポンシブ対応 */
     @media(max-width: 600px){
       header .hotel-name {
-        font-size: 1.8em;
+        font-size: 1.6em;
       }
       header .hotel-sub {
         font-size: 1em;
@@ -174,9 +165,9 @@
         font-size: 1.2em;
       }
       .item img {
-        width: 20px;
-        height: 20px;
-        margin-right: 8px;
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
       }
       .item p {
         font-size: 0.95em;
@@ -259,7 +250,7 @@
 
 <footer>
   &copy; 2025 EISEI STAY Ikebukuro Nishi
-  <small>〒171-0014 東京都豊島区池袋2-12-10</small>
+  <small>〒171-0014 東京都豊島区池袋2丁目16-19 | TEL: 03-1234-5678</small>
 </footer>
 
 </body>
