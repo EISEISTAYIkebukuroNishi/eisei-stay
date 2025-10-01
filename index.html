@@ -28,7 +28,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 18px 10px;
+      padding: 10px 0;
       position: fixed;
       top: 0;
       left: 0;
@@ -37,13 +37,13 @@
     }
 
     header .hotel-name {
-      font-size: 2em;
+      font-size: 32px;
       font-weight: 700;
       line-height: 1.2;
     }
 
     header .hotel-sub {
-      font-size: 1.2em;
+      font-size: 19px;
       font-weight: 500;
       color: #E8E3CA;
       margin-top: 4px;
@@ -53,7 +53,7 @@
     /* ナビバー（追従） */
     nav {
       position: fixed;
-      top: 100px; /* ヘッダー下 */
+      top: 87px; /* ヘッダー下 */
       left: 0;
       width: 100%;
       background-color: #F2EFE2;
@@ -76,12 +76,12 @@
     }
 
     nav a .en {
-      font-size: 0.95em;
+      font-size: 15px;
       font-weight: 700;
     }
 
     nav a .ja {
-      font-size: 0.85em;
+      font-size: 14px;
       margin-top: 2px;
     }
 
@@ -93,7 +93,7 @@
     main {
       max-width: 900px;
       margin: 0 auto;
-      padding: 200px 20px 40px; /* ヘッダー+ナビバー分の余白 */
+      padding: 220px 20px 40px; /* ヘッダー+ナビバー分の余白 */
     }
 
     .page-title {
@@ -101,12 +101,12 @@
       margin-bottom: 20px;
     }
     .page-title .en {
-      font-size: 1.8em;
+      font-size: 28px;
       font-weight: 700;
       display: block;
     }
     .page-title .ja-main {
-      font-size: 1.2em;
+      font-size: 19px;
       font-weight: 700;
       display: block;
       margin-top: 4px;
@@ -124,12 +124,12 @@
       text-align: left;
     }
     .section h2 .en {
-      font-size: 1em;
+      font-size: 16px;
       font-weight: 700;
       display: block;
     }
     .section h2 .ja-main {
-      font-size: 0.7em;
+      font-size: 14px;
       font-weight: 700;
       display: block;
       margin-top: 4px;
@@ -163,10 +163,10 @@
     }
 
     .item p .en {
-      font-size: 1em;
+      font-size: 16px;
     }
     .item p .ja-main {
-      font-size: 0.9em;
+      font-size: 14px;
       margin-top: 2px;
       font-weight: 400;
     }
@@ -182,21 +182,21 @@
     footer small {
       display: block;
       margin-top: 5px;
-      font-size: 0.85em;
+      font-size: 14px;
     }
 
     @media(max-width: 600px){
-      header .hotel-name { font-size: 1.6em; }
-      header .hotel-sub { font-size: 1em; }
-      .page-title .en { font-size: 1.5em; }
-      .page-title .ja-main,
-      .section h2 .ja-main { font-size: 1em; }
-      .section h2 .en { font-size: 1.2em; }
+      header .hotel-name { font-size: 26px; }
+      header .hotel-sub { font-size: 16px; }
+      .page-title .en { font-size: 24px; }
+      .page-title .ja-main { font-size: 16px; }
+      .section h2 .en { font-size: 18px; }
+      .section h2 .ja-main { font-size: 16px; }
       .item img { width: 18px; height: 18px; margin-right: 6px; }
-      .item p .en { font-size: 0.95em; }
-      .item p .ja-main { font-size: 0.8em; }
-      nav { flex-wrap: wrap; padding: 8px 0; }
-      nav a { margin: 6px 12px; }
+      .item p .en { font-size: 15px; }
+      .item p .ja-main { font-size: 14px; }
+      nav a .en { font-size: 14px; }
+      nav a .ja { font-size: 13px; }
     }
   </style>
 </head>
