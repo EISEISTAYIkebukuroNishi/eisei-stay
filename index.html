@@ -56,10 +56,34 @@
       letter-spacing: 1px;
     }
 
+    /* 追従ナビバー */
+    nav {
+      position: fixed;
+      top: 90px; /* ヘッダー下に配置 */
+      left: 0;
+      width: 100%;
+      background-color: #f2e8d5;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      margin: 0 12px;
+      color: #0e0a52;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
     main {
       max-width: 900px;
-      margin: 20px auto;
-      padding: 140px 20px 40px; /* ヘッダー固定分の余白を確保 */
+      margin: 0 auto;
+      padding: 180px 20px 40px; /* ヘッダー+ナビバー分の余白 */
     }
 
     .page-title {
@@ -103,7 +127,7 @@
 
     .item p {
       margin: 0;
-    font-weight: 600; /* 太さを指定 */
+      font-weight: 600; /* 日本語説明を太字に */
     }
 
     .item span {
@@ -119,6 +143,7 @@
       color: #b9a788;
       font-weight: 500;
     }
+
     footer small {
       display: block;
       margin-top: 5px;
@@ -128,6 +153,7 @@
     @media(max-width: 600px){
       header .hotel-name { font-size: 1.6em; }
       header .hotel-sub { font-size: 1em; }
+      nav { font-size: 0.9em; }
       .page-title { font-size: 1.5em; }
       .section h2 { font-size: 1.2em; }
       .item img { width: 18px; height: 18px; margin-right: 6px; }
@@ -142,6 +168,13 @@
   <div class="hotel-name">EISEI STAY</div>
   <div class="hotel-sub">Ikebukuro Nishi</div>
 </header>
+
+<nav>
+  <a href="#room">客室設備</a>
+  <a href="#services">館内サービス</a>
+  <a href="#amenities">館内施設</a>
+  <a href="#nearby">周辺情報</a>
+</nav>
 
 <main>
   <div class="page-title">館内案内 / Facilities</div>
