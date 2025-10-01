@@ -6,8 +6,6 @@
   <title>EISEI STAY | Ikebukuro Nishi</title>
   <meta name="description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
   <link rel="icon" href="https://img.icons8.com/color/48/hotel-information.png" type="image/png">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
@@ -28,7 +26,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 10px 0;
+      height: 90px;
       position: fixed;
       top: 0;
       left: 0;
@@ -45,7 +43,6 @@
     header .hotel-sub {
       font-size: 19px;
       font-weight: 500;
-      color: #E8E3CA;
       margin-top: 4px;
       letter-spacing: 1px;
     }
@@ -53,20 +50,21 @@
     /* ナビバー（追従） */
     nav {
       position: fixed;
-      top: 87px; /* ヘッダー下 */
+      top: 90px; /* headerの下 */
       left: 0;
       width: 100%;
       background-color: #F2EFE2;
-      padding: 10px 0;
+      height: 50px; /* 高さを固定 */
       z-index: 999;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
     nav a {
       display: flex;
-      flex-direction: column; /* 英語上、日本語下 */
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-decoration: none;
@@ -75,65 +73,33 @@
       font-weight: 600;
     }
 
-    nav a .en {
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    nav a .ja {
-      font-size: 14px;
-      margin-top: 2px;
-    }
+    nav a .en { font-size: 15px; font-weight: 700; }
+    nav a .ja { font-size: 14px; margin-top: 2px; }
 
     nav a:hover .en,
-    nav a:hover .ja {
-      color: #ffcc00;
-    }
+    nav a:hover .ja { color: #ffcc00; }
 
+    /* mainのpadding-top = header高さ + nav高さ */
     main {
       max-width: 900px;
       margin: 0 auto;
-      padding: 220px 20px 40px; /* ヘッダー+ナビバー分の余白 */
+      padding: 160px 20px 40px; /* 上余白をさらに20px増加 */
     }
 
-    .page-title {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .page-title .en {
-      font-size: 28px;
-      font-weight: 700;
-      display: block;
-    }
-    .page-title .ja-main {
-      font-size: 19px;
-      font-weight: 700;
-      display: block;
-      margin-top: 4px;
-    }
+    .page-title { text-align: center; margin-bottom: 20px; }
+    .page-title .en { font-size: 28px; font-weight: 700; display: block; }
+    .page-title .ja-main { font-size: 19px; font-weight: 700; display: block; margin-top: 4px; }
 
-    .section {
-      margin-bottom: 35px;
-    }
+    .section { margin-bottom: 35px; }
 
-    /* セクション見出しは左寄せ */
     .section h2 {
       border-bottom: 2px solid #0e0a52;
       padding-bottom: 5px;
       margin-bottom: 15px;
       text-align: left;
     }
-    .section h2 .en {
-      font-size: 16px;
-      font-weight: 700;
-      display: block;
-    }
-    .section h2 .ja-main {
-      font-size: 14px;
-      font-weight: 700;
-      display: block;
-      margin-top: 4px;
-    }
+    .section h2 .en { font-size: 16px; font-weight: 700; display: block; }
+    .section h2 .ja-main { font-size: 14px; font-weight: 700; display: block; margin-top: 4px; }
 
     .item {
       margin-bottom: 12px;
@@ -143,33 +109,18 @@
       padding: 5px;
       border-radius: 6px;
     }
-    .item:hover {
-      background: rgba(255,255,255,0.3);
-      transform: scale(1.02);
-    }
+    .item:hover { background: rgba(255,255,255,0.3); transform: scale(1.02); }
 
-    .item img {
-      width: 22px;
-      height: 22px;
-      margin-right: 10px;
-      margin-top: 4px;
-    }
+    .item img { width: 22px; height: 22px; margin-right: 10px; margin-top: 4px; }
 
     .item p {
       margin: 0;
       font-weight: 600;
       display: flex;
-      flex-direction: column; /* 英語上、日本語下 */
+      flex-direction: column;
     }
-
-    .item p .en {
-      font-size: 16px;
-    }
-    .item p .ja-main {
-      font-size: 14px;
-      margin-top: 2px;
-      font-weight: 400;
-    }
+    .item p .en { font-size: 16px; }
+    .item p .ja-main { font-size: 14px; margin-top: 2px; font-weight: 400; }
 
     footer {
       text-align: center;
@@ -178,12 +129,7 @@
       color: #E8E3CA;
       font-weight: 500;
     }
-
-    footer small {
-      display: block;
-      margin-top: 5px;
-      font-size: 14px;
-    }
+    footer small { display: block; margin-top: 5px; font-size: 14px; }
 
     @media(max-width: 600px){
       header .hotel-name { font-size: 26px; }
@@ -197,6 +143,9 @@
       .item p .ja-main { font-size: 14px; }
       nav a .en { font-size: 14px; }
       nav a .ja { font-size: 13px; }
+
+      /* 画面幅が狭い場合のmain padding-top調整 */
+      main { padding-top: 170px; } /* 小画面用も少し増やす */
     }
   </style>
 </head>
