@@ -7,12 +7,6 @@
   <meta name="description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
   <link rel="icon" href="https://img.icons8.com/color/48/hotel-information.png" type="image/png">
 
-  <!-- OGP -->
-  <meta property="og:title" content="EISEI STAY Ikebukuro Nishi | 館内案内">
-  <meta property="og:description" content="EISEI STAY Ikebukuro Nishiの館内案内ページ。客室設備、館内サービス、施設、周辺情報をご紹介します。">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://img.icons8.com/color/96/hotel-information.png">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -21,7 +15,7 @@
       font-family: 'Noto Sans JP', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #b9a788;
+      background-color: #E8E3CA;
       color: #0e0a52;
       scroll-behavior: smooth;
     }
@@ -29,7 +23,7 @@
     /* 固定ヘッダー */
     header {
       background-color: #0e0a52;
-      color: #b9a788;
+      color: #E8E3CA;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -51,65 +45,100 @@
     header .hotel-sub {
       font-size: 1.2em;
       font-weight: 500;
-      color: rgba(185, 167, 136, 0.7);
+      color: #E8E3CA;
       margin-top: 4px;
       letter-spacing: 1px;
     }
 
-    /* 追従ナビバー */
+    /* ナビバー（追従） */
     nav {
       position: fixed;
-      top: 90px; /* ヘッダー下に配置 */
+      top: 100px; /* ヘッダー下 */
       left: 0;
       width: 100%;
-      background-color: #f2e8d5;
-      text-align: center;
+      background-color: #F2EFE2;
       padding: 10px 0;
       z-index: 999;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
     }
 
     nav a {
-      margin: 0 12px;
-      color: #0e0a52;
-      font-weight: 600;
+      display: flex;
+      flex-direction: column; /* 英語上、日本語下 */
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
+      color: #0e0a52;
+      margin: 0 18px;
+      font-weight: 600;
     }
 
-    nav a:hover {
+    nav a .en {
+      font-size: 0.95em;
+      font-weight: 700;
+    }
+
+    nav a .ja {
+      font-size: 0.85em;
+      margin-top: 2px;
+    }
+
+    nav a:hover .en,
+    nav a:hover .ja {
       color: #ffcc00;
     }
 
     main {
       max-width: 900px;
       margin: 0 auto;
-      padding: 180px 20px 40px; /* ヘッダー+ナビバー分の余白 */
+      padding: 200px 20px 40px; /* ヘッダー+ナビバー分の余白 */
     }
 
     .page-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .page-title .en {
       font-size: 1.8em;
       font-weight: 700;
-      margin-bottom: 20px;
-      text-align: center;
+      display: block;
+    }
+    .page-title .ja-main {
+      font-size: 1.2em;
+      font-weight: 700;
+      display: block;
+      margin-top: 4px;
     }
 
     .section {
       margin-bottom: 35px;
     }
 
+    /* セクション見出しは左寄せ */
     .section h2 {
-      font-size: 1.4em;
-      font-weight: 700;
       border-bottom: 2px solid #0e0a52;
       padding-bottom: 5px;
       margin-bottom: 15px;
+      text-align: left;
+    }
+    .section h2 .en {
+      font-size: 1em;
+      font-weight: 700;
+      display: block;
+    }
+    .section h2 .ja-main {
+      font-size: 0.7em;
+      font-weight: 700;
+      display: block;
+      margin-top: 4px;
     }
 
     .item {
       margin-bottom: 12px;
       display: flex;
-      align-items: center;
-      line-height: 1.4em;
+      align-items: flex-start;
       transition: transform 0.2s, background 0.2s;
       padding: 5px;
       border-radius: 6px;
@@ -123,24 +152,30 @@
       width: 22px;
       height: 22px;
       margin-right: 10px;
+      margin-top: 4px;
     }
 
     .item p {
       margin: 0;
-      font-weight: 600; /* 日本語説明を太字に */
+      font-weight: 600;
+      display: flex;
+      flex-direction: column; /* 英語上、日本語下 */
     }
 
-    .item span {
-      font-size: 0.85em;
-      display: block;
+    .item p .en {
+      font-size: 1em;
+    }
+    .item p .ja-main {
+      font-size: 0.9em;
       margin-top: 2px;
+      font-weight: 400;
     }
 
     footer {
       text-align: center;
       padding: 15px 0;
       background-color: #0e0a52;
-      color: #b9a788;
+      color: #E8E3CA;
       font-weight: 500;
     }
 
@@ -153,12 +188,15 @@
     @media(max-width: 600px){
       header .hotel-name { font-size: 1.6em; }
       header .hotel-sub { font-size: 1em; }
-      nav { font-size: 0.9em; }
-      .page-title { font-size: 1.5em; }
-      .section h2 { font-size: 1.2em; }
+      .page-title .en { font-size: 1.5em; }
+      .page-title .ja-main,
+      .section h2 .ja-main { font-size: 1em; }
+      .section h2 .en { font-size: 1.2em; }
       .item img { width: 18px; height: 18px; margin-right: 6px; }
-      .item p { font-size: 0.95em; }
-      .item span { font-size: 0.75em; }
+      .item p .en { font-size: 0.95em; }
+      .item p .ja-main { font-size: 0.8em; }
+      nav { flex-wrap: wrap; padding: 8px 0; }
+      nav a { margin: 6px 12px; }
     }
   </style>
 </head>
@@ -170,64 +208,117 @@
 </header>
 
 <nav>
-  <a href="#room">客室設備</a>
-  <a href="#services">館内サービス</a>
-  <a href="#amenities">館内施設</a>
-  <a href="#nearby">周辺情報</a>
+  <a href="#room">
+    <span class="en">Facilities</span>
+    <span class="ja">施設案内</span>
+  </a>
+  <a href="#services">
+    <span class="en">Information</span>
+    <span class="ja">お知らせ</span>
+  </a>
+  <a href="#nearby">
+    <span class="en">Area Guide</span>
+    <span class="ja">周辺情報</span>
+  </a>
+  <a href="#wifi">
+    <span class="en">Wi-Fi</span>
+  </a>
 </nav>
 
 <main>
-  <div class="page-title">館内案内 / Facilities</div>
+  <div class="page-title">
+    <span class="en">Facilities</span>
+    <span class="ja-main">施設案内</span>
+  </div>
 
   <div id="room" class="section">
-    <h2>客室設備 / Room Facilities</h2>
+    <h2>
+      <span class="en">Rooms</span>
+      <span class="ja-main">客室</span>
+    </h2>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="ベッド">
-      <p>広々とした29㎡以上の客室 <span>Rooms over 29㎡</span></p>
+      <p>
+        <span class="en">Rooms over 29㎡</span>
+        <span class="ja-main">広々とした29㎡以上の客室</span>
+      </p>
     </div>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/kitchen.png" alt="キッチン">
-      <p>キッチン完備（冷蔵庫、電子レンジ、コンロ） <span>Kitchen equipped</span></p>
+      <p>
+        <span class="en">Kitchen equipped</span>
+        <span class="ja-main">キッチン完備（冷蔵庫、電子レンジ、コンロ）</span>
+      </p>
     </div>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/bath.png" alt="浴室">
-      <p>浴室設備（バスタブ、シャワー、トイレ） <span>Bathroom facilities</span></p>
+      <p>
+        <span class="en">Bathroom facilities</span>
+        <span class="ja-main">浴室設備（バスタブ、シャワー、トイレ）</span>
+      </p>
     </div>
   </div>
 
   <div id="services" class="section">
-    <h2>館内サービス / Services</h2>
+    <h2>
+      <span class="en">Services</span>
+      <span class="ja-main">館内サービス</span>
+    </h2>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/wifi.png" alt="Wi-Fi">
-      <p>無料Wi-Fi <span>Free Wi-Fi</span></p>
+      <p>
+        <span class="en">Free Wi-Fi</span>
+        <span class="ja-main">無料Wi-Fi</span>
+      </p>
     </div>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/clock.png" alt="フロント">
-      <p>24時間フロントデスク <span>24-hour front desk</span></p>
+      <p>
+        <span class="en">24-hour front desk</span>
+        <span class="ja-main">24時間フロントデスク</span>
+      </p>
     </div>
   </div>
 
   <div id="amenities" class="section">
-    <h2>館内施設 / Amenities</h2>
+    <h2>
+      <span class="en">Amenities</span>
+      <span class="ja-main">館内施設</span>
+    </h2>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/sofa.png" alt="ラウンジ">
-      <p>ラウンジスペース <span>Lounge area</span></p>
+      <p>
+        <span class="en">Lounge area</span>
+        <span class="ja-main">ラウンジスペース</span>
+      </p>
     </div>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/kitchen.png" alt="共有キッチン">
-      <p>共有キッチン <span>Shared kitchen</span></p>
+      <p>
+        <span class="en">Shared kitchen</span>
+        <span class="ja-main">共有キッチン</span>
+      </p>
     </div>
   </div>
 
   <div id="nearby" class="section">
-    <h2>周辺情報 / Nearby Spots</h2>
+    <h2>
+      <span class="en">Nearby Spots</span>
+      <span class="ja-main">周辺情報</span>
+    </h2>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/map-pin.png" alt="アクセス">
-      <p>池袋駅西口から徒歩約7分 <span>7 min walk from Ikebukuro Station</span></p>
+      <p>
+        <span class="en">7 min walk from Ikebukuro Station</span>
+        <span class="ja-main">池袋駅西口から徒歩約7分</span>
+      </p>
     </div>
     <div class="item">
       <img src="https://img.icons8.com/material-rounded/24/0e0a52/restaurant.png" alt="飲食店">
-      <p>周辺にレストラン・カフェ多数 <span>Many restaurants nearby</span></p>
+      <p>
+        <span class="en">Many restaurants nearby</span>
+        <span class="ja-main">周辺にレストラン・カフェ多数</span>
+      </p>
     </div>
   </div>
 </main>
