@@ -94,6 +94,7 @@
   <div id="room" class="section">
     <h2><span class="en">Rooms</span><span class="ja-main">客室</span></h2>
 
+    <!-- 全フロアのアイテム -->
     <div class="item" data-images='["images/room8F.jpg"]'>
       <p><span class="en">8F ━ Triple・Twin 
         <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
@@ -112,27 +113,32 @@
         <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
       </span></p>
     </div>
+
     <div class="item" data-images='["images/room5F.jpg"]'>
       <p><span class="en">5F ━ Triple・Sweet・Laundry 
         <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
         <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="Laundry">
       </span></p>
     </div>
+
     <div class="item" data-images='["images/room4F.jpg"]'>
       <p><span class="en">4F ━ Triple・Sweet 
         <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
       </span></p>
     </div>
+
     <div class="item" data-images='["images/room3F.jpg"]'>
       <p><span class="en">3F ━ Triple 
         <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
       </span></p>
     </div>
+
     <div class="item" data-images='["images/room2F.jpg"]'>
       <p><span class="en">2F ━ Triple 
         <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
       </span></p>
     </div>
+
     <div class="item" data-images='["images/front1F.jpg"]'>
       <p><span class="en">1F ━ Front・Luggage Locker 
         <img class="icon" src="https://img.icons8.com/ios-filled/50/0e0a52/service-bell.png" alt="Bell">
@@ -218,7 +224,6 @@
   // タッチスワイプ対応
   let startX = 0;
   let endX = 0;
-
   popupImage.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
   popupImage.addEventListener('touchmove', e => { endX = e.touches[0].clientX; });
   popupImage.addEventListener('touchend', e => {
