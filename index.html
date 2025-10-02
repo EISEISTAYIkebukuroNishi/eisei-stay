@@ -9,175 +9,59 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #E8E3CA;
-      color: #0e0a52;
-      scroll-behavior: smooth;
-    }
+    body { font-family: 'Noto Sans JP', sans-serif; margin:0; padding:0; background-color:#E8E3CA; color:#0e0a52; scroll-behavior:smooth;}
+    header { background-color:#0e0a52; color:#E8E3CA; display:flex; flex-direction:column; justify-content:center; align-items:center; height:90px; position:fixed; top:0; left:0; width:100%; z-index:1000; }
+    header .hotel-name { font-size:32px; font-weight:700; line-height:1.2; }
+    header .hotel-sub { font-size:19px; font-weight:500; margin-top:4px; letter-spacing:1px; }
 
-    /* 固定ヘッダー */
-    header {
-      background-color: #0e0a52;
-      color: #E8E3CA;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 90px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
+    nav { position:fixed; top:90px; left:0; width:100%; background-color:#F2EFE2; height:50px; z-index:999; box-shadow:0 2px 5px rgba(0,0,0,0.1); display:flex; justify-content:center; align-items:center; }
+    nav a { display:flex; flex-direction:column; align-items:center; justify-content:center; text-decoration:none; color:#0e0a52; margin:0 18px; font-weight:600; }
+    nav a .en { font-size:15px; font-weight:700; }
+    nav a .ja { font-size:14px; margin-top:2px; }
+    nav a:hover .en, nav a:hover .ja { color:#ffcc00; }
 
-    header .hotel-name {
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
+    main { max-width:900px; margin:0 auto; padding:160px 20px 40px; }
+    .page-title { text-align:center; margin-bottom:20px; }
+    .page-title .en { font-size:28px; font-weight:700; display:block; }
+    .page-title .ja-main { font-size:19px; font-weight:700; display:block; margin-top:4px; }
 
-    header .hotel-sub {
-      font-size: 19px;
-      font-weight: 500;
-      margin-top: 4px;
-      letter-spacing: 1px;
-    }
+    .section { margin-bottom:35px; }
+    .section h2 { border-bottom:2px solid #0e0a52; padding-bottom:5px; margin-bottom:30px; text-align:left; }
+    .section h2 .en { font-size:16px; font-weight:700; display:block; }
+    .section h2 .ja-main { font-size:10px; font-weight:700; display:block; margin-top:4px; }
 
-    /* ナビバー（追従） */
-    nav {
-      position: fixed;
-      top: 90px; /* headerの下 */
-      left: 0;
-      width: 100%;
-      background-color: #F2EFE2;
-      height: 50px; /* 高さを固定 */
-      z-index: 999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    .item { margin-bottom:12px; display:flex; align-items:flex-start; transition:transform 0.2s, background 0.2s; padding:5px; border-radius:6px; cursor:pointer; }
+    .item:hover { background:rgba(255,255,255,0.3); transform:scale(1.02); }
+    .item.no-hover:hover { background:none; transform:none; cursor:default; }
 
-    nav a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #0e0a52;
-      margin: 0 18px;
-      font-weight: 600;
-    }
+    .item img.icon { width:22px; height:22px; margin-right:10px; margin-top:4px; }
+    .item p { margin:0; font-weight:600; display:flex; flex-direction:column; }
+    .item p .en { font-size:16px; display:inline-flex; align-items:center; }
+    .item p .ja-main { font-size:14px; margin-top:2px; font-weight:400; }
 
-    nav a .en { font-size: 15px; font-weight: 700; }
-    nav a .ja { font-size: 14px; margin-top: 2px; }
+    .dotted-line { border:none; border-top:2px dashed #0e0a52; margin:12px 0; }
 
-    nav a:hover .en,
-    nav a:hover .ja { color: #ffcc00; }
+    footer { text-align:center; padding:15px 0; background-color:#0e0a52; color:#E8E3CA; font-weight:500; }
+    footer small { display:block; margin-top:5px; font-size:14px; }
 
-    /* mainのpadding-top = header高さ + nav高さ + 余白 */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 160px 20px 40px; /* 上余白をさらに20px増加 */
-    }
+    /* ポップアップ用 */
+    .popup-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:none; justify-content:center; align-items:center; z-index:2000; }
+    .popup-overlay img { max-width:90%; max-height:90%; border-radius:6px; }
+    .popup-overlay.active { display:flex; }
 
-    .page-title { text-align: center; margin-bottom: 20px; }
-    .page-title .en { font-size: 28px; font-weight: 700; display: block; }
-    .page-title .ja-main { font-size: 19px; font-weight: 700; display: block; margin-top: 4px; }
-
-    .section { margin-bottom: 35px; }
-
-    .section h2 {
-      border-bottom: 2px solid #0e0a52;
-      padding-bottom: 5px;
-      margin-bottom: 30px;
-      text-align: left;
-    }
-    .section h2 .en { font-size: 16px; font-weight: 700; display: block; }
-    .section h2 .ja-main { font-size: 10px; font-weight: 700; display: block; margin-top: 4px; }
-
-    .item {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: flex-start;
-      transition: transform 0.2s, background 0.2s;
-      padding: 5px;
-      border-radius: 6px;
-    }
-    .item:hover { background: rgba(255,255,255,0.3); transform: scale(1.02); }
-
-    /* ホバー効果を無効化 */
-    .item.no-hover:hover {
-      background: none;
-      transform: none;
-    }
-
-    .item img { width: 22px; height: 22px; margin-right: 10px; margin-top: 4px; }
-
-    .item p {
-      margin: 0;
-      font-weight: 600;
-      display: flex;
-      flex-direction: column;
-    }
-    .item p .en { font-size: 16px; display: inline-flex; align-items: center; }
-    .item p .ja-main { font-size: 14px; margin-top: 2px; font-weight: 400; }
-
-    .inline-icon {
-      width: 20px;
-      height: 20px;
-      margin-left: 6px;
-    }
-      /* 丸点線 */
-    .dotted-line {
-      border: none;
-      height: 1px;
-      margin: 20px 0;
-      background-image: repeating-linear-gradient(
-        to right,
-        #0e0a52,
-        #0e0a52 4px,
-        transparent 4px,
-        transparent 10px
-      );
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px 0;
-      background-color: #0e0a52;
-      color: #E8E3CA;
-      font-weight: 500;
-    }
-    footer small { display: block; margin-top: 5px; font-size: 14px; }
-　　
-　　/* 点線スタイル追加 */
-　　.dotted-line {
-　　  border: none;
-  　　border-top: 20px dashed #0e0a52; /* 太さ2pxで破線 */
-  　　margin: 12px 0;
-　　}
-
-    @media(max-width: 600px){
-      header .hotel-name { font-size: 26px; }
-      header .hotel-sub { font-size: 16px; }
-      .page-title .en { font-size: 24px; }
-      .page-title .ja-main { font-size: 16px; }
-      .section h2 .en { font-size: 18px; }
-      .section h2 .ja-main { font-size: 16px; }
-      .item img { width: 18px; height: 18px; margin-right: 6px; }
-      .item p .en { font-size: 15px; }
-      .item p .ja-main { font-size: 14px; }
-      nav a .en { font-size: 14px; }
-      nav a .ja { font-size: 13px; }
-
-      /* 画面幅が狭い場合のmain padding-top調整 */
-      main { padding-top: 170px; }
+    @media(max-width:600px){
+      header .hotel-name { font-size:26px; }
+      header .hotel-sub { font-size:16px; }
+      .page-title .en { font-size:24px; }
+      .page-title .ja-main { font-size:16px; }
+      .section h2 .en { font-size:18px; }
+      .section h2 .ja-main { font-size:16px; }
+      .item img.icon { width:18px; height:18px; margin-right:6px; }
+      .item p .en { font-size:15px; }
+      .item p .ja-main { font-size:14px; }
+      nav a .en { font-size:14px; }
+      nav a .ja { font-size:13px; }
+      main { padding-top:170px; }
     }
   </style>
 </head>
@@ -189,21 +73,10 @@
 </header>
 
 <nav>
-  <a href="#room">
-    <span class="en">Facilities</span>
-    <span class="ja">施設案内</span>
-  </a>
-  <a href="#services">
-    <span class="en">Information</span>
-    <span class="ja">お知らせ</span>
-  </a>
-  <a href="#nearby">
-    <span class="en">Area Guide</span>
-    <span class="ja">周辺情報</span>
-  </a>
-  <a href="#wifi">
-    <span class="en">Wi-Fi</span>
-  </a>
+  <a href="#room"><span class="en">Facilities</span><span class="ja">施設案内</span></a>
+  <a href="#services"><span class="en">Information</span><span class="ja">お知らせ</span></a>
+  <a href="#nearby"><span class="en">Area Guide</span><span class="ja">周辺情報</span></a>
+  <a href="#wifi"><span class="en">Wi-Fi</span></a>
 </nav>
 
 <main>
@@ -213,150 +86,103 @@
   </div>
 
   <div id="room" class="section">
-    <h2>
-      <span class="en">Rooms</span>
-      <span class="ja-main">客室</span>
-    </h2>
-    <div class="item">
-      <p>
-        <span class="en">8F ━ Triple・Twin
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
-        </span>
-      </p>
+    <h2><span class="en">Rooms</span><span class="ja-main">客室</span></h2>
+
+    <div class="item" data-img="images/room8F.jpg">
+      <p><span class="en">8F ━ Triple・Twin 
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+      </span></p>
     </div>
-    <div class="item">
-      <p>
-        <span class="en">7F ━ Triple・Sweet・Laundry
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="washing-machine">
-        </span>
-      </p>
+    <div class="item" data-img="images/EiseiStay-IN-P02-001.jpg">
+      <p><span class="en">7F ━ Triple・Sweet・Laundry 
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="Laundry">
+      </span></p>
     </div>
-    <div class="item">
-      <p>
-        <span class="en">6F ━ Triple・Sweet
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
-        </span>
-      </p>
+    <div class="item" data-img="images/room6F.jpg">
+      <p><span class="en">6F ━ Triple・Sweet 
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+      </span></p>
     </div>
-    <div class="item">
-      <p>
-        <span class="en">5F ━ Triple・Sweet・Laundry
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="washing-machine">
-        </span>
-      </p>
+    <div class="item" data-img="images/room5F.jpg">
+      <p><span class="en">5F ━ Triple・Sweet・Laundry 
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="Laundry">
+      </span></p>
     </div>
-    <div class="item">
-      <p>
-        <span class="en">4F ━ Triple・Sweet
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
-        </span>
-      </p>
+    <div class="item" data-img="images/room4F.jpg">
+      <p><span class="en">4F ━ Triple・Sweet 
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+      </span></p>
     </div>
-    <div class="item">
-      <p>
-        <span class="en">3F ━ Triple
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
-        </span>
-      </p>
+    <div class="item" data-img="images/room3F.jpg">
+      <p><span class="en">3F ━ Triple 
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+      </span></p>
     </div>
-    <div class="item">
-      <p>
-        <span class="en">2F ━ Triple
-          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
-        </span>
-      </p>
+    <div class="item" data-img="images/room2F.jpg">
+      <p><span class="en">2F ━ Triple 
+        <img class="icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+      </span></p>
     </div>
-    <div class="item">
-      <p>
-        <span class="en">1F ━ Front・Luggage Locker
-          <img class="inline-icon" src="https://img.icons8.com/ios-filled/50/0e0a52/service-bell.png" alt="service-bell"/>
-          <img class="inline-icon" src="https://img.icons8.com/ios-filled/50/0e0a52/baggage-lockers.png" alt="baggage-lockers"/>
-        </span>
-      </p>
+    <div class="item" data-img="images/front1F.jpg">
+      <p><span class="en">1F ━ Front・Luggage Locker 
+        <img class="icon" src="https://img.icons8.com/ios-filled/50/0e0a52/service-bell.png" alt="Bell">
+        <img class="icon" src="https://img.icons8.com/ios-filled/50/0e0a52/baggage-lockers.png" alt="Locker">
+      </span></p>
     </div>
+  </div>
 
   <div id="services" class="section">
-    <h2>
-      <span class="en">Luggage Locker</span>
-      <span class="ja-main">宿泊者専用ロッカー</span>
-    </h2>
-    <div class="item no-hover">
-      <p>
-        <span class="en">To make your stay more comfortable, we provide lockers next to the front desk on the 1st floor.
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="en">They are perfect for keeping your luggage safe before check-in or after check-out, so you can enjoy sightseeing hands-free.
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="en">・Secure dial-lock system for peace of mind
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="en">・Large suitcases can also be safely fastened with a wire lock
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="en">・Free of charge for all our guests
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="en">Enjoy exploring the city while we keep your belongings safe.
-        </span>
-      </p>
-    </div>
+    <h2><span class="en">Luggage Locker</span><span class="ja-main">宿泊者専用ロッカー</span></h2>
+    <div class="item no-hover"><p><span class="en">To make your stay more comfortable, we provide lockers next to the front desk on the 1st floor.</span></p></div>
+    <div class="item no-hover"><p><span class="en">They are perfect for keeping your luggage safe before check-in or after check-out, so you can enjoy sightseeing hands-free.</span></p></div>
+    <div class="item no-hover"><p><span class="en">・Secure dial-lock system for peace of mind</span></p></div>
+    <div class="item no-hover"><p><span class="en">・Large suitcases can also be safely fastened with a wire lock</span></p></div>
+    <div class="item no-hover"><p><span class="en">・Free of charge for all our guests</span></p></div>
+    <div class="item no-hover"><p><span class="en">Enjoy exploring the city while we keep your belongings safe.</span></p></div>
 
-<hr class="dotted-line">
+    <hr class="dotted-line">
 
-    <div class="item no-hover">
-      <p>
-        <span class="ja">身軽に周辺観光をお楽しみいただけるよう1Fフロント横にロッカーをご用意しております。
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="ja">・ダイヤル式ロッカーで安心のセキュリティ
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="ja">・大きなスーツケースもワイヤーロックでしっかり施錠
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="ja">・無料でご利用いただけます
-        </span>
-      </p>
-    </div>
-    <div class="item no-hover">
-      <p>
-        <span class="ja">どうぞご旅行の合間にご活用ください。
-        </span>
-      </p>
-    </div>
+    <div class="item no-hover"><p><span class="ja">身軽に周辺観光をお楽しみいただけるよう1Fフロント横にロッカーをご用意しております。</span></p></div>
+    <div class="item no-hover"><p><span class="ja">・ダイヤル式ロッカーで安心のセキュリティ</span></p></div>
+    <div class="item no-hover"><p><span class="ja">・大きなスーツケースもワイヤーロックでしっかり施錠</span></p></div>
+    <div class="item no-hover"><p><span class="ja">・無料でご利用いただけます</span></p></div>
+    <div class="item no-hover"><p><span class="ja">どうぞご旅行の合間にご活用ください。</span></p></div>
+  </div>
 </main>
+
+<!-- ポップアップオーバーレイ -->
+<div class="popup-overlay" id="popupOverlay">
+  <img id="popupImage" src="" alt="popup">
+</div>
 
 <footer>
   &copy; 2025 EISEI STAY Ikebukuro Nishi
   <small>〒171-0014 東京都豊島区池袋2-12-10</small>
 </footer>
+
+<script>
+  // ポップアップ処理：data-img属性を持つ.itemをクリック対象に
+  const items = document.querySelectorAll('.item[data-img]');
+  const overlay = document.getElementById('popupOverlay');
+  const popupImage = document.getElementById('popupImage');
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const imgSrc = item.getAttribute('data-img');
+      if(imgSrc){
+        popupImage.src = imgSrc;
+        overlay.classList.add('active');
+      }
+    });
+  });
+
+  overlay.addEventListener('click', () => {
+    overlay.classList.remove('active');
+    popupImage.src = '';
+  });
+</script>
 
 </body>
 </html>
