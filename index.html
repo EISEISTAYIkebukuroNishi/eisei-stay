@@ -79,7 +79,7 @@
     nav a:hover .en,
     nav a:hover .ja { color: #ffcc00; }
 
-    /* mainのpadding-top = header高さ + nav高さ */
+    /* mainのpadding-top = header高さ + nav高さ + 余白 */
     main {
       max-width: 900px;
       margin: 0 auto;
@@ -95,11 +95,11 @@
     .section h2 {
       border-bottom: 2px solid #0e0a52;
       padding-bottom: 5px;
-      margin-bottom: 15px;
+      margin-bottom: 30px;
       text-align: left;
     }
     .section h2 .en { font-size: 16px; font-weight: 700; display: block; }
-    .section h2 .ja-main { font-size: 14px; font-weight: 700; display: block; margin-top: 4px; }
+    .section h2 .ja-main { font-size: 10px; font-weight: 700; display: block; margin-top: 4px; }
 
     .item {
       margin-bottom: 12px;
@@ -119,8 +119,27 @@
       display: flex;
       flex-direction: column;
     }
-    .item p .en { font-size: 16px; }
+    .item p .en { font-size: 16px; display: inline-flex; align-items: center; }
     .item p .ja-main { font-size: 14px; margin-top: 2px; font-weight: 400; }
+
+    .inline-icon {
+      width: 20px;
+      height: 20px;
+      margin-left: 6px;
+    }
+    /* 丸点線 */
+    .dotted-line {
+      border: none;
+      height: 1px;
+      margin: 20px 0;
+      background-image: repeating-linear-gradient(
+        to right,
+        #0e0a52,
+        #0e0a52 4px,
+        transparent 4px,
+        transparent 10px
+      );
+    }
 
     footer {
       text-align: center;
@@ -130,6 +149,13 @@
       font-weight: 500;
     }
     footer small { display: block; margin-top: 5px; font-size: 14px; }
+　　
+　　/* 点線スタイル追加 */
+　　.dotted-line {
+　　  border: none;
+  　　border-top: 20px dashed #0e0a52; /* 太さ2pxで破線 */
+  　　margin: 12px 0;
+　　}
 
     @media(max-width: 600px){
       header .hotel-name { font-size: 26px; }
@@ -145,7 +171,7 @@
       nav a .ja { font-size: 13px; }
 
       /* 画面幅が狭い場合のmain padding-top調整 */
-      main { padding-top: 170px; } /* 小画面用も少し増やす */
+      main { padding-top: 170px; }
     }
   </style>
 </head>
@@ -186,48 +212,139 @@
       <span class="ja-main">客室</span>
     </h2>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="ベッド">
       <p>
-        <span class="en">Rooms over 29㎡</span>
-        <span class="ja-main">広々とした29㎡以上の客室</span>
+        <span class="en">8F ━ Triple・Twin
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+        </span>
       </p>
     </div>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/kitchen.png" alt="キッチン">
       <p>
-        <span class="en">Kitchen equipped</span>
-        <span class="ja-main">キッチン完備（冷蔵庫、電子レンジ、コンロ）</span>
+        <span class="en">7F ━ Triple・Sweet・Laundry
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="washing-machine">
+        </span>
       </p>
     </div>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/bath.png" alt="浴室">
       <p>
-        <span class="en">Bathroom facilities</span>
-        <span class="ja-main">浴室設備（バスタブ、シャワー、トイレ）</span>
+        <span class="en">6F ━ Triple・Sweet
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+        </span>
       </p>
     </div>
-  </div>
+    <div class="item">
+      <p>
+        <span class="en">5F ━ Triple・Sweet・Laundry
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/washing-machine.png" alt="washing-machine">
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="en">4F ━ Triple・Sweet
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="en">3F ━ Triple
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="en">2F ━ Triple
+          <img class="inline-icon" src="https://img.icons8.com/material-rounded/24/0e0a52/bed.png" alt="Bed">
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="en">1F ━ Front・Luggage Locker
+          <img class="inline-icon" src="https://img.icons8.com/ios-filled/50/0e0a52/service-bell.png" alt="service-bell"/>
+          <img class="inline-icon" src="https://img.icons8.com/ios-filled/50/0e0a52/baggage-lockers.png" alt="baggage-lockers"/>
+        </span>
+      </p>
+    </div>
 
   <div id="services" class="section">
     <h2>
-      <span class="en">Services</span>
-      <span class="ja-main">館内サービス</span>
+      <span class="en">Luggage Locker</span>
+      <span class="ja-main">宿泊者専用ロッカー</span>
     </h2>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/wifi.png" alt="Wi-Fi">
       <p>
-        <span class="en">Free Wi-Fi</span>
-        <span class="ja-main">無料Wi-Fi</span>
+        <span class="en">To make your stay more comfortable, we provide lockers next to the front desk on the 1st floor.
+        </span>
       </p>
     </div>
     <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/clock.png" alt="フロント">
       <p>
-        <span class="en">24-hour front desk</span>
-        <span class="ja-main">24時間フロントデスク</span>
+        <span class="en">They are perfect for keeping your luggage safe before check-in or after check-out, so you can enjoy sightseeing hands-free.
+        </span>
       </p>
     </div>
-  </div>
+    <div class="item">
+      <p>
+        <span class="en">・Secure dial-lock system for peace of mind
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="en">・Large suitcases can also be safely fastened with a wire lock
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="en">・Free of charge for all our guests
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="en">Enjoy exploring the city while we keep your belongings safe.
+        </span>
+      </p>
+    </div>
+
+<hr class="dotted-line">
+
+    <div class="item">
+      <p>
+        <span class="ja">身軽に周辺観光をお楽しみいただけるよう1Fフロント横にロッカーをご用意しております。
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="ja">・ダイヤル式ロッカーで安心のセキュリティ
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="ja">・大きなスーツケースもワイヤーロックでしっかり施錠
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="ja">・無料でご利用いただけます
+        </span>
+      </p>
+    </div>
+    <div class="item">
+      <p>
+        <span class="ja">どうぞご旅行の合間にご活用ください。
+        </span>
+      </p>
+    </div>
 
   <div id="amenities" class="section">
     <h2>
