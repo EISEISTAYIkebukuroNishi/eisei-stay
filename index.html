@@ -111,6 +111,12 @@
     }
     .item:hover { background: rgba(255,255,255,0.3); transform: scale(1.02); }
 
+    /* ホバー効果を無効化 */
+    .item.no-hover:hover {
+      background: none;
+      transform: none;
+    }
+
     .item img { width: 22px; height: 22px; margin-right: 10px; margin-top: 4px; }
 
     .item p {
@@ -127,7 +133,7 @@
       height: 20px;
       margin-left: 6px;
     }
-    /* 丸点線 */
+      /* 丸点線 */
     .dotted-line {
       border: none;
       height: 1px;
@@ -276,37 +282,37 @@
       <span class="en">Luggage Locker</span>
       <span class="ja-main">宿泊者専用ロッカー</span>
     </h2>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="en">To make your stay more comfortable, we provide lockers next to the front desk on the 1st floor.
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="en">They are perfect for keeping your luggage safe before check-in or after check-out, so you can enjoy sightseeing hands-free.
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="en">・Secure dial-lock system for peace of mind
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="en">・Large suitcases can also be safely fastened with a wire lock
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="en">・Free of charge for all our guests
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="en">Enjoy exploring the city while we keep your belongings safe.
         </span>
@@ -315,78 +321,36 @@
 
 <hr class="dotted-line">
 
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="ja">身軽に周辺観光をお楽しみいただけるよう1Fフロント横にロッカーをご用意しております。
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="ja">・ダイヤル式ロッカーで安心のセキュリティ
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="ja">・大きなスーツケースもワイヤーロックでしっかり施錠
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="ja">・無料でご利用いただけます
         </span>
       </p>
     </div>
-    <div class="item">
+    <div class="item no-hover">
       <p>
         <span class="ja">どうぞご旅行の合間にご活用ください。
         </span>
       </p>
     </div>
-
-  <div id="amenities" class="section">
-    <h2>
-      <span class="en">Amenities</span>
-      <span class="ja-main">館内施設</span>
-    </h2>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/sofa.png" alt="ラウンジ">
-      <p>
-        <span class="en">Lounge area</span>
-        <span class="ja-main">ラウンジスペース</span>
-      </p>
-    </div>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/kitchen.png" alt="共有キッチン">
-      <p>
-        <span class="en">Shared kitchen</span>
-        <span class="ja-main">共有キッチン</span>
-      </p>
-    </div>
-  </div>
-
-  <div id="nearby" class="section">
-    <h2>
-      <span class="en">Nearby Spots</span>
-      <span class="ja-main">周辺情報</span>
-    </h2>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/map-pin.png" alt="アクセス">
-      <p>
-        <span class="en">7 min walk from Ikebukuro Station</span>
-        <span class="ja-main">池袋駅西口から徒歩約7分</span>
-      </p>
-    </div>
-    <div class="item">
-      <img src="https://img.icons8.com/material-rounded/24/0e0a52/restaurant.png" alt="飲食店">
-      <p>
-        <span class="en">Many restaurants nearby</span>
-        <span class="ja-main">周辺にレストラン・カフェ多数</span>
-      </p>
-    </div>
-  </div>
 </main>
 
 <footer>
