@@ -9,7 +9,7 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body { height:100%; width:100%; font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 
-  /* 背景画像スライド + パララックス */
+  /* 背景スライド */
   .bg {
     position: fixed; top:0; left:0; width:100%; height:100%;
     object-fit: cover; opacity:0;
@@ -18,16 +18,11 @@
     transform: translateY(0);
     transition: transform 0.1s linear;
   }
-  .bg:nth-child(1) { animation-delay:0s; }
-  .bg:nth-child(2) { animation-delay:6s; }
-  .bg:nth-child(3) { animation-delay:12s; }
-
+  .bg:nth-child(1){animation-delay:0s;}
+  .bg:nth-child(2){animation-delay:6s;}
+  .bg:nth-child(3){animation-delay:12s;}
   @keyframes fadeSlide {
-    0%   { opacity: 0; }
-    10%  { opacity: 1; }
-    40%  { opacity: 1; }
-    50%  { opacity: 0; }
-    100% { opacity: 0; }
+    0%{opacity:0;}10%{opacity:1;}40%{opacity:1;}50%{opacity:0;}100%{opacity:0;}
   }
 
   header {
@@ -63,11 +58,14 @@
   .lang-switch {
     font-size:16px;
     cursor:pointer;
-    z-index:5;
-    background: rgba(0,0,0,0.2);
+    z-index:6;
+    background: rgba(0,0,0,0.5);
     color:#fff;
     padding:4px 8px;
     border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
   .lang-switch span {
     margin:0 4px;
@@ -93,14 +91,15 @@
   }
   .header-book:hover { background-color: #E65C00; }
 
-  /* 右側（PC） */
+  /* 右側（PC）: LANG→BOOK順で右寄せ */
   .header-right {
     display:flex;
     align-items:center;
     gap:15px;
+    margin-left:auto;
   }
 
-  /* モバイル用メニュー（初期非表示） */
+  /* モバイル用メニュー非表示 */
   #menuToggle, #menuList { display:none; }
 
   /* 🔹 モバイルレイアウト */
@@ -110,31 +109,31 @@
     .hotel-title .hotel-name { font-size:26px; }
     .hotel-title .hotel-sub { font-size:16px; }
 
-    /* PCメニュー非表示 */
     nav.menu-pc { display:none; }
 
-    /* モバイル用ハンバーガー再表示 */
+    /* ハンバーガー */
     #menuToggle {
       display:block;
       position: fixed;
       top:10px; right:10px;
       font-size:32px;
       cursor:pointer;
-      z-index:6;
+      z-index:7;
       color:#333;
       line-height:1;
     }
 
-    /* 言語切替をハンバーガーと垂直中心合わせ */
+    /* 言語切替（ハンバーガー左隣） */
     .lang-switch {
+      display:block;
       position: fixed;
-      top:50%; transform: translateY(-50%);
+      top:10px;
       right:60px;
-      background: rgba(0,0,0,0.5);
       font-size:15px;
       padding:3px 6px;
       border-radius:4px;
-      z-index:6;
+      z-index:7;
+      background: rgba(0,0,0,0.5);
     }
 
     #menuList {
@@ -145,7 +144,7 @@
       color:#fff;
       padding:10px 20px;
       border-radius:6px;
-      z-index:7;
+      z-index:8;
       width:160px;
     }
     #menuList a {
@@ -157,11 +156,19 @@
     }
     #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
 
+    /* 下固定ボタン */
     .header-book {
       position: fixed; bottom:0; left:0; width:100%;
       font-size:20px; padding:15px 0;
       border-radius:0;
-      z-index:5;
+      z-index:6;
+    }
+
+    .header-right {
+      position: relative;
+      width:100%;
+      justify-content:flex-end;
+      gap:10px;
     }
   }
 
@@ -170,7 +177,7 @@
 </head>
 <body>
 
-<!-- 背景画像 -->
+<!-- 背景 -->
 <img src="images/triple-03.png" class="bg" alt="ホテル外観">
 <img src="images/EiseiStay-IN-P02-001.jpg" class="bg" alt="客室">
 <img src="images/EiseiStay-IN-P02-004.jpg" class="bg" alt="館内">
@@ -181,14 +188,7 @@
       <div class="hotel-name">EISEI STAY</div>
       <div class="hotel-sub">Ikebukuro Nishi</div>
     </div>
-
-    <!-- PCメニュー -->
-    <nav class="menu-pc" id="menuPC">
-      <a href="#room">客室</a>
-      <a href="#services">サービス</a>
-      <a href="#nearby">周辺情報</a>
-      <a href="#wifi">Wi-Fi</a>
-    </nav>
+    <nav class="menu-pc" id="menuPC"></nav>
   </div>
 
   <div class="header-right">
@@ -198,11 +198,9 @@
     <a href="https://go-es-group.reservation.jp/hotels/es-nishi/" class="header-book" target="_blank" rel="noopener">BOOK A STAY</a>
   </div>
 
-  <!-- モバイル専用 -->
   <div id="menuToggle">&#9776;</div>
 </header>
 
-<!-- モバイル用メニュー -->
 <div id="menuList"></div>
 
 <script>
@@ -238,7 +236,6 @@ function renderMenu() {
     menuList.appendChild(a);
   });
 
-  // PCメニューも同期
   const menuPC = document.getElementById('menuPC');
   if (menuPC) {
     menuPC.innerHTML = '';
@@ -252,40 +249,22 @@ function renderMenu() {
 }
 
 function updateLangSwitch() {
-  if (currentLang === 'JP') {
-    langJP.classList.add('active');
-    langEN.classList.remove('active');
-  } else {
-    langJP.classList.remove('active');
-    langEN.classList.add('active');
-  }
+  langJP.classList.toggle('active', currentLang === 'JP');
+  langEN.classList.toggle('active', currentLang === 'EN');
 }
 
 renderMenu();
 updateLangSwitch();
 
-// モバイルメニュー切替
 menuToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   menuList.style.display = (menuList.style.display === 'block') ? 'none' : 'block';
 });
 
-// 言語切替
-langJP.addEventListener('click', () => {
-  currentLang = 'JP';
-  renderMenu();
-  updateLangSwitch();
-});
-langEN.addEventListener('click', () => {
-  currentLang = 'EN';
-  renderMenu();
-  updateLangSwitch();
-});
+langJP.addEventListener('click', () => { currentLang='JP'; renderMenu(); updateLangSwitch(); });
+langEN.addEventListener('click', () => { currentLang='EN'; renderMenu(); updateLangSwitch(); });
+window.addEventListener('click', () => menuList.style.display='none');
 
-// 外クリックで閉じる
-window.addEventListener('click', () => { menuList.style.display = 'none'; });
-
-// パララックス
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   backgrounds.forEach((bg, index) => {
