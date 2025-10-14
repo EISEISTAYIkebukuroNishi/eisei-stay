@@ -40,7 +40,7 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
 
-  /* BOOK A STAY ボタン */
+  /* BOOK A STAY ボタン（PC用） */
   .header-book {
     position:absolute;
     right:60px;
@@ -95,6 +95,7 @@
   }
   #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
 
+  /* スマホ用調整 */
   @media(max-width:768px){
     header {
       flex-direction: column;
@@ -105,11 +106,14 @@
     .hotel-title .hotel-name { font-size:26px; }
     .hotel-title .hotel-sub { font-size:16px; }
     .header-book {
-      position:relative;
-      right:auto;
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size:20px;
-      padding:5px 10px;
-      margin-bottom:5px;
+      padding:10px 20px;
+      z-index:5;
+      margin:0;
     }
     .header-right { font-size:26px; margin-bottom:5px; }
     #menuList { width:160px; right:10px; }
