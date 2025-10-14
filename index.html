@@ -40,7 +40,7 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
 
-  /* BOOK A STAY ボタン（ハンバーガー左側） */
+  /* BOOK A STAY ボタン */
   .header-book {
     position:absolute;
     right:60px;
@@ -56,9 +56,7 @@
     text-decoration:none;
     text-align:center;
   }
-  .header-book:hover {
-    background-color: #E65C00;
-  }
+  .header-book:hover { background-color: #E65C00; }
 
   /* ホテルタイトル */
   .hotel-title { text-align:center; }
@@ -95,16 +93,25 @@
     padding-left:4px;
     transition: background 0.2s ease;
   }
-  #menuList a:hover {
-    background: rgba(255,255,255,0.1);
-    border-radius:4px;
-  }
+  #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
 
   @media(max-width:768px){
+    header {
+      flex-direction: column;
+      height:auto;
+      padding:5px 0;
+    }
+    .hotel-title { margin-bottom:5px; }
     .hotel-title .hotel-name { font-size:26px; }
     .hotel-title .hotel-sub { font-size:16px; }
-    .header-book { font-size:20px; padding:5px 10px; right:50px; }
-    .header-right { font-size:26px; }
+    .header-book {
+      position:relative;
+      right:auto;
+      font-size:20px;
+      padding:5px 10px;
+      margin-bottom:5px;
+    }
+    .header-right { font-size:26px; margin-bottom:5px; }
     #menuList { width:160px; right:10px; }
   }
 
@@ -145,9 +152,7 @@ menuToggle.addEventListener('click', (e) => {
   menuList.style.display = (menuList.style.display === 'block') ? 'none' : 'block';
 });
 
-window.addEventListener('click', () => {
-  menuList.style.display = 'none';
-});
+window.addEventListener('click', () => { menuList.style.display = 'none'; });
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
