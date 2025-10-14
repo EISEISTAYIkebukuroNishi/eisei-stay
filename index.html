@@ -30,7 +30,6 @@
     100% { opacity: 0; }
   }
 
-  /* ヘッダー */
   header {
     position: fixed; top:0; left:0; width:100%; height:90px;
     background-color: rgba(255,255,255,1); 
@@ -40,7 +39,26 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
 
-  /* BOOK A STAY ボタン（PC用） */
+  /* 言語切替 */
+  .lang-switch {
+    position: absolute;
+    top:10px;
+    left:10px;
+    font-size:16px;
+    cursor:pointer;
+    z-index:5;
+    background: rgba(0,0,0,0.2);
+    color:#fff;
+    padding:4px 8px;
+    border-radius:4px;
+  }
+  .lang-switch span {
+    margin:0 4px;
+    padding:2px 4px;
+    border-radius:2px;
+  }
+  .lang-switch .active { background:#FF6600; color:#fff; }
+
   .header-book {
     position:absolute;
     right:60px;
@@ -59,12 +77,10 @@
   }
   .header-book:hover { background-color: #E65C00; }
 
-  /* ホテルタイトル */
   .hotel-title { text-align:center; z-index:2; }
   .hotel-title .hotel-name { font-size:32px; }
   .hotel-title .hotel-sub { font-size:19px; margin-top:4px; font-weight:500; }
 
-  /* ハンバーガーメニュー */
   .header-right {
     position:absolute;
     right:20px;
@@ -74,7 +90,6 @@
     z-index:5;
   }
 
-  /* ハンバーガーメニューリスト */
   #menuList {
     display:none;
     position:absolute;
@@ -97,46 +112,15 @@
   }
   #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
 
-  /* スマホ用調整 */
   @media(max-width:768px){
-    header {
-      flex-direction: column;
-      height:auto;
-      padding:5px 0;
-    }
+    header { flex-direction: column; height:auto; padding:5px 0; }
     .hotel-title { margin-bottom:5px; }
     .hotel-title .hotel-name { font-size:26px; }
     .hotel-title .hotel-sub { font-size:16px; }
-
-    /* BOOK A STAY 下部固定、横幅いっぱい */
-    .header-book {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      font-size:20px;
-      padding:15px 0;
-      border-radius: 0;
-      z-index:4;
-    }
-
-    /* ハンバーガー右上固定 */
-    .header-right {
-      position: fixed;
-      top:10px;
-      right:10px;
-      font-size:26px;
-      z-index:5;
-      margin-bottom:0;
-    }
-
-    /* ハンバーガーメニューリストはハンバーガー下に表示 */
-    #menuList {
-      position: fixed;
-      top:50px;
-      right:10px;
-      width:160px;
-    }
+    .header-book { position: fixed; bottom:0; left:0; width:100%; font-size:20px; padding:15px 0; border-radius:0; z-index:4; }
+    .header-right { position: fixed; top:10px; right:10px; font-size:26px; z-index:5; }
+    #menuList { position: fixed; top:50px; right:10px; width:160px; }
+    .lang-switch { position: fixed; top:10px; left:10px; }
   }
 
   main { padding-top:100px; height:2000px; }
@@ -150,34 +134,90 @@
 <img src="images/EiseiStay-IN-P02-004.jpg" class="bg" alt="館内">
 
 <header>
+  <div class="lang-switch" id="langSwitch">
+    <span id="langJP" class="active">日</span> | <span id="langEN">EN</span>
+  </div>
+
   <div class="hotel-title">
     <div class="hotel-name">EISEI STAY</div>
     <div class="hotel-sub">Ikebukuro Nishi</div>
   </div>
+
   <a href="https://go-es-group.reservation.jp/hotels/es-nishi/" class="header-book" target="_blank" rel="noopener">BOOK A STAY</a>
   <div class="header-right" id="menuToggle">&#9776;</div>
 </header>
 
-<!-- ハンバーガーメニューリスト -->
-<div id="menuList">
-  <a href="#room">客室</a>
-  <a href="#services">サービス</a>
-  <a href="#nearby">周辺情報</a>
-  <a href="#wifi">Wi-Fi</a>
-</div>
+<div id="menuList"></div>
 
 <script>
 const menuToggle = document.getElementById('menuToggle');
 const menuList = document.getElementById('menuList');
+const langJP = document.getElementById('langJP');
+const langEN = document.getElementById('langEN');
 const backgrounds = document.querySelectorAll('.bg');
 
+const menuItems = {
+  JP: [
+    { text: '客室', href: '#room' },
+    { text: 'サービス', href: '#services' },
+    { text: '周辺情報', href: '#nearby' },
+    { text: 'Wi-Fi', href: '#wifi' },
+  ],
+  EN: [
+    { text: 'Rooms', href: '#room' },
+    { text: 'Services', href: '#services' },
+    { text: 'Nearby', href: '#nearby' },
+    { text: 'Wi-Fi', href: '#wifi' },
+  ]
+};
+
+let currentLang = 'JP';
+
+function renderMenu() {
+  menuList.innerHTML = '';
+  menuItems[currentLang].forEach(item => {
+    const a = document.createElement('a');
+    a.href = item.href;
+    a.textContent = item.text;
+    menuList.appendChild(a);
+  });
+}
+
+function updateLangSwitch() {
+  if (currentLang === 'JP') {
+    langJP.classList.add('active');
+    langEN.classList.remove('active');
+  } else {
+    langJP.classList.remove('active');
+    langEN.classList.add('active');
+  }
+}
+
+renderMenu();
+updateLangSwitch();
+
+// ハンバーガー表示切替
 menuToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   menuList.style.display = (menuList.style.display === 'block') ? 'none' : 'block';
 });
 
+// 言語切替
+langJP.addEventListener('click', () => {
+  currentLang = 'JP';
+  renderMenu();
+  updateLangSwitch();
+});
+langEN.addEventListener('click', () => {
+  currentLang = 'EN';
+  renderMenu();
+  updateLangSwitch();
+});
+
+// 画面クリックでメニュー閉じる
 window.addEventListener('click', () => { menuList.style.display = 'none'; });
 
+// 背景パララックス
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   backgrounds.forEach((bg, index) => {
