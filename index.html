@@ -4,18 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EISEI STAY | Ikebukuro Nishi</title>
-<link rel="icon" href="images/eiseistay_logo.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { height:100%; width:100%; overflow:hidden; font-family:"Noto Sans JP", sans-serif; }
+  html, body { height:100%; width:100%; font-family:"Noto Sans JP", sans-serif; }
 
   /* 背景画像スライド */
   .bg {
     position: fixed; top:0; left:0; width:100%; height:100%;
     object-fit: cover; opacity:0;
     animation: fadeSlide 18s infinite;
-    z-index:0;
+    z-index:-1;
   }
   .bg:nth-child(1) { animation-delay:0s; }
   .bg:nth-child(2) { animation-delay:6s; }
@@ -33,39 +32,67 @@
   header {
     position: fixed; top:0; left:0; width:100%; height:90px;
     background-color: transparent;
-    color:#0e0a52;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 20px; z-index:2; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    z-index:2;
+    font-weight:700;
   }
+
+  /* Wi-Fi ボタン */
+  .header-left {
+    position:absolute;
+    left:20px;
+    font-size:24px;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  /* ホテルタイトル */
   .hotel-title {
-    display:flex; flex-direction:column; text-align:center; flex:1;
+    text-align:center;
   }
   .hotel-title .hotel-name { font-size:32px; }
   .hotel-title .hotel-sub { font-size:19px; margin-top:4px; font-weight:500; }
 
-  /* Wi-Fi ボタン */
-  .header-left { font-size:24px; cursor:pointer; user-select:none; }
-
   /* ハンバーガーメニュー */
-  .header-right { font-size:24px; cursor:pointer; user-select:none; }
-  .menu-list {
-    display:none !important; /* 初期表示を強制非表示 */
-    position:absolute; top:90px; right:20px;
-    background: #0e0a52; color:#fff; padding:10px 20px;
-    border-radius:6px; z-index:3;
-    flex-direction:column;
+  .header-right {
+    position:absolute;
+    right:20px;
+    font-size:24px;
+    cursor:pointer;
+    user-select:none;
   }
-  .menu-list a {
-    color:#fff; text-decoration:none; margin:6px 0;
+
+  /* ハンバーガーメニューリスト */
+  #menuList {
+    display:none;
+    position:absolute;
+    top:90px;
+    right:20px;
+    background:#0e0a52;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:6px;
+    z-index:3;
+  }
+  #menuList a {
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    margin:6px 0;
     font-weight:600;
+    padding-left:4px;
+    transition: background 0.2s ease;
   }
-  .menu-list a:hover { background: rgba(255,255,255,0.1); border-radius:4px; padding-left:4px; }
+  #menuList a:hover {
+    background: rgba(255,255,255,0.1);
+    border-radius:4px;
+  }
 
   @media(max-width:768px){
     .hotel-title .hotel-name { font-size:26px; }
     .hotel-title .hotel-sub { font-size:16px; }
     .header-left, .header-right { font-size:20px; }
-    .menu-list { width:160px; right:10px; }
+    #menuList { width:160px; right:10px; }
   }
 </style>
 </head>
@@ -76,41 +103,36 @@
 <img src="images/EiseiStay-IN-P02-001.jpg" class="bg" alt="客室">
 <img src="images/EiseiStay-IN-P02-004.jpg" class="bg" alt="館内">
 
-<!-- ヘッダー -->
 <header>
-  <!-- 左端のWi-Fi -->
   <div class="header-left">Wi-Fi</div>
-
   <div class="hotel-title">
     <div class="hotel-name">EISEI STAY</div>
     <div class="hotel-sub">Ikebukuro Nishi</div>
   </div>
-
-  <!-- ハンバーガーメニュー -->
   <div class="header-right" id="menuToggle">&#9776;</div>
-  <div class="menu-list" id="menuList" style="display:none;">
-    <a href="#room">客室</a>
-    <a href="#services">サービス</a>
-    <a href="#nearby">周辺情報</a>
-    <a href="#wifi">Wi-Fi</a>
-  </div>
 </header>
+
+<!-- ハンバーガーメニューリスト -->
+<div id="menuList">
+  <a href="#room">客室</a>
+  <a href="#services">サービス</a>
+  <a href="#nearby">周辺情報</a>
+  <a href="#wifi">Wi-Fi</a>
+</div>
+
 <script>
 const menuToggle = document.getElementById('menuToggle');
 const menuList = document.getElementById('menuList');
 
-// ページ読み込み時に必ず非表示
-menuList.style.display = 'none';
-
-menuToggle.addEventListener('click', () => {
-  menuList.style.display = menuList.style.display === 'flex' ? 'none' : 'flex';
+// ハンバーガークリックで表示切替
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  menuList.style.display = (menuList.style.display === 'block') ? 'none' : 'block';
 });
 
 // クリック外で閉じる
-window.addEventListener('click', e => {
-  if(!menuList.contains(e.target) && e.target !== menuToggle){
-    menuList.style.display = 'none';
-  }
+window.addEventListener('click', () => {
+  menuList.style.display = 'none';
 });
 </script>
 
