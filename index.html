@@ -32,18 +32,35 @@
 
   header {
     position: fixed; top:0; left:0; width:100%; height:90px;
-    background-color: rgba(255,255,255,1); 
-    display:flex; align-items:center; justify-content:center;
+    background-color: rgba(255,255,255,1);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 20px;
     z-index:2;
     font-weight:700;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
 
+  /* 左側：ホテル名 + メニュー */
+  .header-left { display:flex; align-items:center; gap:40px; }
+
+  .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
+  .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; } /* ←詰めた */
+
+  /* PC用メニュー */
+  nav.menu-pc {
+    display:flex;
+    gap:25px;
+  }
+  nav.menu-pc a {
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+    transition: color 0.2s ease;
+  }
+  nav.menu-pc a:hover { color:#FF6600; }
+
   /* 言語切替 */
   .lang-switch {
-    position: absolute;
-    top:10px;
-    left:10px;
     font-size:16px;
     cursor:pointer;
     z-index:5;
@@ -59,15 +76,14 @@
   }
   .lang-switch .active { background:#FF6600; color:#fff; }
 
+  /* 予約ボタン */
   .header-book {
-    position:absolute;
-    right:60px;
-    font-size:24px;
+    font-size:22px;
     cursor:pointer;
     user-select:none;
     background-color: #FF6600;
     color: #fff;
-    padding: 6px 12px;
+    padding: 8px 16px;
     border-radius: 6px;
     font-weight:600;
     transition: background 0.2s ease;
@@ -77,50 +93,62 @@
   }
   .header-book:hover { background-color: #E65C00; }
 
-  .hotel-title { text-align:center; z-index:2; }
-  .hotel-title .hotel-name { font-size:32px; }
-  .hotel-title .hotel-sub { font-size:19px; margin-top:4px; font-weight:500; }
-
+  /* 右側（PC） */
   .header-right {
-    position:absolute;
-    right:20px;
-    font-size:30px;
-    cursor:pointer;
-    user-select:none;
-    z-index:5;
+    display:flex;
+    align-items:center;
+    gap:15px;
   }
 
-  #menuList {
-    display:none;
-    position:absolute;
-    top:90px;
-    right:20px;
-    background:#0e0a52;
-    color:#fff;
-    padding:10px 20px;
-    border-radius:6px;
-    z-index:6;
-  }
-  #menuList a {
-    display:block;
-    color:#fff;
-    text-decoration:none;
-    margin:6px 0;
-    font-weight:600;
-    padding-left:4px;
-    transition: background 0.2s ease;
-  }
-  #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
+  /* モバイル用メニュー（初期非表示） */
+  #menuToggle, #menuList { display:none; }
 
   @media(max-width:768px){
-    header { flex-direction: column; height:auto; padding:5px 0; }
-    .hotel-title { margin-bottom:5px; }
+    header { flex-direction: column; height:auto; padding:5px 10px; align-items:flex-start; }
+    .header-left { flex-direction: column; gap:5px; margin-bottom:5px; }
     .hotel-title .hotel-name { font-size:26px; }
     .hotel-title .hotel-sub { font-size:16px; }
-    .header-book { position: fixed; bottom:0; left:0; width:100%; font-size:20px; padding:15px 0; border-radius:0; z-index:4; }
-    .header-right { position: fixed; top:10px; right:10px; font-size:26px; z-index:5; }
-    #menuList { position: fixed; top:50px; right:10px; width:160px; }
-    .lang-switch { position: fixed; top:10px; left:10px; }
+
+    /* PCメニュー非表示 */
+    nav.menu-pc { display:none; }
+
+    /* モバイル用ハンバーガー再表示 */
+    #menuToggle {
+      display:block;
+      position: fixed;
+      top:10px; right:10px;
+      font-size:28px;
+      cursor:pointer;
+      z-index:6;
+      color:#333;
+    }
+
+    #menuList {
+      display:none;
+      position: fixed;
+      top:50px; right:10px;
+      background:#0e0a52;
+      color:#fff;
+      padding:10px 20px;
+      border-radius:6px;
+      z-index:7;
+      width:160px;
+    }
+    #menuList a {
+      display:block;
+      color:#fff;
+      text-decoration:none;
+      margin:6px 0;
+      font-weight:600;
+    }
+    #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
+
+    .header-book {
+      position: fixed; bottom:0; left:0; width:100%;
+      font-size:20px; padding:15px 0;
+      border-radius:0;
+      z-index:5;
+    }
   }
 
   main { padding-top:100px; height:2000px; }
@@ -134,17 +162,30 @@
 <img src="images/EiseiStay-IN-P02-004.jpg" class="bg" alt="館内">
 
 <header>
-  <div class="lang-switch" id="langSwitch">
-    <span id="langJP" class="active">日</span> | <span id="langEN">EN</span>
+  <div class="header-left">
+    <div class="hotel-title">
+      <div class="hotel-name">EISEI STAY</div>
+      <div class="hotel-sub">Ikebukuro Nishi</div>
+    </div>
+
+    <!-- PC用メニュー -->
+    <nav class="menu-pc" id="menuPC">
+      <a href="#room">客室</a>
+      <a href="#services">サービス</a>
+      <a href="#nearby">周辺情報</a>
+      <a href="#wifi">Wi-Fi</a>
+    </nav>
   </div>
 
-  <div class="hotel-title">
-    <div class="hotel-name">EISEI STAY</div>
-    <div class="hotel-sub">Ikebukuro Nishi</div>
+  <div class="header-right">
+    <div class="lang-switch" id="langSwitch">
+      <span id="langJP" class="active">日</span> | <span id="langEN">EN</span>
+    </div>
+    <a href="https://go-es-group.reservation.jp/hotels/es-nishi/" class="header-book" target="_blank" rel="noopener">BOOK A STAY</a>
   </div>
 
-  <a href="https://go-es-group.reservation.jp/hotels/es-nishi/" class="header-book" target="_blank" rel="noopener">BOOK A STAY</a>
-  <div class="header-right" id="menuToggle">&#9776;</div>
+  <!-- モバイル専用 -->
+  <div id="menuToggle">&#9776;</div>
 </header>
 
 <div id="menuList"></div>
@@ -181,6 +222,18 @@ function renderMenu() {
     a.textContent = item.text;
     menuList.appendChild(a);
   });
+
+  // PC用メニューも同期
+  const menuPC = document.getElementById('menuPC');
+  if (menuPC) {
+    menuPC.innerHTML = '';
+    menuItems[currentLang].forEach(item => {
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.text;
+      menuPC.appendChild(a);
+    });
+  }
 }
 
 function updateLangSwitch() {
@@ -196,7 +249,7 @@ function updateLangSwitch() {
 renderMenu();
 updateLangSwitch();
 
-// ハンバーガー表示切替
+// モバイルメニュー切替
 menuToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   menuList.style.display = (menuList.style.display === 'block') ? 'none' : 'block';
@@ -214,10 +267,10 @@ langEN.addEventListener('click', () => {
   updateLangSwitch();
 });
 
-// 画面クリックでメニュー閉じる
+// 外クリックで閉じる
 window.addEventListener('click', () => { menuList.style.display = 'none'; });
 
-// 背景パララックス
+// パララックス
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   backgrounds.forEach((bg, index) => {
