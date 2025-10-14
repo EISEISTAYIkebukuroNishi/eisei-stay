@@ -7,14 +7,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { height:100%; width:100%; font-family:"Noto Sans JP", sans-serif; }
+  html, body { height:100%; width:100%; font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 
-  /* 背景画像スライド */
+  /* 背景画像スライド + パララックス */
   .bg {
     position: fixed; top:0; left:0; width:100%; height:100%;
     object-fit: cover; opacity:0;
     animation: fadeSlide 18s infinite;
     z-index:-1;
+    transform: translateY(0);
+    transition: transform 0.1s linear;
   }
   .bg:nth-child(1) { animation-delay:0s; }
   .bg:nth-child(2) { animation-delay:6s; }
@@ -31,25 +33,33 @@
   /* ヘッダー */
   header {
     position: fixed; top:0; left:0; width:100%; height:90px;
-    background-color: transparent;
+    background-color: rgba(255,255,255,1); 
     display:flex; align-items:center; justify-content:center;
     z-index:2;
     font-weight:700;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
 
-  /* Wi-Fi ボタン */
-  .header-left {
+  /* BOOK A STAY ボタン（ハンバーガー左側） */
+  .header-book {
     position:absolute;
-    left:20px;
+    right:60px; /* ハンバーガーの左側に配置 */
     font-size:24px;
     cursor:pointer;
     user-select:none;
+    background-color: #FF6600;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight:600;
+    transition: background 0.2s ease;
+  }
+  .header-book:hover {
+    background-color: #E65C00;
   }
 
   /* ホテルタイトル */
-  .hotel-title {
-    text-align:center;
-  }
+  .hotel-title { text-align:center; }
   .hotel-title .hotel-name { font-size:32px; }
   .hotel-title .hotel-sub { font-size:19px; margin-top:4px; font-weight:500; }
 
@@ -57,7 +67,7 @@
   .header-right {
     position:absolute;
     right:20px;
-    font-size:24px;
+    font-size:30px;
     cursor:pointer;
     user-select:none;
   }
@@ -91,9 +101,12 @@
   @media(max-width:768px){
     .hotel-title .hotel-name { font-size:26px; }
     .hotel-title .hotel-sub { font-size:16px; }
-    .header-left, .header-right { font-size:20px; }
+    .header-book { font-size:20px; padding:5px 10px; right:50px; }
+    .header-right { font-size:26px; }
     #menuList { width:160px; right:10px; }
   }
+
+  main { padding-top:100px; height:2000px; }
 </style>
 </head>
 <body>
@@ -104,11 +117,11 @@
 <img src="images/EiseiStay-IN-P02-004.jpg" class="bg" alt="館内">
 
 <header>
-  <div class="header-left">Wi-Fi</div>
   <div class="hotel-title">
     <div class="hotel-name">EISEI STAY</div>
     <div class="hotel-sub">Ikebukuro Nishi</div>
   </div>
+  <div class="header-book">BOOK A STAY</div>
   <div class="header-right" id="menuToggle">&#9776;</div>
 </header>
 
@@ -123,18 +136,25 @@
 <script>
 const menuToggle = document.getElementById('menuToggle');
 const menuList = document.getElementById('menuList');
+const backgrounds = document.querySelectorAll('.bg');
 
-// ハンバーガークリックで表示切替
 menuToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   menuList.style.display = (menuList.style.display === 'block') ? 'none' : 'block';
 });
 
-// クリック外で閉じる
 window.addEventListener('click', () => {
   menuList.style.display = 'none';
 });
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  backgrounds.forEach((bg, index) => {
+    bg.style.transform = `translateY(${scrollY * 0.2 * (index+1)}px)`;
+  });
+});
 </script>
 
+<main></main>
 </body>
 </html>
