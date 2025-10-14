@@ -55,11 +55,12 @@
     transition: background 0.2s ease;
     text-decoration:none;
     text-align:center;
+    z-index:4;
   }
   .header-book:hover { background-color: #E65C00; }
 
   /* ホテルタイトル */
-  .hotel-title { text-align:center; }
+  .hotel-title { text-align:center; z-index:2; }
   .hotel-title .hotel-name { font-size:32px; }
   .hotel-title .hotel-sub { font-size:19px; margin-top:4px; font-weight:500; }
 
@@ -70,6 +71,7 @@
     font-size:30px;
     cursor:pointer;
     user-select:none;
+    z-index:5;
   }
 
   /* ハンバーガーメニューリスト */
@@ -82,7 +84,7 @@
     color:#fff;
     padding:10px 20px;
     border-radius:6px;
-    z-index:3;
+    z-index:6;
   }
   #menuList a {
     display:block;
@@ -114,10 +116,9 @@
       font-size:20px;
       padding:15px 0;
       border-radius: 0;
-      z-index:5;
     }
-    .header-right { font-size:26px; margin-bottom:5px; }
-    #menuList { width:160px; right:10px; }
+    .header-right { font-size:26px; margin-bottom:5px; top:auto; bottom:60px; position: fixed; right:10px; }
+    #menuList { width:160px; right:10px; top:auto; bottom:60px; }
   }
 
   main { padding-top:100px; height:2000px; }
@@ -164,4 +165,9 @@ window.addEventListener('scroll', () => {
   backgrounds.forEach((bg, index) => {
     bg.style.transform = `translateY(${scrollY * 0.2 * (index+1)}px)`;
   });
-})
+});
+</script>
+
+<main></main>
+</body>
+</html>
