@@ -44,9 +44,9 @@
   .header-left { display:flex; align-items:center; gap:40px; }
 
   .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
-  .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; } /* ←詰めた */
+  .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; } /* 詰めた */
 
-  /* PC用メニュー */
+  /* PCメニュー */
   nav.menu-pc {
     display:flex;
     gap:25px;
@@ -103,6 +103,7 @@
   /* モバイル用メニュー（初期非表示） */
   #menuToggle, #menuList { display:none; }
 
+  /* 🔹 モバイルレイアウト */
   @media(max-width:768px){
     header { flex-direction: column; height:auto; padding:5px 10px; align-items:flex-start; }
     .header-left { flex-direction: column; gap:5px; margin-bottom:5px; }
@@ -121,6 +122,17 @@
       cursor:pointer;
       z-index:6;
       color:#333;
+    }
+
+    /* 言語切替をハンバーガー左横に配置 */
+    .lang-switch {
+      position: fixed;
+      top:10px; right:50px;
+      background: rgba(0,0,0,0.5);
+      font-size:15px;
+      padding:3px 6px;
+      border-radius:4px;
+      z-index:6;
     }
 
     #menuList {
@@ -168,7 +180,7 @@
       <div class="hotel-sub">Ikebukuro Nishi</div>
     </div>
 
-    <!-- PC用メニュー -->
+    <!-- PCメニュー -->
     <nav class="menu-pc" id="menuPC">
       <a href="#room">客室</a>
       <a href="#services">サービス</a>
@@ -188,6 +200,7 @@
   <div id="menuToggle">&#9776;</div>
 </header>
 
+<!-- モバイル用メニュー -->
 <div id="menuList"></div>
 
 <script>
@@ -223,7 +236,7 @@ function renderMenu() {
     menuList.appendChild(a);
   });
 
-  // PC用メニューも同期
+  // PCメニューも同期
   const menuPC = document.getElementById('menuPC');
   if (menuPC) {
     menuPC.innerHTML = '';
