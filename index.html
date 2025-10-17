@@ -31,8 +31,8 @@
     100% {opacity:0;}
   }
 
-  .bg-solid { position: fixed; top:0; left:0; width:100%; height:100%; background:#f6f2e7; z-index:-1; opacity:0; transition: opacity 0.6s ease; }
-  .bg-solid.active { opacity:1; }
+  /* --- 単色背景 --- */
+  .bg-solid { position: relative; background:#f6f2e7; width:100%; z-index:0; }
 
   header {
     position: fixed; top:0; left:0; width:100%; height:90px;
@@ -75,15 +75,13 @@
     .header-right { width:100%; justify-content:flex-end; }
   }
 
-  main { position: relative; z-index:1; background:transparent; }
+  main { position: relative; z-index:1; }
 
-  section { padding:120px 20px; color:#333; background:transparent; min-height:80vh; }
+  section { padding:120px 20px; color:#333; min-height:80vh; }
   section h2 { font-size:36px; margin-bottom:20px; }
 </style>
 </head>
 <body>
-
-<div class="bg-solid" id="bgSolid"></div>
 
 <div class="hero">
   <img src="images/triple-03.png" alt="ホテル外観">
@@ -109,12 +107,15 @@
 
 <div id="menuList"></div>
 
-<main>
-  <section id="room"><h2></h2><p></p></section>
-  <section id="services"><h2></h2><p></p></section>
-  <section id="nearby"><h2></h2><p></p></section>
-  <section id="wifi"><h2></h2><p></p></section>
-</main>
+<!-- 単色背景のセクション -->
+<div class="bg-solid">
+  <main>
+    <section id="room"><h2></h2><p></p></section>
+    <section id="services"><h2></h2><p></p></section>
+    <section id="nearby"><h2></h2><p></p></section>
+    <section id="wifi"><h2></h2><p></p></section>
+  </main>
+</div>
 
 <script>
 const menuToggle = document.getElementById('menuToggle');
@@ -126,7 +127,6 @@ const menuPC = document.getElementById('menuPC');
 const hotelNameEl = document.getElementById('hotelName');
 const hotelSubEl = document.getElementById('hotelSub');
 const sectionsIds = ['room','services','nearby','wifi'];
-const bgSolid = document.getElementById('bgSolid');
 
 const content = {
   JP:{ hotelName:'EISEI STAY', hotelSub:'Ikebukuro Nishi',
@@ -190,14 +190,6 @@ langEN.addEventListener('click', e=>{ e.stopPropagation(); currentLang='EN'; ren
 langSwitch.addEventListener('click', e=>{ e.stopPropagation(); currentLang=(currentLang==='JP')?'EN':'JP'; renderText(); updateLangUI(); });
 menuToggle.addEventListener('click', e=>{ e.stopPropagation(); menuList.style.display=(menuList.style.display==='block')?'none':'block'; });
 window.addEventListener('click',()=>{menuList.style.display='none';});
-
-// スクロールでbgSolid表示
-window.addEventListener('scroll', ()=>{
-  const scrollY=window.scrollY;
-  const heroHeight=window.innerHeight;
-  if(scrollY>heroHeight*0.8){ bgSolid.classList.add('active'); }
-  else{ bgSolid.classList.remove('active'); }
-});
 </script>
 
 </body>
