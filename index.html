@@ -7,40 +7,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
+html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; height:100%; }
 
-/* 固定背景画像 */
-.hero { position: fixed; top:0; left:0; width:100%; height:100vh; overflow:hidden; z-index:-2; }
-.hero img {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  object-fit: cover;
-  opacity:0;
-  animation: fadeSlide 18s infinite;
-}
-.hero img:nth-child(1){ animation-delay:0s; }
-.hero img:nth-child(2){ animation-delay:6s; }
-.hero img:nth-child(3){ animation-delay:12s; }
+/* 背景固定 */
+.hero { position: fixed; top:0; left:0; width:100%; height:100vh; overflow:hidden; z-index:-2; background:#ddd; }
+.hero img { position: fixed; top:0; left:0; width:100%; height:100%; object-fit: cover; }
 
-@keyframes fadeSlide {
-  0% {opacity:0;}
-  10% {opacity:1;}
-  40% {opacity:1;}
-  50% {opacity:0;}
-  100% {opacity:0;}
-}
+/* main */
+main { position: relative; z-index:1; }
 
-/* 単色背景＋文章セクション */
+/* スクロールセクション */
 .scroll-section {
   position: relative;
   background:#f6f2e7;
   padding:150px 20px;
   min-height:80vh;
-  z-index:0;
   opacity:0;
   transform: translateY(80px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: transform 0.8s ease, opacity 0.8s ease;
 }
 .scroll-section.active {
   opacity:1;
@@ -73,20 +57,6 @@ nav.menu-pc a:hover { color:#FF6600; }
 .header-right { display:flex; align-items:center; gap:15px; margin-left:auto; }
 
 #menuToggle, #menuList { display:none; }
-
-@media(max-width:768px){
-  header { flex-direction: column; height:auto; padding:5px 10px; align-items:flex-start; }
-  .header-left { flex-direction: column; gap:5px; margin-bottom:5px; }
-  .hotel-title .hotel-name { font-size:26px; }
-  .hotel-title .hotel-sub { font-size:16px; }
-  nav.menu-pc { display:none; }
-  #menuToggle { display:block; position: fixed; top:10px; right:10px; font-size:32px; cursor:pointer; z-index:30; color:#333; line-height:1; user-select:none; }
-  .lang-switch { display:block; position: fixed; top:10px; right:60px; font-size:15px; padding:3px 6px; border-radius:4px; z-index:30; background: rgba(0,0,0,0.5); }
-  #menuList { display:none; position: fixed; top:50px; right:10px; background:#0e0a52; color:#fff; padding:10px 20px; border-radius:6px; z-index:31; width:160px; }
-  #menuList a { display:block; color:#fff; text-decoration:none; margin:6px 0; font-weight:600; }
-  #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
-  .header-right { width:100%; justify-content:flex-end; }
-}
 
 section { padding:80px 20px; color:#333; min-height:50vh; }
 section h2 { font-size:36px; margin-bottom:20px; }
@@ -200,18 +170,21 @@ langSwitch.addEventListener('click', e=>{ e.stopPropagation(); currentLang=(curr
 menuToggle.addEventListener('click', e=>{ e.stopPropagation(); menuList.style.display=(menuList.style.display==='block')?'none':'block'; });
 window.addEventListener('click',()=>{menuList.style.display='none';});
 
-// スクロールでセクションをアクティブ化
+// 下から出現 + 初期表示も反映
 const scrollSections = document.querySelectorAll('.scroll-section');
-window.addEventListener('scroll', ()=>{
+function activateSections(){
   const scrollY = window.scrollY;
   const windowH = window.innerHeight;
   scrollSections.forEach(sec=>{
     const secTop = sec.offsetTop;
-    if(scrollY + windowH*0.8 > secTop){
+    if(scrollY + windowH*0.9 > secTop){ // 少し早めに表示
       sec.classList.add('active');
     }
   });
-});
+}
+// 初期表示
+activateSections();
+window.addEventListener('scroll', activateSections);
 </script>
 
 </body>
