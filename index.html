@@ -6,7 +6,7 @@
 <title>EISEI STAY | Ikebukuro Nishi</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
   html, body { height:100%; width:100%; font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 
   /* 背景スライド */
@@ -74,24 +74,7 @@
   }
   .lang-switch .active { background:#FF6600; color:#fff; }
 
-  /* 予約ボタン */
-  .header-book {
-    font-size:22px;
-    cursor:pointer;
-    user-select:none;
-    background-color: #FF6600;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight:600;
-    transition: background 0.2s ease;
-    text-decoration:none;
-    text-align:center;
-    z-index:4;
-  }
-  .header-book:hover { background-color: #E65C00; }
-
-  /* 右側（PC）: LANG→BOOK順で右寄せ */
+  /* 右側（PC） */
   .header-right {
     display:flex;
     align-items:center;
@@ -127,7 +110,7 @@
     .lang-switch {
       display:block;
       position: fixed;
-      top:60px;
+      top:10px;
       right:60px;
       font-size:15px;
       padding:3px 6px;
@@ -155,24 +138,16 @@
       font-weight:600;
     }
     #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
-
-    /* 下固定ボタン */
-    .header-book {
-      position: fixed; bottom:0; left:0; width:100%;
-      font-size:20px; padding:15px 0;
-      border-radius:0;
-      z-index:6;
-    }
-
-    .header-right {
-      position: relative;
-      width:100%;
-      justify-content:flex-end;
-      gap:10px;
-    }
   }
 
-  main { padding-top:100px; height:2000px; }
+  /* セクション見出し */
+  section {
+    padding:120px 20px;
+    color:#fff;
+    text-shadow:0 0 8px rgba(0,0,0,0.5);
+  }
+  section h2 { font-size:36px; margin-bottom:20px; }
+  main { padding-top:100px; }
 </style>
 </head>
 <body>
@@ -195,7 +170,6 @@
     <div class="lang-switch" id="langSwitch">
       <span id="langJP" class="active">日</span> | <span id="langEN">EN</span>
     </div>
-    <a href="https://go-es-group.reservation.jp/hotels/es-nishi/" class="header-book" target="_blank" rel="noopener">BOOK A STAY</a>
   </div>
 
   <div id="menuToggle">&#9776;</div>
@@ -273,6 +247,26 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
-<main></main>
+<main>
+  <section id="room">
+    <h2>客室 / Rooms</h2>
+    <p>落ち着いたデザインと快適な空間をご用意しています。</p>
+  </section>
+
+  <section id="services">
+    <h2>サービス / Services</h2>
+    <p>長期滞在にも便利な設備とサービスをご提供します。</p>
+  </section>
+
+  <section id="nearby">
+    <h2>周辺情報 / Nearby</h2>
+    <p>池袋駅周辺には多数の飲食店・ショッピング施設があります。</p>
+  </section>
+
+  <section id="wifi">
+    <h2>Wi-Fi</h2>
+    <p>全館無料Wi-Fi完備。高速インターネットで快適にお過ごしいただけます。</p>
+  </section>
+</main>
 </body>
 </html>
