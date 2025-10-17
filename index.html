@@ -6,79 +6,91 @@
 <title>EISEI STAY | Ikebukuro Nishi</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-  html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 
-  /* --- 固定背景画像 --- */
-  .hero { position: fixed; top:0; left:0; width:100%; height:100vh; overflow:hidden; z-index:-2; }
-  .hero img {
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    object-fit: cover;
-    opacity:0;
-    animation: fadeSlide 18s infinite;
-  }
-  .hero img:nth-child(1){ animation-delay:0s; }
-  .hero img:nth-child(2){ animation-delay:6s; }
-  .hero img:nth-child(3){ animation-delay:12s; }
+/* 固定背景画像 */
+.hero { position: fixed; top:0; left:0; width:100%; height:100vh; overflow:hidden; z-index:-2; }
+.hero img {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit: cover;
+  opacity:0;
+  animation: fadeSlide 18s infinite;
+}
+.hero img:nth-child(1){ animation-delay:0s; }
+.hero img:nth-child(2){ animation-delay:6s; }
+.hero img:nth-child(3){ animation-delay:12s; }
 
-  @keyframes fadeSlide {
-    0% {opacity:0;}
-    10% {opacity:1;}
-    40% {opacity:1;}
-    50% {opacity:0;}
-    100% {opacity:0;}
-  }
+@keyframes fadeSlide {
+  0% {opacity:0;}
+  10% {opacity:1;}
+  40% {opacity:1;}
+  50% {opacity:0;}
+  100% {opacity:0;}
+}
 
-  /* --- 単色背景 --- */
-  .bg-solid { position: relative; background:#f6f2e7; width:100%; z-index:0; }
+/* 単色背景＋文章セクション */
+.scroll-section {
+  position: relative;
+  background:#f6f2e7;
+  padding:150px 20px;
+  min-height:80vh;
+  z-index:0;
+  opacity:0;
+  transform: translateY(80px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.scroll-section.active {
+  opacity:1;
+  transform: translateY(0);
+}
 
-  header {
-    position: fixed; top:0; left:0; width:100%; height:90px;
-    background-color: rgba(255,255,255,1);
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 20px; z-index:20; font-weight:700;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  }
-  .header-left { display:flex; align-items:center; gap:40px; }
-  .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
-  .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
+header {
+  position: fixed; top:0; left:0; width:100%; height:90px;
+  background-color: rgba(255,255,255,1);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; z-index:20; font-weight:700;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.header-left { display:flex; align-items:center; gap:40px; }
+.hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
+.hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
 
-  nav.menu-pc { display:flex; gap:25px; }
-  nav.menu-pc a { text-decoration:none; color:#333; font-weight:600; transition: color 0.2s ease; }
-  nav.menu-pc a:hover { color:#FF6600; }
+nav.menu-pc { display:flex; gap:25px; }
+nav.menu-pc a { text-decoration:none; color:#333; font-weight:600; transition: color 0.2s ease; }
+nav.menu-pc a:hover { color:#FF6600; }
 
-  .lang-switch {
-    font-size:16px; cursor:pointer; z-index:25;
-    background: rgba(0,0,0,0.5); color:#fff;
-    padding:4px 8px; border-radius:4px;
-    display:flex; align-items:center; justify-content:center; user-select:none;
-  }
-  .lang-switch span { margin:0 4px; padding:2px 4px; border-radius:2px; }
-  .lang-switch .active { background:#FF6600; color:#fff; }
-  .header-right { display:flex; align-items:center; gap:15px; margin-left:auto; }
+.lang-switch {
+  font-size:16px; cursor:pointer; z-index:25;
+  background: rgba(0,0,0,0.5); color:#fff;
+  padding:4px 8px; border-radius:4px;
+  display:flex; align-items:center; justify-content:center; user-select:none;
+}
+.lang-switch span { margin:0 4px; padding:2px 4px; border-radius:2px; }
+.lang-switch .active { background:#FF6600; color:#fff; }
+.header-right { display:flex; align-items:center; gap:15px; margin-left:auto; }
 
-  #menuToggle, #menuList { display:none; }
+#menuToggle, #menuList { display:none; }
 
-  @media(max-width:768px){
-    header { flex-direction: column; height:auto; padding:5px 10px; align-items:flex-start; }
-    .header-left { flex-direction: column; gap:5px; margin-bottom:5px; }
-    .hotel-title .hotel-name { font-size:26px; }
-    .hotel-title .hotel-sub { font-size:16px; }
-    nav.menu-pc { display:none; }
-    #menuToggle { display:block; position: fixed; top:10px; right:10px; font-size:32px; cursor:pointer; z-index:30; color:#333; line-height:1; user-select:none; }
-    .lang-switch { display:block; position: fixed; top:10px; right:60px; font-size:15px; padding:3px 6px; border-radius:4px; z-index:30; background: rgba(0,0,0,0.5); }
-    #menuList { display:none; position: fixed; top:50px; right:10px; background:#0e0a52; color:#fff; padding:10px 20px; border-radius:6px; z-index:31; width:160px; }
-    #menuList a { display:block; color:#fff; text-decoration:none; margin:6px 0; font-weight:600; }
-    #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
-    .header-right { width:100%; justify-content:flex-end; }
-  }
+@media(max-width:768px){
+  header { flex-direction: column; height:auto; padding:5px 10px; align-items:flex-start; }
+  .header-left { flex-direction: column; gap:5px; margin-bottom:5px; }
+  .hotel-title .hotel-name { font-size:26px; }
+  .hotel-title .hotel-sub { font-size:16px; }
+  nav.menu-pc { display:none; }
+  #menuToggle { display:block; position: fixed; top:10px; right:10px; font-size:32px; cursor:pointer; z-index:30; color:#333; line-height:1; user-select:none; }
+  .lang-switch { display:block; position: fixed; top:10px; right:60px; font-size:15px; padding:3px 6px; border-radius:4px; z-index:30; background: rgba(0,0,0,0.5); }
+  #menuList { display:none; position: fixed; top:50px; right:10px; background:#0e0a52; color:#fff; padding:10px 20px; border-radius:6px; z-index:31; width:160px; }
+  #menuList a { display:block; color:#fff; text-decoration:none; margin:6px 0; font-weight:600; }
+  #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
+  .header-right { width:100%; justify-content:flex-end; }
+}
 
-  main { position: relative; z-index:1; }
+section { padding:80px 20px; color:#333; min-height:50vh; }
+section h2 { font-size:36px; margin-bottom:20px; }
 
-  section { padding:120px 20px; color:#333; min-height:80vh; }
-  section h2 { font-size:36px; margin-bottom:20px; }
 </style>
 </head>
 <body>
@@ -107,15 +119,12 @@
 
 <div id="menuList"></div>
 
-<!-- 単色背景のセクション -->
-<div class="bg-solid">
-  <main>
-    <section id="room"><h2></h2><p></p></section>
-    <section id="services"><h2></h2><p></p></section>
-    <section id="nearby"><h2></h2><p></p></section>
-    <section id="wifi"><h2></h2><p></p></section>
-  </main>
-</div>
+<main>
+  <section class="scroll-section" id="room"><h2></h2><p></p></section>
+  <section class="scroll-section" id="services"><h2></h2><p></p></section>
+  <section class="scroll-section" id="nearby"><h2></h2><p></p></section>
+  <section class="scroll-section" id="wifi"><h2></h2><p></p></section>
+</main>
 
 <script>
 const menuToggle = document.getElementById('menuToggle');
@@ -190,6 +199,19 @@ langEN.addEventListener('click', e=>{ e.stopPropagation(); currentLang='EN'; ren
 langSwitch.addEventListener('click', e=>{ e.stopPropagation(); currentLang=(currentLang==='JP')?'EN':'JP'; renderText(); updateLangUI(); });
 menuToggle.addEventListener('click', e=>{ e.stopPropagation(); menuList.style.display=(menuList.style.display==='block')?'none':'block'; });
 window.addEventListener('click',()=>{menuList.style.display='none';});
+
+// スクロールでセクションをアクティブ化
+const scrollSections = document.querySelectorAll('.scroll-section');
+window.addEventListener('scroll', ()=>{
+  const scrollY = window.scrollY;
+  const windowH = window.innerHeight;
+  scrollSections.forEach(sec=>{
+    const secTop = sec.offsetTop;
+    if(scrollY + windowH*0.8 > secTop){
+      sec.classList.add('active');
+    }
+  });
+});
 </script>
 
 </body>
