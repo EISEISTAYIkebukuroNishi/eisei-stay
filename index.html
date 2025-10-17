@@ -13,7 +13,7 @@
   .hero {
     position: relative;
     width:100%;
-    height:100vh; /* 画面1枚分を画像領域にする */
+    height:100vh;
     overflow: hidden;
     z-index:-1;
   }
@@ -46,7 +46,7 @@
     position: fixed;
     top:0; left:0;
     width:100%; height:100%;
-    background:#f6f2e7; /* 表示したい単色に調整 */
+    background:#f6f2e7;
     z-index:-2;
     opacity:0;
     transition: opacity 0.6s ease;
@@ -63,7 +63,6 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
 
-  /* 左側：ホテル名 + メニュー */
   .header-left { display:flex; align-items:center; gap:40px; }
 
   .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
@@ -86,11 +85,11 @@
     display:flex;
     align-items:center;
     justify-content:center;
+    user-select:none;
   }
   .lang-switch span { margin:0 4px; padding:2px 4px; border-radius:2px; }
   .lang-switch .active { background:#FF6600; color:#fff; }
 
-  /* 右側 */
   .header-right { display:flex; align-items:center; gap:15px; margin-left:auto; }
 
   /* ハンバーガー（モバイル） */
@@ -113,6 +112,7 @@
       z-index:30;
       color:#333;
       line-height:1;
+      user-select:none;
     }
 
     .lang-switch {
@@ -141,14 +141,13 @@
     #menuList a { display:block; color:#fff; text-decoration:none; margin:6px 0; font-weight:600; }
     #menuList a:hover { background: rgba(255,255,255,0.1); border-radius:4px; }
 
-    /* 下の固定ボタンは不要（あなたの要望で削除済） */
     .header-right { width:100%; justify-content:flex-end; }
   }
 
   /* セクション見出し */
   section { padding:120px 20px; color:#333; background:transparent; }
   section h2 { font-size:36px; margin-bottom:20px; }
-  main { padding-top:0; } /* hero があるので top padding は不要 */
+  main { padding-top:0; }
 </style>
 </head>
 <body>
@@ -166,23 +165,23 @@
 <header>
   <div class="header-left">
     <div class="hotel-title">
-      <div class="hotel-name">EISEI STAY</div>
-      <div class="hotel-sub">Ikebukuro Nishi</div>
+      <div class="hotel-name" id="hotelName">EISEI STAY</div>
+      <div class="hotel-sub" id="hotelSub">Ikebukuro Nishi</div>
     </div>
     <nav class="menu-pc" id="menuPC"></nav>
   </div>
 
   <div class="header-right">
-    <div class="lang-switch" id="langSwitch">
+    <div class="lang-switch" id="langSwitch" aria-label="言語切替" role="button">
       <span id="langJP" class="active">日</span> | <span id="langEN">EN</span>
     </div>
   </div>
 
-  <div id="menuToggle">&#9776;</div>
+  <div id="menuToggle" aria-hidden="true">&#9776;</div>
 </header>
 
 <!-- モバイル用メニュー -->
-<div id="menuList"></div>
+<div id="menuList" role="menu" aria-hidden="true"></div>
 
 <script>
 /* --- 要素 --- */
@@ -190,95 +189,136 @@ const menuToggle = document.getElementById('menuToggle');
 const menuList = document.getElementById('menuList');
 const langJP = document.getElementById('langJP');
 const langEN = document.getElementById('langEN');
-const backgrounds = document.querySelectorAll('.hero .bg'); // hero 内の画像
+const langSwitch = document.getElementById('langSwitch');
+const menuPC = document.getElementById('menuPC');
+const hotelNameEl = document.getElementById('hotelName');
+const hotelSubEl = document.getElementById('hotelSub');
+const backgrounds = document.querySelectorAll('.hero .bg');
 const bgSolid = document.getElementById('bgSolid');
 const hero = document.getElementById('hero');
 
-/* --- メニュー項目（言語対応） --- */
-const menuItems = {
-  JP: [
-    { text: '客室', href: '#room' },
-    { text: 'サービス', href: '#services' },
-    { text: '周辺情報', href: '#nearby' },
-    { text: 'Wi-Fi', href: '#wifi' },
-  ],
-  EN: [
-    { text: 'Rooms', href: '#room' },
-    { text: 'Services', href: '#services' },
-    { text: 'Nearby', href: '#nearby' },
-    { text: 'Wi-Fi', href: '#wifi' },
-  ]
+/* --- 翻訳テキスト --- */
+const content = {
+  JP: {
+    hotelName: 'EISEI STAY',
+    hotelSub: 'Ikebukuro Nishi',
+    menu: [
+      { text: '客室', href: '#room' },
+      { text: 'サービス', href: '#services' },
+      { text: '周辺情報', href: '#nearby' },
+      { text: 'Wi-Fi', href: '#wifi' },
+    ],
+    sections: {
+      room: { h: '客室', p: '落ち着いたデザインと快適な空間をご用意しています。' },
+      services: { h: 'サービス', p: '長期滞在にも便利な設備とサービスをご提供します。' },
+      nearby: { h: '周辺情報', p: '池袋駅周辺には多数の飲食店・ショッピング施設があります。' },
+      wifi: { h: 'Wi-Fi', p: '全館無料Wi-Fi完備。高速インターネットで快適にお過ごしいただけます。' }
+    }
+  },
+  EN: {
+    hotelName: 'EISEI STAY',
+    hotelSub: 'Ikebukuro West',
+    menu: [
+      { text: 'Rooms', href: '#room' },
+      { text: 'Services', href: '#services' },
+      { text: 'Nearby', href: '#nearby' },
+      { text: 'Wi-Fi', href: '#wifi' },
+    ],
+    sections: {
+      room: { h: 'Rooms', p: 'We provide calm design and comfortable rooms.' },
+      services: { h: 'Services', p: 'Convenient facilities and services for long stays.' },
+      nearby: { h: 'Nearby', p: 'Many restaurants and shopping spots around Ikebukuro Station.' },
+      wifi: { h: 'Wi-Fi', p: 'Free Wi-Fi throughout the property. Enjoy high-speed internet.' }
+    }
+  }
 };
 
 let currentLang = 'JP';
 
-/* 描画: モバイルメニューとPCメニューを同期して作る */
-function renderMenu() {
-  // モバイルドロワー中身
-  menuList.innerHTML = '';
-  menuItems[currentLang].forEach(item => {
+/* render menus (PC + mobile) and update section texts */
+function renderAllText() {
+  // header sub/title
+  hotelNameEl.textContent = content[currentLang].hotelName;
+  hotelSubEl.textContent = content[currentLang].hotelSub;
+
+  // menu: PC
+  menuPC.innerHTML = '';
+  content[currentLang].menu.forEach(item => {
     const a = document.createElement('a');
     a.href = item.href;
     a.textContent = item.text;
+    menuPC.appendChild(a);
+  });
+
+  // menu: mobile drawer
+  menuList.innerHTML = '';
+  content[currentLang].menu.forEach(item => {
+    const a = document.createElement('a');
+    a.href = item.href;
+    a.textContent = item.text;
+    // when mobile menu item clicked, close drawer (but allow navigation)
+    a.addEventListener('click', () => { menuList.style.display='none'; });
     menuList.appendChild(a);
   });
 
-  // PCヘッダーに直接並べるメニュー
-  const menuPC = document.getElementById('menuPC');
-  if (menuPC) {
-    menuPC.innerHTML = '';
-    menuItems[currentLang].forEach(item => {
-      const a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.text;
-      menuPC.appendChild(a);
-    });
-  }
+  // sections text
+  const sections = ['room','services','nearby','wifi'];
+  sections.forEach(id => {
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    const h = sec.querySelector('h2');
+    const p = sec.querySelector('p');
+    h.textContent = content[currentLang].sections[id].h + (currentLang==='JP' ? '' : '');
+    p.textContent = content[currentLang].sections[id].p;
+  });
 }
 
-/* 言語スイッチ表示反映 */
-function updateLangSwitch() {
+/* visual active state for language buttons */
+function updateLangUI() {
   langJP.classList.toggle('active', currentLang === 'JP');
   langEN.classList.toggle('active', currentLang === 'EN');
 }
 
-/* 初回描画 */
-renderMenu();
-updateLangSwitch();
+/* initial render */
+renderAllText();
+updateLangUI();
 
-/* ハンバーガー（モバイル）開閉 */
+/* stop propagation so clicking language won't close mobile menu immediately */
+langSwitch.addEventListener('click', (e) => {
+  e.stopPropagation();
+  // toggle between JP and EN
+  currentLang = (currentLang === 'JP') ? 'EN' : 'JP';
+  renderAllText();
+  updateLangUI();
+});
+
+/* also support clicking spans individually (accessibility) */
+langJP.addEventListener('click', (e) => { e.stopPropagation(); currentLang='JP'; renderAllText(); updateLangUI(); });
+langEN.addEventListener('click', (e) => { e.stopPropagation(); currentLang='EN'; renderAllText(); updateLangUI(); });
+
+/* hamburger open/close (mobile) */
 menuToggle && menuToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   menuList.style.display = (menuList.style.display === 'block') ? 'none' : 'block';
 });
 
-/* 言語切替 */
-langJP.addEventListener('click', () => { currentLang = 'JP'; renderMenu(); updateLangSwitch(); });
-langEN.addEventListener('click', () => { currentLang = 'EN'; renderMenu(); updateLangSwitch(); });
-
-/* クリック外でモバイルメニューを閉じる */
+/* click outside closes mobile menu */
 window.addEventListener('click', () => { menuList.style.display = 'none'; });
 
-/* スクロール時：パララックス＆単色背景切替 */
-function onScroll() {
+/* パララックス＆単色切替 */
+function onScroll(){
   const scrollY = window.scrollY;
   const heroRect = hero.getBoundingClientRect();
-  const heroTop = heroRect.top + window.scrollY; // hero のページ上の top
+  const heroTop = heroRect.top + window.scrollY;
   const heroHeight = hero.offsetHeight;
   const windowHeight = window.innerHeight;
 
-  // 背景画像のパララックス（hero の範囲内のみ有効）
   backgrounds.forEach((bg, index) => {
-    // 小さめの遅延倍率 (indexで差をつける)
     const speed = 0.15 + index * 0.05;
-    // translateYはページ全体のscrollY - heroTopで hero 内の相対スクロール量を使う
     const relY = scrollY - heroTop;
-    // image should still move a bit even before heroTop reached (gives nice effect)
     bg.style.transform = `translateY(${relY * speed}px)`;
   });
 
-  // hero が画面の上端より完全に上に行ったら単色背景を出す
-  // heroTop + heroHeight <= scrollY + some offset -> 完全に超えたと見なす
   if (scrollY >= heroTop + heroHeight - windowHeight * 0.2) {
     bgSolid.classList.add('active');
   } else {
@@ -286,31 +326,30 @@ function onScroll() {
   }
 }
 
-/* 初期とスクロールリスナー */
 window.addEventListener('scroll', onScroll);
 window.addEventListener('resize', onScroll);
-onScroll(); // 初期実行
+onScroll();
 </script>
 
 <main>
   <section id="room">
-    <h2>客室 / Rooms</h2>
-    <p>落ち着いたデザインと快適な空間をご用意しています。</p>
+    <h2></h2>
+    <p></p>
   </section>
 
   <section id="services">
-    <h2>サービス / Services</h2>
-    <p>長期滞在にも便利な設備とサービスをご提供します。</p>
+    <h2></h2>
+    <p></p>
   </section>
 
   <section id="nearby">
-    <h2>周辺情報 / Nearby</h2>
-    <p>池袋駅周辺には多数の飲食店・ショッピング施設があります。</p>
+    <h2></h2>
+    <p></p>
   </section>
 
   <section id="wifi">
-    <h2>Wi-Fi</h2>
-    <p>全館無料Wi-Fi完備。高速インターネットで快適にお過ごしいただけます。</p>
+    <h2></h2>
+    <p></p>
   </section>
 </main>
 </body>
