@@ -7,20 +7,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-  html, body { height:100%; width:100%; font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
+  html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 
-  .hero { position: relative; width:100%; height:100vh; overflow: hidden; z-index:-1; }
-  .bg { position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; opacity:0; animation: fadeSlide 18s infinite; transform: translateY(0); transition: transform 0.12s linear; }
-  .bg:nth-child(1) { animation-delay:0s; }
-  .bg:nth-child(2) { animation-delay:6s; }
-  .bg:nth-child(3) { animation-delay:12s; }
+  /* --- 固定背景画像 --- */
+  .hero { position: fixed; top:0; left:0; width:100%; height:100vh; overflow:hidden; z-index:-2; }
+  .hero img {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    object-fit: cover;
+    opacity:0;
+    animation: fadeSlide 18s infinite;
+  }
+  .hero img:nth-child(1){ animation-delay:0s; }
+  .hero img:nth-child(2){ animation-delay:6s; }
+  .hero img:nth-child(3){ animation-delay:12s; }
 
-  @keyframes fadeSlide { 0%{opacity:0;}10%{opacity:1;}40%{opacity:1;}50%{opacity:0;}100%{opacity:0;} }
+  @keyframes fadeSlide {
+    0% {opacity:0;}
+    10% {opacity:1;}
+    40% {opacity:1;}
+    50% {opacity:0;}
+    100% {opacity:0;}
+  }
 
-  .bg-solid { position: fixed; top:0; left:0; width:100%; height:100%; background:#f6f2e7; z-index:-2; opacity:0; transition: opacity 0.6s ease; }
+  .bg-solid { position: fixed; top:0; left:0; width:100%; height:100%; background:#f6f2e7; z-index:-1; opacity:0; transition: opacity 0.6s ease; }
   .bg-solid.active { opacity:1; }
 
-  header { position: fixed; top:0; left:0; width:100%; height:90px; background-color: rgba(255,255,255,1); display:flex; align-items:center; justify-content:space-between; padding:0 20px; z-index:20; font-weight:700; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  header {
+    position: fixed; top:0; left:0; width:100%; height:90px;
+    background-color: rgba(255,255,255,1);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 20px; z-index:20; font-weight:700;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
   .header-left { display:flex; align-items:center; gap:40px; }
   .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
   .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
@@ -29,10 +49,14 @@
   nav.menu-pc a { text-decoration:none; color:#333; font-weight:600; transition: color 0.2s ease; }
   nav.menu-pc a:hover { color:#FF6600; }
 
-  .lang-switch { font-size:16px; cursor:pointer; z-index:25; background: rgba(0,0,0,0.5); color:#fff; padding:4px 8px; border-radius:4px; display:flex; align-items:center; justify-content:center; user-select:none; }
+  .lang-switch {
+    font-size:16px; cursor:pointer; z-index:25;
+    background: rgba(0,0,0,0.5); color:#fff;
+    padding:4px 8px; border-radius:4px;
+    display:flex; align-items:center; justify-content:center; user-select:none;
+  }
   .lang-switch span { margin:0 4px; padding:2px 4px; border-radius:2px; }
   .lang-switch .active { background:#FF6600; color:#fff; }
-
   .header-right { display:flex; align-items:center; gap:15px; margin-left:auto; }
 
   #menuToggle, #menuList { display:none; }
@@ -51,19 +75,20 @@
     .header-right { width:100%; justify-content:flex-end; }
   }
 
-  section { padding:120px 20px; color:#333; background:transparent; }
+  main { position: relative; z-index:1; background:transparent; }
+
+  section { padding:120px 20px; color:#333; background:transparent; min-height:80vh; }
   section h2 { font-size:36px; margin-bottom:20px; }
-  main { padding-top:0; }
 </style>
 </head>
 <body>
 
 <div class="bg-solid" id="bgSolid"></div>
 
-<div class="hero" id="hero">
-  <img src="images/triple-03.png" class="bg" alt="ホテル外観">
-  <img src="images/EiseiStay-IN-P02-001.jpg" class="bg" alt="客室">
-  <img src="images/EiseiStay-IN-P02-004.jpg" class="bg" alt="館内">
+<div class="hero">
+  <img src="images/triple-03.png" alt="ホテル外観">
+  <img src="images/EiseiStay-IN-P02-001.jpg" alt="客室">
+  <img src="images/EiseiStay-IN-P02-004.jpg" alt="館内">
 </div>
 
 <header>
@@ -101,14 +126,10 @@ const menuPC = document.getElementById('menuPC');
 const hotelNameEl = document.getElementById('hotelName');
 const hotelSubEl = document.getElementById('hotelSub');
 const sectionsIds = ['room','services','nearby','wifi'];
-const backgrounds = document.querySelectorAll('.hero .bg');
 const bgSolid = document.getElementById('bgSolid');
-const hero = document.getElementById('hero');
 
 const content = {
-  JP:{
-    hotelName:'EISEI STAY',
-    hotelSub:'Ikebukuro Nishi',
+  JP:{ hotelName:'EISEI STAY', hotelSub:'Ikebukuro Nishi',
     menu:[
       {text:'客室', href:'#room'},
       {text:'サービス', href:'#services'},
@@ -122,9 +143,7 @@ const content = {
       wifi:{h:'Wi-Fi', p:'全館無料Wi-Fi完備。高速インターネットで快適にお過ごしいただけます。'}
     }
   },
-  EN:{
-    hotelName:'EISEI STAY',
-    hotelSub:'Ikebukuro West',
+  EN:{ hotelName:'EISEI STAY', hotelSub:'Ikebukuro West',
     menu:[
       {text:'Rooms', href:'#room'},
       {text:'Services', href:'#services'},
@@ -140,12 +159,11 @@ const content = {
   }
 };
 
-let currentLang = 'JP';
+let currentLang='JP';
 
 function renderText(){
   hotelNameEl.textContent = content[currentLang].hotelName;
   hotelSubEl.textContent = content[currentLang].hotelSub;
-
   menuPC.innerHTML=''; menuList.innerHTML='';
   content[currentLang].menu.forEach(item=>{
     const aPC=document.createElement('a'); aPC.href=item.href; aPC.textContent=item.text; menuPC.appendChild(aPC);
@@ -153,7 +171,6 @@ function renderText(){
     aMB.addEventListener('click',()=>{menuList.style.display='none';});
     menuList.appendChild(aMB);
   });
-
   sectionsIds.forEach(id=>{
     const sec=document.getElementById(id);
     sec.querySelector('h2').textContent=content[currentLang].sections[id].h;
@@ -171,16 +188,17 @@ renderText(); updateLangUI();
 langJP.addEventListener('click', e=>{ e.stopPropagation(); currentLang='JP'; renderText(); updateLangUI(); });
 langEN.addEventListener('click', e=>{ e.stopPropagation(); currentLang='EN'; renderText(); updateLangUI(); });
 langSwitch.addEventListener('click', e=>{ e.stopPropagation(); currentLang=(currentLang==='JP')?'EN':'JP'; renderText(); updateLangUI(); });
-
 menuToggle.addEventListener('click', e=>{ e.stopPropagation(); menuList.style.display=(menuList.style.display==='block')?'none':'block'; });
 window.addEventListener('click',()=>{menuList.style.display='none';});
 
-function onScroll(){
-  const scrollY=window.scrollY, heroRect=hero.getBoundingClientRect(), heroTop=heroRect.top+scrollY, heroHeight=hero.offsetHeight, windowHeight=window.innerHeight;
-  backgrounds.forEach((bg,i)=>{ bg.style.transform=`translateY(${(scrollY-heroTop)*(0.15+i*0.05)}px)`; });
-  if(scrollY>=heroTop+heroHeight-windowHeight*0.2){ bgSolid.classList.add('active'); }else{ bgSolid.classList.remove('active'); }
-}
-window.addEventListener('scroll',onScroll); window.addEventListener('resize',onScroll); onScroll();
+// スクロールでbgSolid表示
+window.addEventListener('scroll', ()=>{
+  const scrollY=window.scrollY;
+  const heroHeight=window.innerHeight;
+  if(scrollY>heroHeight*0.8){ bgSolid.classList.add('active'); }
+  else{ bgSolid.classList.remove('active'); }
+});
 </script>
+
 </body>
 </html>
