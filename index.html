@@ -6,8 +6,17 @@
 <title>EISEI STAY | Ikebukuro Nishi</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; height:100%; }
+
+/* 最背面の固定画像 */
+.hero {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100vh;
+  z-index:-10;
+}
+.hero img { width:100%; height:100%; object-fit:cover; }
 
 /* ヘッダー */
 header {
@@ -20,170 +29,44 @@ header {
 .header-left { display:flex; align-items:center; gap:40px; }
 .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
 .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
+
 nav.menu-pc { display:flex; gap:25px; }
 nav.menu-pc a { text-decoration:none; color:#333; font-weight:600; transition: color 0.2s ease; }
 nav.menu-pc a:hover { color:#FF6600; }
+
 .lang-switch { font-size:16px; cursor:pointer; z-index:25; background: rgba(0,0,0,0.5); color:#fff; padding:4px 8px; border-radius:4px; display:flex; align-items:center; justify-content:center; user-select:none; }
 .lang-switch span { margin:0 4px; padding:2px 4px; border-radius:2px; }
 .lang-switch .active { background:#FF6600; color:#fff; }
 .header-right { display:flex; align-items:center; gap:15px; margin-left:auto; }
+
 #menuToggle, #menuList { display:none; }
-
-/* ヒーローセクション */
-.hero {
-  position: relative;
-  width:100%; height:100vh;
-  overflow:hidden;
-  z-index:0;
-}
-.hero img {
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%; object-fit:cover;
-}
-
-/* main */
-main { position: relative; z-index:1; }
-
-/* スクロールセクション */
-.scroll-section {
-  position: relative;
-  background:#f6f2e7;
-  padding:150px 20px;
-  min-height:80vh;
-  opacity:0;
-  transform: translateY(80px);
-  transition: transform 0.8s ease, opacity 0.8s ease;
-}
-.scroll-section.active {
-  opacity:1;
-  transform: translateY(0);
-}
-section h2 { font-size:36px; margin-bottom:20px; }
 </style>
 </head>
 <body>
 
+<!-- 最背面の固定画像 -->
+<div class="hero">
+  <img src="images/triple-03.png" alt="ホテル外観">
+</div>
+
+<!-- ヘッダー -->
 <header>
   <div class="header-left">
     <div class="hotel-title">
-      <div class="hotel-name" id="hotelName">EISEI STAY</div>
-      <div class="hotel-sub" id="hotelSub">Ikebukuro Nishi</div>
+      <div class="hotel-name">EISEI STAY</div>
+      <div class="hotel-sub">Ikebukuro Nishi</div>
     </div>
-    <nav class="menu-pc" id="menuPC"></nav>
+    <nav class="menu-pc"></nav>
   </div>
   <div class="header-right">
-    <div class="lang-switch" id="langSwitch">
-      <span id="langJP" class="active">日</span> | <span id="langEN">EN</span>
+    <div class="lang-switch">
+      <span class="active">日</span> | <span>EN</span>
     </div>
   </div>
   <div id="menuToggle">&#9776;</div>
 </header>
 
 <div id="menuList"></div>
-
-<main>
-  <!-- ヒーローセクション：最初に全面表示 -->
-  <section class="hero">
-    <img src="images/triple-03.png" alt="ホテル外観">
-  </section>
-
-  <!-- スクロールセクション -->
-  <section class="scroll-section" id="room"><h2></h2><p></p></section>
-  <section class="scroll-section" id="services"><h2></h2><p></p></section>
-  <section class="scroll-section" id="nearby"><h2></h2><p></p></section>
-  <section class="scroll-section" id="wifi"><h2></h2><p></p></section>
-</main>
-
-<script>
-const menuToggle = document.getElementById('menuToggle');
-const menuList = document.getElementById('menuList');
-const langJP = document.getElementById('langJP');
-const langEN = document.getElementById('langEN');
-const langSwitch = document.getElementById('langSwitch');
-const menuPC = document.getElementById('menuPC');
-const hotelNameEl = document.getElementById('hotelName');
-const hotelSubEl = document.getElementById('hotelSub');
-const sectionsIds = ['room','services','nearby','wifi'];
-
-const content = {
-  JP:{ hotelName:'EISEI STAY', hotelSub:'Ikebukuro Nishi',
-    menu:[
-      {text:'客室', href:'#room'},
-      {text:'サービス', href:'#services'},
-      {text:'周辺情報', href:'#nearby'},
-      {text:'Wi-Fi', href:'#wifi'},
-    ],
-    sections:{
-      room:{h:'客室', p:'落ち着いたデザインと快適な空間をご用意しています。'},
-      services:{h:'サービス', p:'長期滞在にも便利な設備とサービスをご提供します。'},
-      nearby:{h:'周辺情報', p:'池袋駅周辺には多数の飲食店・ショッピング施設があります。'},
-      wifi:{h:'Wi-Fi', p:'全館無料Wi-Fi完備。高速インターネットで快適にお過ごしいただけます。'}
-    }
-  },
-  EN:{ hotelName:'EISEI STAY', hotelSub:'Ikebukuro West',
-    menu:[
-      {text:'Rooms', href:'#room'},
-      {text:'Services', href:'#services'},
-      {text:'Nearby', href:'#nearby'},
-      {text:'Wi-Fi', href:'#wifi'},
-    ],
-    sections:{
-      room:{h:'Rooms', p:'We provide calm design and comfortable rooms.'},
-      services:{h:'Services', p:'Convenient facilities and services for long stays.'},
-      nearby:{h:'Nearby', p:'Many restaurants and shopping spots around Ikebukuro Station.'},
-      wifi:{h:'Wi-Fi', p:'Free Wi-Fi throughout the property. Enjoy high-speed internet.'}
-    }
-  }
-};
-
-let currentLang='JP';
-
-function renderText(){
-  hotelNameEl.textContent = content[currentLang].hotelName;
-  hotelSubEl.textContent = content[currentLang].hotelSub;
-  menuPC.innerHTML=''; menuList.innerHTML='';
-  content[currentLang].menu.forEach(item=>{
-    const aPC=document.createElement('a'); aPC.href=item.href; aPC.textContent=item.text; menuPC.appendChild(aPC);
-    const aMB=document.createElement('a'); aMB.href=item.href; aMB.textContent=item.text;
-    aMB.addEventListener('click',()=>{menuList.style.display='none';});
-    menuList.appendChild(aMB);
-  });
-  sectionsIds.forEach(id=>{
-    const sec=document.getElementById(id);
-    sec.querySelector('h2').textContent=content[currentLang].sections[id].h;
-    sec.querySelector('p').textContent=content[currentLang].sections[id].p;
-  });
-}
-
-function updateLangUI(){
-  langJP.classList.toggle('active', currentLang==='JP');
-  langEN.classList.toggle('active', currentLang==='EN');
-}
-
-renderText(); updateLangUI();
-
-langJP.addEventListener('click', e=>{ e.stopPropagation(); currentLang='JP'; renderText(); updateLangUI(); });
-langEN.addEventListener('click', e=>{ e.stopPropagation(); currentLang='EN'; renderText(); updateLangUI(); });
-langSwitch.addEventListener('click', e=>{ e.stopPropagation(); currentLang=(currentLang==='JP')?'EN':'JP'; renderText(); updateLangUI(); });
-menuToggle.addEventListener('click', e=>{ e.stopPropagation(); menuList.style.display=(menuList.style.display==='block')?'none':'block'; });
-window.addEventListener('click',()=>{menuList.style.display='none';});
-
-// 下から出現 + 初期表示も反映
-const scrollSections = document.querySelectorAll('.scroll-section');
-function activateSections(){
-  const scrollY = window.scrollY;
-  const windowH = window.innerHeight;
-  scrollSections.forEach(sec=>{
-    const secTop = sec.offsetTop;
-    if(scrollY + windowH*0.9 > secTop){
-      sec.classList.add('active');
-    }
-  });
-}
-activateSections();
-window.addEventListener('scroll', activateSections);
-</script>
 
 </body>
 </html>
