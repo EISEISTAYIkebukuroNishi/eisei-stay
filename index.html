@@ -9,14 +9,19 @@
 * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
 html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 
-/* 画像をスクロールに合わせる */
-.hero { position: relative; width:100%; }
-.hero img { width:100%; display:block; object-fit:cover; }
+/* 最背面の固定画像 */
+.hero {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100vh;
+  z-index:-10;
+}
+.hero img { width:100%; height:100%; object-fit:cover; }
 
 /* main */
 main { position: relative; z-index:1; }
 
-/* スクロールセクション */
+/* スクロールセクション（背景色 + 文章） */
 .scroll-section {
   position: relative;
   background:#f6f2e7;
@@ -65,10 +70,9 @@ section h2 { font-size:36px; margin-bottom:20px; }
 </head>
 <body>
 
+<!-- 最背面の固定画像 -->
 <div class="hero">
   <img src="images/triple-03.png" alt="ホテル外観">
-  <img src="images/EiseiStay-IN-P02-001.jpg" alt="客室">
-  <img src="images/EiseiStay-IN-P02-004.jpg" alt="館内">
 </div>
 
 <header>
@@ -89,7 +93,7 @@ section h2 { font-size:36px; margin-bottom:20px; }
 
 <div id="menuList"></div>
 
-<main style="margin-top:calc(100vh*3);"><!-- 画像3枚分の高さを確保 -->
+<main>
   <section class="scroll-section" id="room"><h2></h2><p></p></section>
   <section class="scroll-section" id="services"><h2></h2><p></p></section>
   <section class="scroll-section" id="nearby"><h2></h2><p></p></section>
