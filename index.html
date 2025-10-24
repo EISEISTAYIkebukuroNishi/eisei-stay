@@ -62,7 +62,7 @@ nav.menu-pc a {
 }
 nav.menu-pc a:hover { color:#FF6600; }
 
-/* 言語切替 */
+/* 言語切替（PC用） */
 .lang-switch {
   font-size:15px;
   cursor:pointer;
@@ -85,7 +85,7 @@ nav.menu-pc a:hover { color:#FF6600; }
   color:#fff;
 }
 
-/* ハンバーガーメニュー */
+/* ハンバーガーボタン */
 #menuToggle {
   display:none;
   flex-direction:column;
@@ -94,6 +94,9 @@ nav.menu-pc a:hover { color:#FF6600; }
   height:20px;
   cursor:pointer;
   z-index:30;
+  position:absolute;
+  right:20px;
+  top:25px;
 }
 #menuToggle span {
   display:block;
@@ -101,6 +104,17 @@ nav.menu-pc a:hover { color:#FF6600; }
   background:#333;
   border-radius:3px;
   transition: all 0.3s ease;
+}
+
+/* 開閉アニメーション */
+#menuToggle.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+#menuToggle.open span:nth-child(2) {
+  opacity: 0;
+}
+#menuToggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
 }
 
 /* モバイルメニュー */
@@ -112,7 +126,7 @@ nav.menu-pc a:hover { color:#FF6600; }
   width:100%;
   background:rgba(255,255,255,0.95);
   text-align:center;
-  padding:20px 0;
+  padding:20px 0 10px 0;
   box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 #menuList a {
@@ -124,6 +138,12 @@ nav.menu-pc a:hover { color:#FF6600; }
   border-bottom:1px solid rgba(0,0,0,0.1);
 }
 #menuList a:last-child { border-bottom:none; }
+
+/* モバイル用言語切替 */
+#menuList .lang-switch {
+  margin-top:15px;
+  background:rgba(0,0,0,0.7);
+}
 
 /* メイン */
 main {
@@ -160,11 +180,8 @@ section p {
   .hotel-title .hotel-name { font-size:24px; }
   .hotel-title .hotel-sub { font-size:14px; }
 
-  nav.menu-pc { display:none; }
-  .lang-switch { font-size:14px; padding:4px 8px; }
-
+  nav.menu-pc, .header-right .lang-switch { display:none; }
   #menuToggle { display:flex; }
-
   #menuList.active { display:block; }
 }
 </style>
@@ -183,12 +200,14 @@ section p {
     <div class="hotel-sub">Ikebukuro Nishi</div>
   </div>
 
+  <!-- ハンバーガー -->
   <div id="menuToggle">
     <span></span>
     <span></span>
     <span></span>
   </div>
 
+  <!-- PCメニュー -->
   <div class="header-right">
     <nav class="menu-pc">
       <a href="#info" data-ja="インフォメーション" data-cn="信息" data-en="INFORMATION">インフォメーション</a>
@@ -208,6 +227,11 @@ section p {
   <a href="#facilities">施設</a>
   <a href="#access">アクセス</a>
   <a href="#info">インフォメーション</a>
+  <div class="lang-switch">
+    <span class="active" data-lang="ja">JP</span> |
+    <span data-lang="cn">CN</span> |
+    <span data-lang="en">EN</span>
+  </div>
 </div>
 
 <main>
@@ -241,25 +265,17 @@ section p {
 
 <script>
 // 言語切替
-const langSwitch = document.querySelector('.lang-switch');
-const menuLinks = document.querySelectorAll('.menu-pc a, #menuList a');
-const textElems = document.querySelectorAll('[data-ja]');
+function setLanguage(lang) {
+  document.querySelectorAll('.lang-switch span').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll(`.lang-switch span[data-lang="${lang}"]`).forEach(s => s.classList.add('active'));
 
-langSwitch.addEventListener('click', (e) => {
-  const target = e.target.closest('span');
-  if (!target) return;
-  const lang = target.dataset.lang;
-  langSwitch.querySelectorAll('span').forEach(s => s.classList.remove('active'));
-  target.classList.add('active');
-
-  menuLinks.forEach(link => {
-    const text = link.dataset[lang];
-    if (text) link.textContent = text;
-  });
-  textElems.forEach(el => {
+  document.querySelectorAll('[data-ja]').forEach(el => {
     const text = el.dataset[lang];
     if (text) el.textContent = text;
   });
+}
+document.querySelectorAll('.lang-switch span').forEach(span => {
+  span.addEventListener('click', () => setLanguage(span.dataset.lang));
 });
 
 // ハンバーガーメニュー
