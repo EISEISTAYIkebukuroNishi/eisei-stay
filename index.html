@@ -39,11 +39,17 @@ header {
 .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
 .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
 
+/* PC用ヘッダー右側：メニューと言語切替 */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 /* PCメニュー */
 nav.menu-pc {
   display:flex;
   gap:35px;
-  flex-direction: row-reverse;
 }
 nav.menu-pc a {
   text-decoration:none;
@@ -210,12 +216,12 @@ section p {
     <span></span>
   </div>
 
-  <!-- PCメニュー -->
+  <!-- PCメニュー + 言語切替 -->
   <div class="header-right">
     <nav class="menu-pc">
-      <a href="#info" data-ja="インフォメーション" data-cn="信息" data-en="INFORMATION">インフォメーション</a>
-      <a href="#access" data-ja="アクセス" data-cn="交通" data-en="ACCESS">アクセス</a>
       <a href="#facilities" data-ja="施設" data-cn="设施" data-en="FACILITIES">施設</a>
+      <a href="#access" data-ja="アクセス" data-cn="交通" data-en="ACCESS">アクセス</a>
+      <a href="#info" data-ja="インフォメーション" data-cn="信息" data-en="INFORMATION">インフォメーション</a>
     </nav>
     <div class="lang-switch">
       <span class="active" data-lang="ja">JP</span> |
