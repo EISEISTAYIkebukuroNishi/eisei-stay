@@ -134,6 +134,21 @@ nav.menu-pc a:hover { color:#FF6600; }
   background:rgba(0,0,0,0.7);
 }
 
+/* メニューオーバーレイ */
+#menuOverlay {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.4);
+  opacity:0;
+  visibility:hidden;
+  transition: opacity 0.3s ease;
+  z-index:24;
+}
+#menuOverlay.active {
+  opacity:1;
+  visibility:visible;
+}
+
 /* メイン */
 main {
   position: relative;
@@ -210,6 +225,9 @@ section p {
   </div>
 </header>
 
+<!-- モバイルメニュー背景 -->
+<div id="menuOverlay"></div>
+
 <!-- モバイルメニュー -->
 <div id="menuList">
   <div class="lang-switch">
@@ -269,11 +287,20 @@ document.querySelectorAll('.lang-switch span').forEach(span => {
 // ハンバーガーメニュー
 const menuToggle = document.getElementById('menuToggle');
 const menuList = document.getElementById('menuList');
+const menuOverlay = document.getElementById('menuOverlay');
 
-menuToggle.addEventListener('click', () => {
+function toggleMenu() {
   menuList.classList.toggle('active');
   menuToggle.classList.toggle('open');
-});
+  menuOverlay.classList.toggle('active');
+}
+
+// ハンバーガークリック
+menuToggle.addEventListener('click', toggleMenu);
+// 背景クリックで閉じる
+menuOverlay.addEventListener('click', toggleMenu);
+// メニューリンククリックで閉じる
+menuList.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMenu));
 </script>
 
 </body>
