@@ -39,14 +39,6 @@ header {
 .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
 .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
 
-/* 右側メニュー */
-.header-right {
-  display:flex;
-  align-items:center;
-  gap:40px;
-  margin-left:auto;
-}
-
 /* PCメニュー */
 nav.menu-pc {
   display:flex;
@@ -62,7 +54,7 @@ nav.menu-pc a {
 }
 nav.menu-pc a:hover { color:#FF6600; }
 
-/* 言語切替（PC用） */
+/* PC用言語切替 */
 .lang-switch {
   font-size:15px;
   cursor:pointer;
@@ -85,7 +77,7 @@ nav.menu-pc a:hover { color:#FF6600; }
   color:#fff;
 }
 
-/* ハンバーガーボタン */
+/* ハンバーガー */
 #menuToggle {
   display:none;
   flex-direction:column;
@@ -105,30 +97,26 @@ nav.menu-pc a:hover { color:#FF6600; }
   border-radius:3px;
   transition: all 0.3s ease;
 }
+#menuToggle.open span:nth-child(1) { transform: rotate(45deg) translateY(8px); }
+#menuToggle.open span:nth-child(2) { opacity:0; }
+#menuToggle.open span:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
 
-/* 開閉アニメーション */
-#menuToggle.open span:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-#menuToggle.open span:nth-child(2) {
-  opacity: 0;
-}
-#menuToggle.open span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* モバイルメニュー */
+/* モバイルメニュー（右半分スライドイン） */
 #menuList {
-  display:none;
+  display:flex;
+  flex-direction:column;
   position:fixed;
-  top:90px;
-  left:0;
-  width:100%;
+  top:0; right:-50%;
+  width:50%;
+  height:100%;
   background:rgba(255,255,255,0.95);
   text-align:center;
-  padding:20px 0 10px 0;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  padding:20px 0;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+  transition: right 0.3s ease;
+  z-index:25;
 }
+#menuList.active { right:0; }
 #menuList a {
   display:block;
   color:#333;
@@ -139,9 +127,10 @@ nav.menu-pc a:hover { color:#FF6600; }
 }
 #menuList a:last-child { border-bottom:none; }
 
-/* モバイル用言語切替 */
+/* モバイル用言語切替（上に表示） */
 #menuList .lang-switch {
-  margin-top:15px;
+  margin-bottom:15px;
+  justify-content:center;
   background:rgba(0,0,0,0.7);
 }
 
@@ -182,7 +171,6 @@ section p {
 
   nav.menu-pc, .header-right .lang-switch { display:none; }
   #menuToggle { display:flex; }
-  #menuList.active { display:block; }
 }
 </style>
 </head>
@@ -224,14 +212,14 @@ section p {
 
 <!-- モバイルメニュー -->
 <div id="menuList">
-  <a href="#facilities">施設</a>
-  <a href="#access">アクセス</a>
-  <a href="#info">インフォメーション</a>
   <div class="lang-switch">
     <span class="active" data-lang="ja">JP</span> |
     <span data-lang="cn">CN</span> |
     <span data-lang="en">EN</span>
   </div>
+  <a href="#facilities" data-ja="施設" data-cn="设施" data-en="FACILITIES">施設</a>
+  <a href="#access" data-ja="アクセス" data-cn="交通" data-en="ACCESS">アクセス</a>
+  <a href="#info" data-ja="インフォメーション" data-cn="信息" data-en="INFORMATION">インフォメーション</a>
 </div>
 
 <main>
@@ -264,14 +252,14 @@ section p {
 </main>
 
 <script>
-// 言語切替
+// 言語切替（PC・モバイル両方対応）
 function setLanguage(lang) {
   document.querySelectorAll('.lang-switch span').forEach(s => s.classList.remove('active'));
   document.querySelectorAll(`.lang-switch span[data-lang="${lang}"]`).forEach(s => s.classList.add('active'));
-
+  
   document.querySelectorAll('[data-ja]').forEach(el => {
     const text = el.dataset[lang];
-    if (text) el.textContent = text;
+    if(text) el.textContent = text;
   });
 }
 document.querySelectorAll('.lang-switch span').forEach(span => {
