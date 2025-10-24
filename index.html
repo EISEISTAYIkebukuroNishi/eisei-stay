@@ -28,23 +28,26 @@ html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 header {
   position: fixed; top:0; left:0; width:100%; height:90px;
   background-color: rgba(255,255,255,0.5);
-  display:flex; align-items:center; justify-content:flex-start; /* 左寄せ */
+  display:flex; align-items:center; justify-content:space-between; /* 左右に分ける */
   padding:0 40px; z-index:20; font-weight:700;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
-  gap:40px;
 }
 
 /* ホテル名 */
 .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
 .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
 
-/* PCメニュー */
+/* PC用ナビ＋言語切替を右上 */
+.header-right {
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
 nav.menu-pc {
   display:flex;
   gap:35px;
-  align-items:center;
 }
 nav.menu-pc a {
   text-decoration:none;
@@ -67,7 +70,6 @@ nav.menu-pc a:hover { color:#FF6600; }
   align-items:center;
   justify-content:center;
   user-select:none;
-  margin-left:20px;
 }
 .lang-switch span {
   margin:0 6px;
@@ -112,7 +114,7 @@ nav.menu-pc a:hover { color:#FF6600; }
   width:50%;
   height:100%;
   background:rgba(255,255,255,0.95);
-  text-align:left; /* 左寄せ */
+  text-align:left;
   padding:20px 20px;
   box-shadow: -2px 0 6px rgba(0,0,0,0.1);
   transition: right 0.3s ease;
@@ -133,7 +135,7 @@ nav.menu-pc a:hover { color:#FF6600; }
 /* モバイル用言語切替（上に表示） */
 #menuList .lang-switch {
   margin-bottom:15px;
-  justify-content:flex-start; /* 左寄せ */
+  justify-content:flex-start;
   background:rgba(0,0,0,0.7);
   padding-left:10px;
 }
@@ -191,7 +193,7 @@ section p {
   nav.menu-pc, .header-right .lang-switch { display:none; }
   #menuToggle { display:flex; }
 
-  /* モバイル版画像を画面全体表示 */
+  /* モバイル版画像全画面 */
   .hero img {
     width: 100%;
     height: 100vh;
@@ -214,16 +216,18 @@ section p {
     <div class="hotel-sub">Ikebukuro Nishi</div>
   </div>
 
-  <!-- PCメニューと言語切替をホテル名横に配置 -->
-  <nav class="menu-pc">
-    <a href="#info" data-ja="インフォメーション" data-cn="信息" data-en="INFORMATION">インフォメーション</a>
-    <a href="#access" data-ja="アクセス" data-cn="交通" data-en="ACCESS">アクセス</a>
-    <a href="#facilities" data-ja="施設" data-cn="设施" data-en="FACILITIES">施設</a>
-  </nav>
-  <div class="lang-switch">
-    <span class="active" data-lang="ja">JP</span> |
-    <span data-lang="cn">CN</span> |
-    <span data-lang="en">EN</span>
+  <!-- PC版右上メニュー -->
+  <div class="header-right">
+    <nav class="menu-pc">
+      <a href="#info" data-ja="インフォメーション" data-cn="信息" data-en="INFORMATION">インフォメーション</a>
+      <a href="#access" data-ja="アクセス" data-cn="交通" data-en="ACCESS">アクセス</a>
+      <a href="#facilities" data-ja="施設" data-cn="设施" data-en="FACILITIES">施設</a>
+    </nav>
+    <div class="lang-switch">
+      <span class="active" data-lang="ja">JP</span> |
+      <span data-lang="cn">CN</span> |
+      <span data-lang="en">EN</span>
+    </div>
   </div>
 
   <!-- ハンバーガー -->
