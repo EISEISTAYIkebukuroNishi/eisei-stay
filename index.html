@@ -9,43 +9,110 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html, body { font-family:"Noto Sans JP", sans-serif; overflow-x:hidden; }
 
-/* 最背面の固定画像（元サイズで縦を優先） */
+/* 最背面の固定画像 */
 .hero {
   position: fixed;
   top:0; left:0;
   width:100%;
   z-index:-10;
-  text-align:center; /* 横中央寄せ */
+  text-align:center;
 }
 .hero img {
-  width: auto;       /* 横は自動 */
-  height: auto;      /* 高さも自動で元サイズ */
-  max-height: 100vh; /* 画面高さより大きくならない */
-  display: inline-block;
+  width:auto;
+  height:auto;
+  max-height:100vh;
+  display:inline-block;
 }
 
-/* ヘッダー */
+/* ヘッダー（50%半透明） */
 header {
   position: fixed; top:0; left:0; width:100%; height:90px;
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255,255,255,0.5);
   display:flex; align-items:center; justify-content:space-between;
-  padding:0 20px; z-index:20; font-weight:700;
+  padding:0 40px; z-index:20; font-weight:700;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  backdrop-filter: blur(5px);
 }
-.header-left { display:flex; align-items:center; gap:40px; }
+
+/* 左：ホテル名 */
 .hotel-title .hotel-name { font-size:32px; font-weight:700; line-height:1.1; }
 .hotel-title .hotel-sub { font-size:18px; margin-top:1px; font-weight:500; }
 
-nav.menu-pc { display:flex; gap:25px; }
-nav.menu-pc a { text-decoration:none; color:#333; font-weight:600; transition: color 0.2s ease; }
+/* 右側メニュー配置 */
+.header-right {
+  display:flex;
+  align-items:center;
+  gap:40px;
+  margin-left:auto;
+}
+
+/* メニュー（右詰め） */
+nav.menu-pc {
+  display:flex;
+  gap:35px;
+  flex-direction: row-reverse; /* ←右から左へ並べる */
+}
+nav.menu-pc a {
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+  text-align:center;
+  transition: color 0.2s ease;
+}
 nav.menu-pc a:hover { color:#FF6600; }
 
-.lang-switch { font-size:16px; cursor:pointer; z-index:25; background: rgba(0,0,0,0.5); color:#fff; padding:4px 8px; border-radius:4px; display:flex; align-items:center; justify-content:center; user-select:none; }
-.lang-switch span { margin:0 4px; padding:2px 4px; border-radius:2px; }
-.lang-switch .active { background:#FF6600; color:#fff; }
-.header-right { display:flex; align-items:center; gap:15px; margin-left:auto; }
+/* 言語切替（JP | CN | EN） */
+.lang-switch {
+  font-size:15px;
+  cursor:pointer;
+  z-index:25;
+  background: rgba(0,0,0,0.5);
+  color:#fff;
+  padding:5px 10px;
+  border-radius:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  user-select:none;
+}
+.lang-switch span {
+  margin:0 6px;
+  padding:2px 4px;
+  border-radius:2px;
+}
+.lang-switch .active {
+  background:#FF6600;
+  color:#fff;
+}
 
+/* メニューボタン非表示（PC用） */
 #menuToggle, #menuList { display:none; }
+
+/* スクロール用コンテンツ */
+main {
+  position: relative;
+  margin-top: 100vh;
+  background-color: #f6f2e7;
+  min-height: 2000px;
+  color:#333;
+}
+
+/* 各セクション */
+section {
+  scroll-margin-top: 100px;
+  padding: 60px 20px;
+  text-align:center;
+}
+section h2 {
+  font-size:28px;
+  margin-bottom:20px;
+}
+section p {
+  max-width:700px;
+  margin:0 auto;
+  font-size:16px;
+  line-height:1.8;
+}
 </style>
 </head>
 <body>
@@ -57,22 +124,83 @@ nav.menu-pc a:hover { color:#FF6600; }
 
 <!-- ヘッダー -->
 <header>
-  <div class="header-left">
-    <div class="hotel-title">
-      <div class="hotel-name">EISEI STAY</div>
-      <div class="hotel-sub">Ikebukuro Nishi</div>
-    </div>
-    <nav class="menu-pc"></nav>
+  <div class="hotel-title">
+    <div class="hotel-name">EISEI STAY</div>
+    <div class="hotel-sub">Ikebukuro Nishi</div>
   </div>
+
   <div class="header-right">
+    <nav class="menu-pc">
+      <a href="#info" data-ja="インフォメーション" data-cn="信息" data-en="INFORMATION">インフォメーション</a>
+      <a href="#access" data-ja="アクセス" data-cn="交通" data-en="ACCESS">アクセス</a>
+      <a href="#facilities" data-ja="施設" data-cn="设施" data-en="FACILITIES">施設</a>
+    </nav>
+
     <div class="lang-switch">
-      <span class="active">日</span> | <span>EN</span>
+      <span class="active" data-lang="ja">JP</span> |
+      <span data-lang="cn">CN</span> |
+      <span data-lang="en">EN</span>
     </div>
   </div>
-  <div id="menuToggle">&#9776;</div>
 </header>
 
-<div id="menuList"></div>
+<main>
+  <section id="facilities">
+    <h2 data-ja="施設のご案内" data-cn="设施介绍" data-en="Facilities">施設のご案内</h2>
+    <p data-ja="快適な滞在をサポートする多彩な設備をご用意しております。"
+       data-cn="我们提供多种设施，让您的住宿更加舒适。"
+       data-en="We provide a variety of facilities to ensure a comfortable stay.">
+       快適な滞在をサポートする多彩な設備をご用意しております。
+    </p>
+  </section>
+
+  <section id="access">
+    <h2 data-ja="アクセス" data-cn="交通信息" data-en="Access">アクセス</h2>
+    <p data-ja="池袋駅から徒歩5分の便利な立地です。"
+       data-cn="从池袋站步行5分钟即可到达。"
+       data-en="Conveniently located just a 5-minute walk from Ikebukuro Station.">
+       池袋駅から徒歩5分の便利な立地です。
+    </p>
+  </section>
+
+  <section id="info">
+    <h2 data-ja="インフォメーション" data-cn="酒店信息" data-en="Information">インフォメーション</h2>
+    <p data-ja="チェックインやアメニティなど、滞在に関する情報をご案内します。"
+       data-cn="提供入住、设施等相关信息。"
+       data-en="Information about check-in, amenities, and more for your stay.">
+       チェックインやアメニティなど、滞在に関する情報をご案内します。
+    </p>
+  </section>
+</main>
+
+<script>
+// 言語切替
+const langSwitch = document.querySelector('.lang-switch');
+const menuLinks = document.querySelectorAll('.menu-pc a');
+const textElems = document.querySelectorAll('[data-ja]');
+
+langSwitch.addEventListener('click', (e) => {
+  const target = e.target.closest('span');
+  if (!target) return;
+  const lang = target.dataset.lang;
+
+  // ボタンのアクティブ切替
+  langSwitch.querySelectorAll('span').forEach(s => s.classList.remove('active'));
+  target.classList.add('active');
+
+  // メニュー切替
+  menuLinks.forEach(link => {
+    const text = link.dataset[lang];
+    if (text) link.textContent = text;
+  });
+
+  // 本文切替
+  textElems.forEach(el => {
+    const text = el.dataset[lang];
+    if (text) el.textContent = text;
+  });
+});
+</script>
 
 </body>
 </html>
