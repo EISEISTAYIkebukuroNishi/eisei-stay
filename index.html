@@ -10,81 +10,85 @@ html, body {
   font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro', sans-serif; 
   overflow-x:hidden; 
 }
+
+/* 背景画像 */
 .hero { position: fixed; top:0; left:0; width:100%; z-index:-10; text-align:center; }
 .hero img { width:auto; height:auto; max-height:100vh; display:inline-block; }
-header { position: fixed; top:0; left:0; width:100%; height:90px; background-color: rgba(255,255,255,0.5); display:flex; align-items:center; justify-content:space-between; padding:0 40px; z-index:20; box-shadow: 0 1px 4px rgba(0,0,0,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; }
+
+/* ヘッダー */
+header {
+  position: fixed; top:0; left:0; width:100%; height:90px;
+  background-color: rgba(255,255,255,0.5);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 40px; z-index:20; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  backdrop-filter: blur(5px); transition: all 0.3s ease;
+}
 .hotel-title .hotel-name { font-size:32px; line-height:1.1; }
 .hotel-title .hotel-sub { font-size:18px; margin-top:1px; }
+
 .header-right { display:flex; align-items:center; gap:20px; }
 nav.menu-pc { display:flex; gap:35px; }
 nav.menu-pc a { text-decoration:none; color:#333; text-align:center; transition: color 0.2s ease; }
 nav.menu-pc a:hover { color:#FF6600; }
-.lang-switch { font-size:15px; cursor:pointer; background: rgba(0,0,0,0.5); color:#fff; padding:5px 10px; border-radius:4px; display:flex; align-items:center; justify-content:center; user-select:none; }
+
+/* 言語切替 */
+.lang-switch {
+  font-size:15px; cursor:pointer;
+  background: rgba(0,0,0,0.5); color:#fff;
+  padding:5px 10px; border-radius:4px;
+  display:flex; align-items:center; justify-content:center; user-select:none;
+}
 .lang-switch span { margin:0 6px; padding:2px 4px; border-radius:2px; }
 .lang-switch .active { background:#FF6600; color:#fff; }
-#menuToggle { display:none; flex-direction:column; justify-content:space-between; width:30px; height:20px; cursor:pointer; z-index:30; position:absolute; right:20px; top:25px; }
+
+/* モバイルメニュー */
+#menuToggle { display:none; flex-direction:column; justify-content:space-between;
+  width:30px; height:20px; cursor:pointer; z-index:30; position:absolute; right:20px; top:25px; }
 #menuToggle span { display:block; height:3px; background:#333; border-radius:3px; transition: all 0.3s ease; }
 #menuToggle.open span:nth-child(1) { transform: rotate(45deg) translateY(8px); }
 #menuToggle.open span:nth-child(2) { opacity:0; }
 #menuToggle.open span:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
-#menuList { display:flex; flex-direction:column; position:fixed; top:0; right:-50%; width:50%; height:100%; background:rgba(255,255,255,0.95); text-align:left; padding:20px 20px; box-shadow: -2px 0 6px rgba(0,0,0,0.1); transition: right 0.3s ease; z-index:25; }
+
+#menuList { display:flex; flex-direction:column; position:fixed; top:0; right:-50%; width:50%; height:100%;
+  background:rgba(255,255,255,0.95); text-align:left; padding:20px; box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+  transition:right 0.3s ease; z-index:25; }
 #menuList.active { right:0; }
-#menuList a { display:block; color:#333; text-decoration:none; font-size:18px; padding:15px 0; border-bottom:1px solid rgba(0,0,0,0.1); text-align:left; }
+#menuList a { display:block; color:#333; text-decoration:none; font-size:18px;
+  padding:15px 0; border-bottom:1px solid rgba(0,0,0,0.1); text-align:left; }
 #menuList a:last-child { border-bottom:none; }
 #menuList .lang-switch { margin-bottom:15px; justify-content:flex-start; background:rgba(0,0,0,0.7); padding-left:10px; }
-#menuOverlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); opacity:0; visibility:hidden; transition: opacity 0.3s ease; z-index:24; }
+
+#menuOverlay { position: fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.4); opacity:0; visibility:hidden; transition: opacity 0.3s ease; z-index:24; }
 #menuOverlay.active { opacity:1; visibility:visible; }
-main { position: relative; margin-top: 100vh; background-color: #f6f2e7; min-height: 2000px; color:#333; text-align:center; padding: 0 20px; }
+
+main { position: relative; margin-top: 100vh; background-color: #f6f2e7;
+  min-height: 2000px; color:#333; text-align:center; padding: 0 20px; }
+
 section { scroll-margin-top: 100px; padding: 60px 0; }
 section h2 { font-size:28px; margin-bottom:20px; text-align:center; }
 section p { max-width:700px; font-size:16px; line-height:1.8; margin: 0 auto; text-align:center; }
+
 .map-link { margin-top: 20px; }
-.map-link a { display: inline-block; text-decoration: none; background: #ff6600; color: #fff; padding: 10px 20px; border-radius: 6px; transition: 0.3s; }
+.map-link a { display: inline-block; text-decoration: none; background: #ff6600;
+  color: #fff; padding: 10px 20px; border-radius: 6px; transition: 0.3s; }
 .map-link a:hover { background: #e95500; }
-footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px; font-size:14px; border-top:1px solid rgba(0,0,0,0.1); }
+
+footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px; font-size:14px;
+  border-top:1px solid rgba(0,0,0,0.1); }
 footer p { line-height:1.6; }
 
-/* --- Area Guide Gallery --- */
+/* --- Area Guide --- */
 .area-gallery {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  margin-top: 30px;
-  flex-wrap: wrap;
+  display: flex; justify-content: center; align-items: flex-start;
+  gap: 20px; margin-top: 30px; flex-wrap: wrap;
 }
-
-.area-item {
-  flex: 1 1 300px;
-  max-width: 350px;
-  text-align: center;
-}
-
 .area-item img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
+  width: 100%; height: 220px; object-fit: cover; border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease;
   cursor:pointer;
 }
-
 .area-item img:hover { transform: scale(1.03); }
-
-.area-item h3 {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #333;
-}
-
-.area-item a.more-link {
-  display:block;
-  margin-top:5px;
-  color:#FF6600;
-  text-decoration:none;
-}
-.area-item a.more-link:hover { text-decoration:underline; }
 
 @media (max-width: 768px) {
   header { padding: 0 20px; height: 70px; }
@@ -93,10 +97,7 @@ footer p { line-height:1.6; }
   nav.menu-pc, .header-right .lang-switch { display:none; }
   #menuToggle { display:flex; }
   .hero img { width: 100%; height: 100vh; object-fit: cover; }
-  main { padding-left: 20px; padding-right: 20px; }
   .area-gallery { flex-direction: column; align-items: center; }
-  .area-item { max-width: 90%; }
-  .area-item img { height: 200px; }
 }
 </style>
 </head>
@@ -118,10 +119,12 @@ footer p { line-height:1.6; }
       <a href="#facilities" data-lang="ja">施設</a>
       <a href="#rooms" data-lang="ja">周辺案内</a>
       <a href="#access" data-lang="ja">アクセス</a>
+
       <a href="#news" data-lang="en" style="display:none">News</a>
       <a href="#facilities" data-lang="en" style="display:none">Facilities</a>
       <a href="#rooms" data-lang="en" style="display:none">Area Guide</a>
       <a href="#access" data-lang="en" style="display:none">Location</a>
+
       <a href="#news" data-lang="zh" style="display:none">新闻</a>
       <a href="#facilities" data-lang="zh" style="display:none">设施</a>
       <a href="#rooms" data-lang="zh" style="display:none">周边介绍</a>
@@ -149,10 +152,12 @@ footer p { line-height:1.6; }
   <a href="#facilities" data-lang="ja">施設</a>
   <a href="#rooms" data-lang="ja">周辺案内</a>
   <a href="#access" data-lang="ja">アクセス</a>
+
   <a href="#news" data-lang="en" style="display:none">News</a>
   <a href="#facilities" data-lang="en" style="display:none">Facilities</a>
   <a href="#rooms" data-lang="en" style="display:none">Area Guide</a>
   <a href="#access" data-lang="en" style="display:none">Location</a>
+
   <a href="#news" data-lang="zh" style="display:none">新闻</a>
   <a href="#facilities" data-lang="zh" style="display:none">设施</a>
   <a href="#rooms" data-lang="zh" style="display:none">周边介绍</a>
@@ -161,23 +166,35 @@ footer p { line-height:1.6; }
 
 <main>
   <section id="news">
-    <h2 data-lang="ja">News</h2>
+    <h2 data-lang="ja">お知らせ</h2>
+    <h2 data-lang="en" style="display:none">News</h2>
+    <h2 data-lang="zh" style="display:none">新闻</h2>
     <p data-lang="ja">最新のお知らせやキャンペーン情報をこちらに掲載します。</p>
+    <p data-lang="en" style="display:none">Latest news and promotions will be posted here.</p>
+    <p data-lang="zh" style="display:none">最新的通知和优惠信息将在此处发布。</p>
   </section>
 
   <section id="facilities">
-    <h2 data-lang="ja">Facilities</h2>
+    <h2 data-lang="ja">施設</h2>
+    <h2 data-lang="en" style="display:none">Facilities</h2>
+    <h2 data-lang="zh" style="display:none">设施</h2>
     <p data-lang="ja">館内にはロッカーや共用スペースなど、便利な設備を整えています。</p>
+    <p data-lang="en" style="display:none">We provide lockers and common spaces for your convenience.</p>
+    <p data-lang="zh" style="display:none">酒店内设有储物柜和公共空间等便利设施。</p>
   </section>
 
   <section id="rooms">
-    <h2 data-lang="ja">Area Guide</h2>
-    <p data-lang="ja">ちかくのコンビニからラーメン屋、水族館まで池袋の魅力をご案内</p>
+    <h2 data-lang="ja">周辺案内</h2>
+    <h2 data-lang="en" style="display:none">Area Guide</h2>
+    <h2 data-lang="zh" style="display:none">周边介绍</h2>
+    <p data-lang="ja">ちかくのコンビニからラーメン屋、水族館まで池袋の魅力をご案内。</p>
+    <p data-lang="en" style="display:none">Discover Ikebukuro — from nearby convenience stores to ramen shops and the aquarium.</p>
+    <p data-lang="zh" style="display:none">探索池袋的魅力，从便利店、拉面馆到水族馆。</p>
 
     <div class="area-gallery">
       <div class="area-item">
         <a href="areaguide.html">
-          <img src="images/spot1.jpg" alt="Sunshine City">
+          <img src="images/spot1.jpg" alt="Area Guide">
         </a>
         <a href="areaguide.html" class="more-link">more >></a>
       </div>
@@ -185,16 +202,20 @@ footer p { line-height:1.6; }
   </section>
 
   <section id="access">
-    <h2 data-lang="ja">Location</h2>
+    <h2 data-lang="ja">アクセス</h2>
+    <h2 data-lang="en" style="display:none">Location</h2>
+    <h2 data-lang="zh" style="display:none">位置</h2>
     <p data-lang="ja">池袋駅から徒歩5分の便利な立地です。</p>
+    <p data-lang="en" style="display:none">Conveniently located, just a 5-minute walk from Ikebukuro Station.</p>
+    <p data-lang="zh" style="display:none">从池袋站步行5分钟即可到达，地理位置便利。</p>
     <div class="map-link">
-      <a href="https://maps.app.goo.gl/fpZJZUyef44rgrW79" target="_blank" rel="noopener" data-lang="ja">Googleマップで開く</a>
+      <a href="https://maps.app.goo.gl/fpZJZUyef44rgrW79" target="_blank" rel="noopener">Googleマップで開く</a>
     </div>
   </section>
 </main>
 
 <footer>
-  <p data-lang="ja">© 2025 EISEI STAY Ikebukuro Nishi<br>〒171-0014　東京都豊島区池袋2-12-10</p>
+  <p>© 2025 EISEI STAY Ikebukuro Nishi<br>〒171-0014　東京都豊島区池袋2-12-10</p>
 </footer>
 
 <script>
@@ -209,6 +230,22 @@ function toggleMenu() {
 menuToggle.addEventListener('click', toggleMenu);
 menuOverlay.addEventListener('click', toggleMenu);
 menuList.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMenu));
+
+// 言語切り替え（ボタンは非対象）
+const langButtons = document.querySelectorAll('.lang-switch span');
+langButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lang = btn.dataset.lang;
+    // テキスト要素だけ切り替える
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      if (!el.closest('.lang-switch')) { // 言語ボタン以外
+        el.style.display = el.dataset.lang === lang ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.lang-switch span').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll(`.lang-switch span[data-lang="${lang}"]`).forEach(s => s.classList.add('active'));
+  });
+});
 </script>
 
 </body>
