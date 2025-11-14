@@ -105,6 +105,15 @@ footer p { line-height:1.6; }
   .hero img { width: 100%; height: 100vh; object-fit: cover; }
   .area-gallery { flex-direction: column; align-items: center; }
 }
+
+.hero-img {
+  width: 100%;
+  height: 60vh; /* 好きに調整（PC/スマホ対応） */
+  background-image: url("images/spot1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 </style>
 </head>
 <body>
@@ -232,6 +241,7 @@ footer p { line-height:1.6; }
 
     <div class="area-gallery">
       <div class="area-item">
+       <div class="hero-img"></div>
         <a href="areaguide.html">
           <img src="images/東京夜景.jpg" alt="Area Guide"class="full-width-img"><br>
         </a>
