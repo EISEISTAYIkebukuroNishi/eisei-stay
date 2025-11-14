@@ -90,6 +90,12 @@ footer p { line-height:1.6; }
 }
 .area-item img:hover { transform: scale(1.03); }
 
+.facility-details {
+  margin-top: 20px;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
 @media (max-width: 768px) {
   header { padding: 0 20px; height: 70px; }
   .hotel-title .hotel-name { font-size:24px; }
@@ -178,25 +184,87 @@ footer p { line-height:1.6; }
     <h2 data-lang="ja">施設</h2>
     <h2 data-lang="en" style="display:none">Facilities</h2>
     <h2 data-lang="zh" style="display:none">设施</h2>
-    <p data-lang="ja">館内にはロッカーや共用スペースなど、便利な設備を整えています。</p>
-    <p data-lang="en" style="display:none">We provide lockers and common spaces for your convenience.</p>
-    <p data-lang="zh" style="display:none">酒店内设有储物柜和公共空间等便利设施。</p>
+    <p data-lang="ja">Rooms</p>
+    <p data-lang="en" style="display:none">Rooms</p>
+    <p data-lang="zh" style="display:none">Rooms</p>
   </section>
+
+  <!-- ここに Excel の Sheet1（5行目以降）から抽出した内容を反映しています -->
+  <div class="facility-details">
+    <p data-lang="ja">
+      8F ー Triple・Twin<br>
+      7F ー Triple・Sweet・Laundry<br>
+      6F ー Triple・Sweet<br>
+      5F ー Triple・Sweet・Laundry<br>
+      4F ー Triple・Sweet<br>
+      3F ー Triple<br>
+      2F ー Triple<br>
+      1F ー Front・Luggage Locker<br>
+    </p>
+    <p data-lang="en" style="display:none">
+      8F – Triple / Twin<br>
+      7F – Triple / Sweet / Laundry<br>
+      6F – Triple / Sweet<br>
+      5F – Triple / Sweet / Laundry<br>
+      4F – Triple / Sweet<br>
+      3F – Triple<br>
+      2F – Triple<br>
+      1F – Front / Luggage Locker<br>
+    </p>
+    <p data-lang="zh" style="display:none">
+      8层 – Triple・Twin<br>
+      7层 – Triple・Sweet・洗衣房<br>
+      6层 – Triple・Sweet<br>
+      5层 – Triple・Sweet・洗衣房<br>
+      4层 – Triple・Sweet<br>
+      3层 – Triple<br>
+      2层 – Triple<br>
+      1层 – 前台・行李寄存柜<br>
+    </p>
+  </div>
 
   <section id="rooms">
     <h2 data-lang="ja">周辺案内</h2>
     <h2 data-lang="en" style="display:none">Area Guide</h2>
     <h2 data-lang="zh" style="display:none">周边介绍</h2>
-    <p data-lang="ja">ちかくのコンビニからラーメン屋、水族館まで池袋の魅力をご案内。</p>
-    <p data-lang="en" style="display:none">Discover Ikebukuro — from nearby convenience stores to ramen shops and the aquarium.</p>
-    <p data-lang="zh" style="display:none">探索池袋的魅力，从便利店、拉面馆到水族馆。</p>
+
+    <!-- Excel の 5行目以降から抽出した主要スポット（上位）を表示 -->
+    <p data-lang="ja">
+      当館周辺の主なスポット（抜粋）：<br>
+      ・セブン-イレブン 池袋２丁目劇場通り店 — 徒歩2分（0.2km）<br>
+      ・ファミリーマート 池袋西口店 — 徒歩2分（0.2km）<br>
+      ・秋刀魚中華そば 生粋（Kissui） — 徒歩1分（0.1km）<br>
+      ・豚山 池袋西口店 — 徒歩3分（0.3km）<br>
+      ・サンシャイン水族館 — 徒歩約20分（約1.6km）<br>
+      （詳細は <a href="areaguide.html">Area Guide</a> をご覧ください）
+    </p>
+
+    <p data-lang="en" style="display:none">
+      Nearby spots (selection):<br>
+      ・7-ELEVEN Ikebukuro 2-chome Theater St. — 2 min on foot (0.2 km)<br>
+      ・Family Mart Ikebukuro West Exit — 2 min on foot (0.2 km)<br>
+      ・Kissui (Sanma Chuka Soba) — 1 min on foot (0.1 km)<br>
+      ・Butayama (Ramen) Ikebukuro West Exit — 3 min on foot (0.3 km)<br>
+      ・Sunshine Aquarium — about 20 min on foot (approx. 1.6 km)<br>
+      (For details, see <a href="areaguide.html">Area Guide</a>.)
+    </p>
+
+    <p data-lang="zh" style="display:none">
+      附近景点（节选）：<br>
+      ・7-ELEVEN 池袋２丁目剧场通店 — 步行2分钟（0.2km）<br>
+      ・Family Mart 池袋西口店 — 步行2分钟（0.2km）<br>
+      ・秋刀鱼中华そば 生粋（Kissui） — 步行1分钟（0.1km）<br>
+      ・豚山 池袋西口店 — 步行3分钟（0.3km）<br>
+      ・阳光城水族馆 — 步行约20分钟（约1.6km）<br>
+      （详细信息请参阅 <a href="areaguide.html">Area Guide</a>。）
+    </p>
 
     <div class="area-gallery">
       <div class="area-item">
         <a href="areaguide.html">
           <img src="images/spot1.jpg" alt="Area Guide">
         </a>
-        <a href="areaguide.html" class="more-link">more >></a>
+        <a href="areaguide.html" class="more-link" style="font-weight:700; color:#FF6600; text-decoration:none">more >></a>
       </div>
     </div>
   </section>
@@ -231,17 +299,18 @@ menuToggle.addEventListener('click', toggleMenu);
 menuOverlay.addEventListener('click', toggleMenu);
 menuList.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMenu));
 
-// 言語切り替え（ボタンは非対象）
+// 言語切り替え（ページ内の[data-lang]要素を切替）
 const langButtons = document.querySelectorAll('.lang-switch span');
 langButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     const lang = btn.dataset.lang;
-    // テキスト要素だけ切り替える
+    // 表示切替（言語ボタン自体は除外）
     document.querySelectorAll('[data-lang]').forEach(el => {
-      if (!el.closest('.lang-switch')) { // 言語ボタン以外
+      if (!el.closest('.lang-switch')) {
         el.style.display = el.dataset.lang === lang ? '' : 'none';
       }
     });
+    // active クラス更新
     document.querySelectorAll('.lang-switch span').forEach(s => s.classList.remove('active'));
     document.querySelectorAll(`.lang-switch span[data-lang="${lang}"]`).forEach(s => s.classList.add('active'));
   });
