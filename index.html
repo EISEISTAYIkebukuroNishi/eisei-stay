@@ -9,17 +9,9 @@
   --header-height-pc: 90px;
   --header-height-sp: 70px;
 }
+
 * { margin:0; padding:0; box-sizing:border-box; font-weight:700; }
 html, body { font-family: 'Noto Sans JP Black', sans-serif; overflow-x:hidden; }
-
-/* 背景画像：全面固定表示 */
-.hero-bg {
-  position: fixed;
-  top:0; left:0;
-  width:100vw; height:100vh;
-  background: url("images/triple-03.png") center/cover no-repeat;
-  z-index:-1;
-}
 
 /* ヘッダー */
 header {
@@ -67,13 +59,15 @@ nav.menu-pc a:hover { color:#FF6600; }
   background: rgba(0,0,0,0.4); opacity:0; visibility:hidden; transition: opacity 0.3s ease; z-index:33; }
 #menuOverlay.active { opacity:1; visibility:visible; }
 
+/* main に直接背景画像を設定 */
 main {
-    position: relative;
+  position: relative;
   margin-top: var(--header-height-pc);
-  background-color: #f6f2e7; /* ベージュ背景 */
+  background: url('images/triple-03.png') center/cover no-repeat fixed;
   color:#333;
   text-align:center;
-  padding: 2000px 20px 0 20px; /* 上から2000px下げてベージュ背景を下に配置 */
+  padding:200px 20px 50px 20px; /* ベージュ背景を本文部分に調整 */
+  background-color: #f6f2e7; /* ベージュ背景が透ける場合 */
 }
 
 /* セクション */
@@ -112,8 +106,6 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
 </style>
 </head>
 <body>
-
-<div class="hero-bg"></div>
 
 <header>
   <div class="hotel-title">
