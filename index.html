@@ -100,7 +100,26 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
   box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease; cursor:pointer; }
 .area-item img:hover { transform: scale(1.03); }
 
-.facility-details { margin-top:20px; line-height:1.8; font-size:16px; }
+/* FACILITIES下の補足テキスト */
+.facility-note {
+  font-size: 14px;             /* 小さめ */
+  margin: 20px auto 20px auto; /* 上下マージン */
+  width: 70%;                  /* 横幅70% */
+  border-bottom: 2px solid #333; /* 横線 */
+  padding-bottom: 5px;         /* 横線と文字の間隔 */
+  text-align: center;          /* 文字中央寄せ */
+}
+
+/* FACILITIES本文だけ左寄せ */
+#facilities .facility-details,
+#facilities p[data-lang="ja"]:not(.facility-note),
+#facilities p[data-lang="en"]:not(.facility-note),
+#facilities p[data-lang="zh"]:not(.facility-note) {
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto 20px auto; /* 中央寄せしつつ左揃え */
+  line-height: 1.6;
+}
 
 /* モバイル対応 */
 @media (max-width:768px) {
@@ -110,8 +129,7 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
   .hotel-title .hotel-sub { font-size:14px; }
   nav.menu-pc, .header-right .lang-switch { display:none; }
   #menuToggle { display:flex; }
-  main { margin-top: margin-top: 70vh; /* スマホは背景画像の下端に合わせて調整 */
-   }
+  main { margin-top: 70vh; /* スマホは背景画像の下端に合わせて調整 */ }
   section { scroll-margin-top: var(--header-height-sp); }
   .area-gallery { flex-direction:column; align-items:center; }
 }
@@ -189,11 +207,15 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
     <!-- FACILITIES -->
     <section id="facilities">
       <h2 data-lang="ja">FACILITIES</h2>
+      <p class="facility-note" data-lang="ja">施設案内</p>
+
       <h2 data-lang="en" style="display:none">FACILITIES</h2>
       <h2 data-lang="zh" style="display:none">设施</h2>
+
       <p data-lang="ja">ROOMS</p>
       <p data-lang="en" style="display:none">ROOMS</p>
       <p data-lang="zh" style="display:none">ROOMS</p>
+
       <div class="facility-details">
         <p data-lang="ja">
           8F ー Triple・Twin<br>
