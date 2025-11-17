@@ -1,3 +1,6 @@
+	
+下記コード参照して完全版
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -102,23 +105,23 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
 
 /* FACILITIES下の補足テキスト */
 .facility-note {
-  font-size: 14px;             /* 小さめ */
-  margin: 20px auto 20px auto; /* 上下マージン */
-  width: 70%;                  /* 横幅70% */
-  border-bottom: 2px solid #333; /* 横線 */
-  padding-bottom: 5px;         /* 横線と文字の間隔 */
-  text-align: center;          /* 文字中央寄せ */
+  font-size: 16px;
+  margin: 25px auto 10px auto;
+  text-align: center;
+  display: inline-block;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #333;
+  width: 40%;        /* ← 文字の長さに合わせる */
+  line-height: 1.4;
 }
 
-/* FACILITIES本文だけ左寄せ */
+/* FACILITIES本文を左寄せ */
 #facilities .facility-details,
-#facilities p[data-lang="ja"]:not(.facility-note),
-#facilities p[data-lang="en"]:not(.facility-note),
-#facilities p[data-lang="zh"]:not(.facility-note) {
-  text-align: left;
-  max-width: 700px;
-  margin: 0 auto 20px auto; /* 中央寄せしつつ左揃え */
-  line-height: 1.6;
+#facilities p[data-lang]:not(.facility-note) {
+  text-align: left;       /* 左寄せ */
+  max-width: 700px;       /* 最大幅 */
+  margin: 0 auto 20px auto; /* 中央に寄せつつ上下余白 */
+  line-height: 1.6;       /* 行間 */
 }
 
 /* モバイル対応 */
@@ -204,49 +207,117 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
       <p data-lang="zh" style="display:none">最新的通知和优惠信息将在此处发布。</p>
     </section>
 
-    <!-- FACILITIES -->
-    <section id="facilities">
-      <h2 data-lang="ja">FACILITIES</h2>
-      <p class="facility-note" data-lang="ja">施設案内</p>
+<!-- FACILITIES -->
+<section id="facilities">
+  <!-- 見出し -->
+  <h2 data-lang="ja">FACILITIES</h2>
+  <h2 data-lang="en" style="display:none">FACILITIES</h2>
+  <h2 data-lang="zh" style="display:none">FACILITIES</h2>
 
-      <h2 data-lang="en" style="display:none">FACILITIES</h2>
-      <h2 data-lang="zh" style="display:none">设施</h2>
+  <!-- 小見出し -->
+  <p class="facility-note" data-lang="ja">施設案内</p>
+  <p class="facility-note" data-lang="en" style="display:none">Facilities Guide</p>
+  <p class="facility-note" data-lang="zh" style="display:none">施設指南</p>
 
-      <p data-lang="ja">ROOMS</p>
-      <p data-lang="en" style="display:none">ROOMS</p>
-      <p data-lang="zh" style="display:none">ROOMS</p>
+  <div class="divider"></div>
 
-      <div class="facility-details">
-        <p data-lang="ja">
-          8F ー Triple・Twin<br>
-          7F ー Triple・Sweet・Laundry<br>
-          6F ー Triple・Sweet<br>
-          5F ー Triple・Sweet・Laundry<br>
-          4F ー Triple・Sweet<br>
-          3F ー Triple<br>
-          2F ー Triple<br>
-          1F ー Front・Luggage Locker<br>
-        </p>
-        <p data-lang="en" style="display:none">
-          8F – Triple / Twin<br>
-          7F – Triple / Sweet / Laundry<br>
-          6F – Triple / Sweet<br>
-          5F – Triple / Sweet / Laundry<br>
-          4F – Triple / Sweet<br>
-          3F – Triple<br>
-          2F – Triple<br>
-          1F – Front / Luggage Locker<br>
-        </p>
+  <!-- ROOMS -->
+  <p class="facility-note" data-lang="ja">Rooms<br>客室</p>
+  <p class="facility-note" data-lang="en" style="display:none">Rooms</p>
+  <p class="facility-note" data-lang="zh" style="display:none">Rooms<br>客房</p>
+
+  <!-- 階層リスト -->
+  <div class="facility-details" data-lang="ja">
+    <p>
+      8F - Triple・Twin<br>
+      7F - Triple・Suite・Laundry<br>
+      6F - Triple・Suite<br>
+      5F - Triple・Suite・Laundry<br>
+      4F - Triple・Suite<br>
+      3F - Triple<br>
+      2F - Triple<br>
+      1F - Front・Luggage Locker<br>
+    </p>
+  </div>
+  <div class="facility-details" data-lang="en" style="display:none">
+    <p>
+      8F - Triple / Twin<br>
+      7F - Triple / Suite / Laundry<br>
+      6F - Triple / Suite<br>
+      5F - Triple / Suite / Laundry<br>
+      4F - Triple / Suite<br>
+      3F - Triple<br>
+      2F - Triple<br>
+      1F - Front / Luggage Locker<br>
+    </p>
+  </div>
+  <div class="facility-details" data-lang="zh" style="display:none">
+    <p>
+      8层 - Triple・Twin<br>
+      7层 - Triple・Suite・Laundry<br>
+      6层 - Triple・Suite<br>
+      5层 - Triple・Suite・Laundry<br>
+      4层 - Triple・Suite<br>
+      3层 - Triple<br>
+      2层 - Triple<br>
+      1层 - 前台・行李寄存柜<br>
+    </p>
+  </div>
+
+  <!-- Luggage Locker -->
+  <p class="facility-note" data-lang="ja">Luggage Locker<br>ご宿泊者様専用ロッカー</p>
+  <p class="facility-note" data-lang="en" style="display:none">Luggage Locker</p>
+  <p class="facility-note" data-lang="zh" style="display:none">Luggage Locker<br>行李寄存柜</p>
+
+  <!-- 説明文 -->
+  <div class="facility-details" data-lang="ja">
+    <p>
+      チェックイン前やチェックアウト後も身軽に観光をお楽しみいただけるよう<br>
+      1Fフロント横にロッカーをご用意しております。<br><br>
+      ・ダイヤル式ロッカーで安心のセキュリティ<br>
+      ・大きなスーツケースもワイヤーロックでしっかり施錠<br>
+      ・無料でご利用いただけます<br><br>
+      どうぞご旅行の合間にご活用ください。
+    </p>
+  </div>
+  <div class="facility-details" data-lang="en" style="display:none">
+    <p>
+      To make your stay more comfortable, we provide lockers<br>
+      next to the front desk on the 1st floor.<br>
+      They are perfect for keeping your luggage safe before check-in or<br>
+      after check-out, so you can enjoy sightseeing hands-free.<br><br>
+      ・Secure dial-lock system for peace of mind<br>
+      ・Large suitcases can also be safely fastened with a wire lock<br>
+      ・Free of charge for all our guests<br><br>
+      Enjoy exploring the city while we keep your belongings safe.
+    </p>
+  </div>
+  <div class="facility-details" data-lang="zh" style="display:none">
+    <p>
+      为了让您的入住更加轻松便利，我们在1楼前台旁提供了行李寄存柜。<br>
+      您可以在入住前或退房后将行李安全存放，轻松游览周边景点。<br><br>
+      ・旋钮式锁，安全可靠<br>
+      ・大行李也可使用钢丝锁妥善锁好<br>
+      ・免费提供给所有住客<br><br>
+      请在旅行间隙随意使用。
+    </p>
+  </div>
+</section>
+
         <p data-lang="zh" style="display:none">
-          8层 – Triple・Twin<br>
-          7层 – Triple・Sweet・洗衣房<br>
-          6层 – Triple・Sweet<br>
-          5层 – Triple・Sweet・洗衣房<br>
-          4层 – Triple・Sweet<br>
-          3层 – Triple<br>
-          2层 – Triple<br>
-          1层 – 前台・行李寄存柜<br>
-        </p>
+          8层 - Triple・Twin<br>
+          7层 - Triple・Sweet・Laundry<br>
+          6层 - Triple・Sweet<br>
+          5层 - Triple・Sweet・Laundry<br>
+          4层 - Triple・Sweet<br>
+          3层 - Triple<br>
+          2层 - Triple<br>
+          1层 - Front / Luggage Locker<br>
+        </p><br><br><br>
+
+
+
+
       </div>
     </section>
 
