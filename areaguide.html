@@ -1,38 +1,330 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Area Guide | Ikebukuro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Area Guide</title>
+
 <style>
-body { font-family: 'Hiragino Kaku Gothic Pro', sans-serif; margin:0; padding:0; background:#f6f2e7; }
-h1 { text-align:center; margin:30px 0; font-size:28px; }
-.area-gallery { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:0 20px; }
-.area-item { flex:1 1 300px; max-width:350px; text-align:center; }
-.area-item img { width:100%; height:220px; object-fit:cover; border-radius:10px; transition: transform 0.3s; }
-.area-item img:hover { transform: scale(1.03); }
-.area-item h3 { margin-top:10px; font-size:18px; font-weight:600; }
-@media(max-width:768px){ .area-gallery{ flex-direction:column; align-items:center; } .area-item{ max-width:90%; } .area-item img{ height:200px; } }
+  body {
+    margin:0;
+    padding:20px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight:900;
+    background:#f6f2e7;
+    color:#333;
+    line-height:1.7;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  h1 {
+    text-align:center;
+    font-size:30px;
+    font-weight:900;
+    color:#333;
+  }
+
+  .divider {
+    border: 0;
+    height: 2px;
+    background: #333;
+    margin: 20px 0 60px;
+  }
+
+  .nearby-line {
+    display: flex;
+    align-items: center;
+    margin: 60px 0;
+  }
+
+  .nearby-line::before,
+  .nearby-line::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px dashed #333;
+  }
+
+  .nearby-line span {
+    margin: 0 10px;
+    font-size:16px;
+    font-weight:900;
+    white-space: nowrap;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 30px;
+  }
+
+  .spot-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .spot-left {
+    width: 60%;
+  }
+
+  .left-line {
+    font-size: 20px;
+    font-weight: 900;
+    color: #333;
+    line-height: 1.6;
+    margin: 4px 0;
+  }
+
+  .spot-right {
+    width: 36%;
+    text-align: right;
+  }
+
+  .right-top {
+    font-size: 20px;
+    font-weight: 900;
+    color:#333;
+    line-height: 1.1;
+    margin: 2px 0 6px 0;
+  }
+
+  .right-mid,
+  .right-bottom {
+    font-size: 14px;
+    font-weight: 700;
+    color: #666;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .right-mid { margin-bottom: 4px; }
+
+  .category {
+    font-size: 14px;
+    font-weight: 700;
+    width: 160px;
+    border-bottom: 3px double #333;
+    line-height: 1.0;
+    margin: 4px 0 10px 0;
+  }
+
+  .address {
+    font-size: 13px;
+    color:#666;
+    margin-top: 2px;
+  }
+
+  @media (max-width:600px){
+    .grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
+
 <body>
+<div class="container">
+  <h1>AREA GUIDE</h1>
+  <hr class="divider">
 
-<h1>Area Guide</h1>
+  <div class="nearby-line"><span>Nearby</span></div>
 
-<div class="area-gallery">
-  <div class="area-item">
-    <img src="images/spot1.jpg" alt="Sunshine City">
-    <h3>サンシャインシティ<br><small>Sunshine City</small></h3>
-  </div>
-  <div class="area-item">
-    <img src="images/spot2.jpg" alt="Ikebukuro Station Area">
-    <h3>池袋駅周辺<br><small>Ikebukuro Station Area</small></h3>
-  </div>
-  <div class="area-item">
-    <img src="images/spot3.jpg" alt="Tokyo Metropolitan Theatre">
-    <h3>東京芸術劇場<br><small>Tokyo Metropolitan Theatre</small></h3>
-  </div>
+  <div class="grid">
+
+    <!-- Spot 1 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Family Mart</div>
+          <div class="left-line">ファミリーマート池袋西口店</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">0.2km</div>
+          <div class="right-mid">徒歩2分</div>
+          <div class="right-bottom">2 minutes on foot</div>
+        </div>
+      </div>
+      <div class="category">Convenience Stores</div>
+      <div class="address">
+        東京都豊島区池袋2-7-5<br>
+        Tokyo, Toshima City, Ikebukuro 2-7-5
+      </div>
+    </div>
+
+    <!-- Spot 2 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Ikebukuro Station</div>
+          <div class="left-line">池袋駅（東口・西口・北口）</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">0.4km</div>
+          <div class="right-mid">徒歩5分</div>
+          <div class="right-bottom">5 minutes on foot</div>
+        </div>
+      </div>
+      <div class="category">Transport Hub</div>
+      <div class="address">
+        東京都豊島区南池袋1丁目<br>
+        Tokyo, Toshima City, Minami-Ikebukuro 1-chome
+      </div>
+    </div>
+
+    <!-- Spot 3 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Sunshine Aquarium</div>
+          <div class="left-line">サンシャイン水族館</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">1.2km</div>
+          <div class="right-mid">徒歩15分</div>
+          <div class="right-bottom">15 minutes on foot</div>
+        </div>
+      </div>
+      <div class="category">Aquarium</div>
+      <div class="address">
+        東京都豊島区東池袋3-1<br>
+        Tokyo, Toshima City, Higashi-Ikebukuro 3-1
+      </div>
+    </div>
+
+    <!-- Spot 4 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Tokyo Metro Theatre</div>
+          <div class="left-line">東京芸術劇場</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">0.6km</div>
+          <div class="right-mid">徒歩8分</div>
+          <div class="right-bottom">8 minutes on foot</div>
+        </div>
+      </div>
+      <div class="category">Theatre</div>
+      <div class="address">
+        東京都豊島区西池袋1-8-1<br>
+        Tokyo, Toshima City, Nishi-Ikebukuro 1-8-1
+      </div>
+    </div>
+
+    <!-- Spot 5 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Animate Ikebukuro</div>
+          <div class="left-line">アニメイト池袋本店</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">0.8km</div>
+          <div class="right-mid">徒歩10分</div>
+          <div class="right-bottom">10 minutes on foot</div>
+        </div>
+      </div>
+      <div class="category">Anime & Manga</div>
+      <div class="address">
+        東京都豊島区東池袋1-20-7<br>
+        Tokyo, Toshima City, Higashi-Ikebukuro 1-20-7
+      </div>
+    </div>
+
+  </div> <!-- grid -->
+
+  <!-- ▼▼ Tokyo Attractions ▼▼ -->
+  <div class="nearby-line"><span>Tokyo Attractions</span></div>
+
+  <div class="grid">
+
+    <!-- Tokyo Spot 1 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Shinjuku Gyoen</div>
+          <div class="left-line">新宿御苑</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">5.0km</div>
+          <div class="right-mid">電車20分</div>
+          <div class="right-bottom">20 min by train</div>
+        </div>
+      </div>
+      <div class="category">Park</div>
+      <div class="address">
+        東京都新宿区内藤町11<br>
+        Shinjuku, Tokyo
+      </div>
+    </div>
+
+    <!-- Tokyo Spot 2 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Tokyo Tower</div>
+          <div class="left-line">東京タワー</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">8.0km</div>
+          <div class="right-mid">電車25分</div>
+          <div class="right-bottom">25 min by train</div>
+        </div>
+      </div>
+      <div class="category">Landmark</div>
+      <div class="address">
+        東京都港区芝公園4-2-8<br>
+        Minato City, Tokyo
+      </div>
+    </div>
+
+    <!-- Tokyo Spot 3 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Senso-ji Temple</div>
+          <div class="left-line">浅草寺</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">10km</div>
+          <div class="right-mid">電車30分</div>
+          <div class="right-bottom">30 min by train</div>
+        </div>
+      </div>
+      <div class="category">Temple</div>
+      <div class="address">
+        東京都台東区浅草2-3-1<br>
+        Taito City, Tokyo
+      </div>
+    </div>
+
+    <!-- Tokyo Spot 4 -->
+    <div class="spot">
+      <div class="spot-row">
+        <div class="spot-left">
+          <div class="left-line">Shibuya Crossing</div>
+          <div class="left-line">渋谷スクランブル交差点</div>
+        </div>
+        <div class="spot-right">
+          <div class="right-top">7.0km</div>
+          <div class="right-mid">電車18分</div>
+          <div class="right-bottom">18 min by train</div>
+        </div>
+      </div>
+      <div class="category">City Spot</div>
+      <div class="address">
+        東京都渋谷区道玄坂2丁目<br>
+        Shibuya, Tokyo
+      </div>
+    </div>
+
+  </div> <!-- grid -->
+
 </div>
-
 </body>
 </html>
