@@ -9,11 +9,10 @@
   --header-height-pc: 90px;
   --header-height-sp: 70px;
 }
-
 * { margin:0; padding:0; box-sizing:border-box; font-weight:700; }
 html, body { font-family: 'Noto Sans JP Black', sans-serif; overflow-x:hidden; }
 
-/* 背景画像：固定 */
+/* 背景画像 */
 body::before {
   content: "";
   position: fixed;
@@ -69,13 +68,10 @@ nav.menu-pc a:hover { color:#FF6600; }
   background: rgba(0,0,0,0.4); opacity:0; visibility:hidden; transition: opacity 0.3s ease; z-index:33; }
 #menuOverlay.active { opacity:1; visibility:visible; }
 
-/* 本文部分のラッパー（ベージュ背景） */
-main {
-  position: relative;
-  margin-top: 100vh; /* 背景画像の下端から開始 */
-}
+/* 本文部分 */
+main { position: relative; margin-top: 100vh; }
 .content-bg {
-  background-color: #f6f2e7; /* 完全ベージュ */
+  background-color: #f6f2e7;
   color: #333;
   text-align: center;
   padding: 100px 20px 50px 20px;
@@ -88,40 +84,26 @@ section { scroll-margin-top: var(--header-height-pc); padding:60px 0; }
 section h2 { font-size:28px; margin-bottom:20px; text-align:center; }
 section p { max-width:700px; font-size:16px; line-height:1.8; margin: 0 auto; text-align:center; }
 
-.map-link { margin-top: 20px; }
-.map-link a { display:inline-block; text-decoration:none; background:#ff6600;
-  color:#fff; padding:10px 20px; border-radius:6px; transition:0.3s; }
-.map-link a:hover { background:#e95500; }
-
-footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px; font-size:14px;
-  border-top:1px solid rgba(0,0,0,0.1); }
+/* FACILITIES */
+.room-flex-wrapper {
+  display:flex; justify-content:center; align-items:flex-start; gap:40px; flex-wrap:wrap;
+  margin-bottom:30px;
+}
+.room-text { text-align:left; max-width:300px; }
+.room-img-box img { width:280px; border-radius:10px; object-fit:cover; }
+.facility-note { font-size: 16px; margin:25px auto 10px auto; text-align:center; display:inline-block; padding-bottom:6px; border-bottom:2px solid #333; width:40%; line-height:1.4; }
+.facility-details { text-align:left; max-width:700px; margin:0 auto 20px auto; line-height:1.6; }
 
 /* AREA GUIDE */
 .area-gallery { display:flex; justify-content:center; align-items:flex-start; gap:20px; margin-top:30px; flex-wrap:wrap; }
-.area-item img { width:100%; height:220px; object-fit:cover; border-radius:10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease; cursor:pointer; }
+.area-item img { width:100%; height:220px; object-fit:cover; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease; cursor:pointer; }
 .area-item img:hover { transform: scale(1.03); }
+.map-link { margin-top:20px; }
+.map-link a { display:inline-block; text-decoration:none; background:#ff6600; color:#fff; padding:10px 20px; border-radius:6px; transition:0.3s; }
+.map-link a:hover { background:#e95500; }
 
-/* FACILITIES下の補足テキスト */
-.facility-note {
-  font-size: 16px;
-  margin: 25px auto 10px auto;
-  text-align: center;
-  display: inline-block;
-  padding-bottom: 6px;
-  border-bottom: 2px solid #333;
-  width: 40%;
-  line-height: 1.4;
-}
-
-/* FACILITIES本文を左寄せ */
-#facilities .facility-details,
-#facilities p[data-lang]:not(.facility-note) {
-  text-align: left;
-  max-width: 700px;
-  margin: 0 auto 20px auto;
-  line-height: 1.6;
-}
+/* Footer */
+footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px; font-size:14px; border-top:1px solid rgba(0,0,0,0.1); }
 
 /* モバイル対応 */
 @media (max-width:768px) {
@@ -133,6 +115,8 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
   #menuToggle { display:flex; }
   main { margin-top: 150vh; }
   section { scroll-margin-top: var(--header-height-sp); }
+  .room-flex-wrapper { flex-direction:column; align-items:center; }
+  .room-text, .room-img-box img { max-width:90%; width:100%; }
   .area-gallery { flex-direction:column; align-items:center; }
 }
 </style>
@@ -151,25 +135,21 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
       <a href="#facilities" data-lang="ja">FACILITIES</a>
       <a href="#rooms" data-lang="ja">AREA GUIDE</a>
       <a href="#access" data-lang="ja">LOCATION</a>
-
       <a href="#news" data-lang="en" style="display:none">NEWS</a>
       <a href="#facilities" data-lang="en" style="display:none">FACILITIES</a>
       <a href="#rooms" data-lang="en" style="display:none">AREA GUIDE</a>
       <a href="#access" data-lang="en" style="display:none">LOCATION</a>
-
       <a href="#news" data-lang="zh" style="display:none">新闻</a>
       <a href="#facilities" data-lang="zh" style="display:none">设施</a>
       <a href="#rooms" data-lang="zh" style="display:none">周边介绍</a>
       <a href="#access" data-lang="zh" style="display:none">位置</a>
     </nav>
-
     <div class="lang-switch">
       <span class="active" data-lang="ja">JP</span> |
       <span data-lang="en">EN</span> |
       <span data-lang="zh">CN</span>
     </div>
   </div>
-
   <div id="menuToggle"><span></span><span></span><span></span></div>
 </header>
 
@@ -180,74 +160,73 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
     <span data-lang="en">EN</span> | 
     <span data-lang="zh">CN</span>
   </div>
-  <a href="#news" data-lang="ja" data-lang-content>NEWS</a>
-  <a href="#facilities" data-lang="ja" data-lang-content>FACILITIES</a>
-  <a href="#rooms" data-lang="ja" data-lang-content>AREA GUIDE</a>
-  <a href="#access" data-lang="ja" data-lang-content>LOCATION</a>
-  <a href="#news" data-lang="en" data-lang-content>NEWS</a>
-  <a href="#facilities" data-lang="en" data-lang-content>FACILITIES</a>
-  <a href="#rooms" data-lang="en" data-lang-content>AREA GUIDE</a>
-  <a href="#access" data-lang="en" data-lang-content>LOCATION</a>
-  <a href="#news" data-lang="zh" data-lang-content>新闻</a>
-  <a href="#facilities" data-lang="zh" data-lang-content>设施</a>
-  <a href="#rooms" data-lang="zh" data-lang-content>周边介绍</a>
-  <a href="#access" data-lang="zh" data-lang-content>位置</a>
+  <a href="#news" data-lang-content>NEWS</a>
+  <a href="#facilities" data-lang-content>FACILITIES</a>
+  <a href="#rooms" data-lang-content>AREA GUIDE</a>
+  <a href="#access" data-lang-content>LOCATION</a>
 </div>
 
 <main>
   <div class="content-bg">
     <!-- FACILITIES -->
     <section id="facilities">
-      <h2 data-lang="ja" data-lang-content>FACILITIES</h2>
-      <h2 data-lang="en" data-lang-content>FACILITIES</h2>
-      <h2 data-lang="zh" data-lang-content>设施</h2>
+      <h2 data-lang-content data-lang="ja">FACILITIES</h2>
+      <h2 data-lang-content data-lang="en">FACILITIES</h2>
+      <h2 data-lang-content data-lang="zh">设施</h2>
 
-      <p class="facility-note" data-lang="ja" data-lang-content>Rooms<br>客室</p>
-      <p class="facility-note" data-lang="en" data-lang-content>Rooms</p>
-      <p class="facility-note" data-lang="zh" data-lang-content>Rooms<br>客房</p>
+      <p class="facility-note" data-lang-content data-lang="ja">Rooms<br>客室</p>
+      <p class="facility-note" data-lang-content data-lang="en">Rooms</p>
+      <p class="facility-note" data-lang-content data-lang="zh">Rooms<br>客房</p>
 
-      <div class="facility-details" data-lang="ja" data-lang-content>
-        <p>
-          8F - Triple・Twin<br>
-          7F - Triple・Suite・Laundry<br>
-          6F - Triple・Suite<br>
-          5F - Triple・Suite・Laundry<br>
-          4F - Triple・Suite<br>
-          3F - Triple<br>
-          2F - Triple<br>
-          1F - Front・Luggage Locker<br>
-        </p>
+      <div class="room-flex-wrapper">
+        <!-- Left text -->
+        <div class="room-text" data-lang-content data-lang="ja">
+          <p>
+            8F - Triple・Twin<br>
+            7F - Triple・Suite・Laundry<br>
+            6F - Triple・Suite<br>
+            5F - Triple・Suite・Laundry<br>
+            4F - Triple・Suite<br>
+            3F - Triple<br>
+            2F - Triple<br>
+            1F - Front・Luggage Locker
+          </p>
+        </div>
+        <div class="room-text" data-lang-content data-lang="en">
+          <p>
+            8F - Triple / Twin<br>
+            7F - Triple / Suite / Laundry<br>
+            6F - Triple / Suite<br>
+            5F - Triple / Suite / Laundry<br>
+            4F - Triple / Suite<br>
+            3F - Triple<br>
+            2F - Triple<br>
+            1F - Front / Luggage Locker
+          </p>
+        </div>
+        <div class="room-text" data-lang-content data-lang="zh">
+          <p>
+            8层 - Triple・Twin<br>
+            7层 - Triple・Suite・Laundry<br>
+            6层 - Triple・Suite<br>
+            5层 - Triple・Suite・Laundry<br>
+            4层 - Triple・Suite<br>
+            3层 - Triple<br>
+            2层 - Triple<br>
+            1层 - 前台・行李寄存柜
+          </p>
+        </div>
+        <!-- Right image -->
+        <div class="room-img-box">
+          <img src="images/rooms.jpg" alt="Rooms Image">
+        </div>
       </div>
-      <div class="facility-details" data-lang="en" data-lang-content>
-        <p>
-          8F - Triple / Twin<br>
-          7F - Triple / Suite / Laundry<br>
-          6F - Triple / Suite<br>
-          5F - Triple / Suite / Laundry<br>
-          4F - Triple / Suite<br>
-          3F - Triple<br>
-          2F - Triple<br>
-          1F - Front / Luggage Locker<br>
-        </p>
-      </div>
-      <div class="facility-details" data-lang="zh" data-lang-content>
-        <p>
-          8层 - Triple・Twin<br>
-          7层 - Triple・Suite・Laundry<br>
-          6层 - Triple・Suite<br>
-          5层 - Triple・Suite・Laundry<br>
-          4层 - Triple・Suite<br>
-          3层 - Triple<br>
-          2层 - Triple<br>
-          1层 - 前台・行李寄存柜<br>
-        </p>
-      </div>
 
-      <p class="facility-note" data-lang="ja" data-lang-content>Luggage Locker<br>ご宿泊者様専用ロッカー</p>
-      <p class="facility-note" data-lang="en" data-lang-content>Luggage Locker</p>
-      <p class="facility-note" data-lang="zh" data-lang-content>Luggage Locker<br>行李寄存柜</p>
+      <p class="facility-note" data-lang-content data-lang="ja">Luggage Locker<br>ご宿泊者様専用ロッカー</p>
+      <p class="facility-note" data-lang-content data-lang="en">Luggage Locker</p>
+      <p class="facility-note" data-lang-content data-lang="zh">Luggage Locker<br>行李寄存柜</p>
 
-      <div class="facility-details" data-lang="ja" data-lang-content>
+      <div class="facility-details" data-lang-content data-lang="ja">
         <p>
           チェックイン前やチェックアウト後も身軽に観光をお楽しみいただけるよう<br>
           1Fフロント横にロッカーをご用意しております。<br><br>
@@ -255,15 +234,10 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
           ・大きなスーツケースもワイヤーロックでしっかり施錠<br>
           ・無料でご利用いただけます<br><br>
           どうぞご旅行の合間にご活用ください。<br>
-
-         <a href="images/howtouse.pdf" target="_blank" class="more-link" style="font-weight:700; color:#FF6600; text-decoration:none">
-            How To Use &gt;&gt;
-         </a>
-
-
+          <a href="images/howtouse.pdf" target="_blank" style="font-weight:700;color:#FF6600;text-decoration:none;">How To Use &gt;&gt;</a>
         </p>
       </div>
-      <div class="facility-details" data-lang="en" data-lang-content>
+      <div class="facility-details" data-lang-content data-lang="en">
         <p>
           To make your stay more comfortable, we provide lockers<br>
           next to the front desk on the 1st floor.<br>
@@ -273,15 +247,10 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
           ・Large suitcases can also be safely fastened with a wire lock<br>
           ・Free of charge for all our guests<br><br>
           Enjoy exploring the city while we keep your belongings safe.<br>
-
-         <a href="images/howtouse.pdf" target="_blank" class="more-link" style="font-weight:700; color:#FF6600; text-decoration:none">
-            How To Use &gt;&gt;
-         </a>
-
-
+          <a href="images/howtouse.pdf" target="_blank" style="font-weight:700;color:#FF6600;text-decoration:none;">How To Use &gt;&gt;</a>
         </p>
       </div>
-      <div class="facility-details" data-lang="zh" data-lang-content>
+      <div class="facility-details" data-lang-content data-lang="zh">
         <p>
           为了让您的入住更加轻松便利，我们在1楼前台旁提供了行李寄存柜。<br>
           您可以在入住前或退房后将行李安全存放，轻松游览周边景点。<br><br>
@@ -289,39 +258,34 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
           ・大行李也可使用钢丝锁妥善锁好<br>
           ・免费提供给所有住客<br><br>
           请在旅行间隙随意使用。<br>
-
-         <a href="images/howtouse.pdf" target="_blank" class="more-link" style="font-weight:700; color:#FF6600; text-decoration:none">
-            How To Use &gt;&gt;
-         </a>
-
-
+          <a href="images/howtouse.pdf" target="_blank" style="font-weight:700;color:#FF6600;text-decoration:none;">How To Use &gt;&gt;</a>
         </p>
       </div>
     </section>
 
     <!-- AREA GUIDE -->
     <section id="rooms">
-      <h2 data-lang="ja" data-lang-content>AREA GUIDE</h2>
-      <h2 data-lang="en" data-lang-content>AREA GUIDE</h2>
-      <h2 data-lang="zh" data-lang-content>周边介绍</h2>
+      <h2 data-lang-content data-lang="ja">AREA GUIDE</h2>
+      <h2 data-lang-content data-lang="en">AREA GUIDE</h2>
+      <h2 data-lang-content data-lang="zh">周边介绍</h2>
       <div class="area-gallery">
         <div class="area-item">
           <a href="areaguide.html">
-            <img src="images/東京夜景.jpg" alt="Area Guide"><br>
+            <img src="images/東京夜景.jpg" alt="Area Guide">
           </a>
-          <a href="areaguide.html" class="more-link" style="font-weight:700; color:#FF6600; text-decoration:none">more &gt;&gt;</a>
+          <a href="areaguide.html" style="font-weight:700;color:#FF6600;text-decoration:none;">more &gt;&gt;</a>
         </div>
       </div>
     </section>
 
     <!-- LOCATION -->
     <section id="access">
-      <h2 data-lang="ja" data-lang-content>LOCATION</h2>
-      <h2 data-lang="en" data-lang-content>LOCATION</h2>
-      <h2 data-lang="zh" data-lang-content>位置</h2>
-      <p data-lang="ja" data-lang-content>池袋駅から徒歩5分の便利な立地です</p>
-      <p data-lang="en" data-lang-content>Conveniently located, just a 5-minute walk from Ikebukuro Station.</p>
-      <p data-lang="zh" data-lang-content>从池袋站步行5分钟即可到达，地理位置便利。</p>
+      <h2 data-lang-content data-lang="ja">LOCATION</h2>
+      <h2 data-lang-content data-lang="en">LOCATION</h2>
+      <h2 data-lang-content data-lang="zh">位置</h2>
+      <p data-lang-content data-lang="ja">池袋駅から徒歩5分の便利な立地です</p>
+      <p data-lang-content data-lang="en">Conveniently located, just a 5-minute walk from Ikebukuro Station.</p>
+      <p data-lang-content data-lang="zh">从池袋站步行5分钟即可到达，地理位置便利。</p>
       <div class="map-link">
         <a href="https://maps.app.goo.gl/fpKgQfJdD6F8?g_st=ic">Google Map</a>
       </div>
@@ -330,43 +294,49 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
 </main>
 
 <footer>
-  <p data-lang="ja"data-lang-content>© 2025 EISEI STAY Ikebukuro Nishi<br>〒171-0014 東京都豊島区池袋2-12-10</p>
-  <p data-lang="en" data-lang-content>© 2025 EISEI STAY Ikebukuro Nishi<br>2-12-10 Ikebukuro, Toshima-ku, Tokyo 171-0014, Japan</p>
-  <p data-lang="zh" data-lang-content>© 2025 EISEI STAY Ikebukuro Nishi<br>日本东京都丰岛区池袋2-12-10 171-0014</p>
+  <p data-lang-content data-lang="ja">
+    © 2025 EISEI STAY Ikebukuro Nishi<br>
+    〒171-0014 東京都豊島区池袋2-12-10<br>
+    <a href="tokusho.html" style="color:#333;text-decoration:underline;">特定商取引法に基づく表記</a>
+  </p>
+
+  <p data-lang-content data-lang="en">
+    © 2025 EISEI STAY Ikebukuro Nishi<br>
+    2-12-10 Ikebukuro, Toshima-ku, Tokyo 171-0014, Japan<br>
+    <a href="tokusho.html" style="color:#333;text-decoration:underline;">Legal Notice</a>
+  </p>
+
+  <p data-lang-content data-lang="zh">
+    © 2025 EISEI STAY Ikebukuro Nishi<br>
+    日本东京都丰岛区池袋2-12-10 171-0014<br>
+    <a href="tokusho.html" style="color:#333;text-decoration:underline;">特定商业交易法说明</a>
+  </p>
 </footer>
 
 <script>
 const langButtons = document.querySelectorAll(".lang-switch span");
 const langContents = document.querySelectorAll("[data-lang-content]");
-
 langButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    const selectedLang = btn.getAttribute("data-lang");
-    langButtons.forEach(b => b.classList.remove("active"));
+    const selected = btn.getAttribute("data-lang");
+    langButtons.forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
-    langContents.forEach(el => {
-      el.style.display = el.getAttribute("data-lang") === selectedLang ? "block" : "none";
-    });
+    langContents.forEach(el=>el.style.display=el.getAttribute("data-lang")===selected?"block":"none");
   });
 });
-
 // 初期表示
-document.querySelectorAll("[data-lang-content]").forEach(el => {
-  el.style.display = el.getAttribute("data-lang") === "ja" ? "block" : "none";
-});
+langContents.forEach(el=>el.style.display=el.getAttribute("data-lang")==="ja"?"block":"none");
 
 // モバイルメニュー
 const menuToggle = document.getElementById("menuToggle");
 const menuList = document.getElementById("menuList");
 const menuOverlay = document.getElementById("menuOverlay");
-
-menuToggle.addEventListener("click", () => {
+menuToggle.addEventListener("click",()=>{
   menuToggle.classList.toggle("open");
   menuList.classList.toggle("active");
   menuOverlay.classList.toggle("active");
 });
-
-menuOverlay.addEventListener("click", () => {
+menuOverlay.addEventListener("click",()=>{
   menuToggle.classList.remove("open");
   menuList.classList.remove("active");
   menuOverlay.classList.remove("active");
