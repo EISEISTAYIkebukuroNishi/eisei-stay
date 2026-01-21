@@ -86,16 +86,29 @@ section p { max-width:700px; font-size:16px; line-height:1.8; margin: 0 auto; te
 
 /* FACILITIES */
 .room-flex-wrapper {
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  gap:40px;
-  flex-wrap:wrap;
-  margin-bottom:30px;
+  display: flex;
+  justify-content: center; /* 全体中央寄せ */
+  align-items: flex-start;
+  gap: 40px; /* 文字と画像の間隔 */
+  flex-wrap: nowrap; /* 改行しない */
+  margin-bottom: 30px;
 }
-.room-img-box img { width:400px; max-width:100%; height:auto; border-radius:10px; }
-.room-text { flex:1; text-align:right; font-size:16px; line-height:1.6; }
-.room-text p { margin:0; }
+
+.room-text {
+  flex: 0 0 300px; /* 文字ブロックの幅を固定 */
+  text-align: left; /* 左揃え */
+  white-space: nowrap; /* 改行させない */
+}
+
+.room-img-box {
+  flex: 0 0 400px; /* 画像ブロックの幅固定 */
+}
+
+.room-img-box img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
 /* AREA GUIDE */
 .area-gallery { display:flex; justify-content:center; align-items:flex-start; gap:20px; margin-top:30px; flex-wrap:wrap; }
@@ -118,8 +131,8 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
   #menuToggle { display:flex; }
   main { margin-top: 150vh; }
   section { scroll-margin-top: var(--header-height-sp); }
-  .room-flex-wrapper { flex-direction:column; align-items:center; }
-  .room-text, .room-img-box img { max-width:90%; width:100%; text-align:center; }
+  .room-flex-wrapper { flex-direction:column; align-items:center; gap:40px; }
+  .room-text, .room-img-box img { max-width:90%; width:100%; white-space:normal; }
   .area-gallery { flex-direction:column; align-items:center; }
 }
 </style>
@@ -182,7 +195,7 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
       <p class="facility-note" data-lang-content data-lang="zh">Rooms<br>客房</p>
 
       <div class="room-flex-wrapper">
-        <!-- 階ごとの情報（右寄せ） -->
+        <!-- Left text -->
         <div class="room-text" data-lang-content data-lang="ja">
           <p>
             8F - Triple・Twin<br>
@@ -219,8 +232,7 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
             1层 - 前台・行李寄存柜
           </p>
         </div>
-
-        <!-- 画像（左側） -->
+        <!-- Right image -->
         <div class="room-img-box">
           <img src="images/rooms.jpg" alt="Rooms Image">
         </div>
@@ -328,8 +340,10 @@ langButtons.forEach(btn => {
     langContents.forEach(el=>el.style.display=el.getAttribute("data-lang")===selected?"block":"none");
   });
 });
+// 初期表示
 langContents.forEach(el=>el.style.display=el.getAttribute("data-lang")==="ja"?"block":"none");
 
+// モバイルメニュー
 const menuToggle = document.getElementById("menuToggle");
 const menuList = document.getElementById("menuList");
 const menuOverlay = document.getElementById("menuOverlay");
