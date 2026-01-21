@@ -3,24 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Area Guide</title>
+<title>Area Guide | EISEI STAY</title>
 
 <style>
+  /* 基本設定 */
   body {
     margin:0;
-    padding:20px;
+    padding:0;
     font-family: "Noto Sans JP", sans-serif;
     font-weight:900;
     background:#f6f2e7;
     color:#333;
     line-height:1.7;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
+  /* コンテナ全体 */
   .container {
+    flex: 1;
     width: 100%;
     max-width: 900px;
+    padding: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   h1 {
@@ -70,61 +77,19 @@
     margin-bottom: 10px;
   }
 
-  .spot-left {
-    width: 60%;
-  }
+  .spot-left { width: 60%; }
+  .left-line { font-size: 20px; font-weight: 900; color: #333; line-height: 1.6; margin: 4px 0; }
 
-  .left-line {
-    font-size: 20px;
-    font-weight: 900;
-    color: #333;
-    line-height: 1.6;
-    margin: 4px 0;
-  }
-
-  .spot-right {
-    width: 36%;
-    text-align: right;
-  }
-
-  .right-top {
-    font-size: 20px;
-    font-weight: 900;
-    color:#333;
-    line-height: 1.1;
-    margin: 2px 0 6px 0;
-  }
-
+  .spot-right { width: 36%; text-align: right; }
+  .right-top { font-size: 20px; font-weight: 900; color:#333; line-height: 1.1; margin: 2px 0 6px 0; }
   .right-mid,
-  .right-bottom {
-    font-size: 14px;
-    font-weight: 700;
-    color: #666;
-    line-height: 1.05;
-    margin: 0;
-  }
-
+  .right-bottom { font-size: 14px; font-weight: 700; color: #666; line-height: 1.05; margin: 0; }
   .right-mid { margin-bottom: 4px; }
 
-  .category {
-    font-size: 14px;
-    font-weight: 700;
-    width: 160px;
-    border-bottom: 3px double #333;
-    line-height: 1.0;
-    margin: 4px 0 10px 0;
-  }
+  .category { font-size: 14px; font-weight: 700; width: 160px; border-bottom: 3px double #333; line-height: 1.0; margin: 4px 0 10px 0; }
 
-  .address a {
-    font-size: 13px;
-    color:#666;
-    margin-top: 2px;
-    text-decoration: none;
-  }
-
-  .address a:hover {
-    text-decoration: underline;
-  }
+  .address a { font-size: 13px; color:#666; margin-top: 2px; text-decoration: none; }
+  .address a:hover { text-decoration: underline; }
 
   /* tokusho と同一仕様の戻るボタン */
   .back {
@@ -138,6 +103,18 @@
     font-weight:700;
   }
 
+  /* Footer */
+  footer {
+    background-color:#fff;
+    color:#333;
+    text-align:center;
+    padding:30px 10px;
+    font-size:14px;
+    border-top:1px solid rgba(0,0,0,0.1);
+  }
+  footer a { color:#333; text-decoration:underline; }
+
+  /* モバイル対応 */
   @media (max-width:600px){
     .grid { grid-template-columns: 1fr; }
   }
@@ -359,11 +336,43 @@
 
   </div>
 
-  <!-- 追加：トップページへ戻る -->
   <div class="back">
     <a href="index.html">&lt;&lt; トップページへ戻る</a>
   </div>
-
 </div>
+
+<!-- Footer -->
+<footer>
+  <p data-lang-content data-lang="ja">
+    © 2025 EISEI STAY Ikebukuro Nishi<br>
+    〒171-0014 東京都豊島区池袋2-12-10<br>
+    <a href="tokusho.html">特定商取引法に基づく表記</a>
+  </p>
+  <p data-lang-content data-lang="en">
+    © 2025 EISEI STAY Ikebukuro Nishi<br>
+    2-12-10 Ikebukuro, Toshima-ku, Tokyo 171-0014, Japan<br>
+    <a href="tokusho.html">Legal Notice</a>
+  </p>
+  <p data-lang-content data-lang="zh">
+    © 2025 EISEI STAY Ikebukuro Nishi<br>
+    日本东京都丰岛区池袋2-12-10 171-0014<br>
+    <a href="tokusho.html">特定商业交易法说明</a>
+  </p>
+</footer>
+
+<script>
+const langContents = document.querySelectorAll("[data-lang-content]");
+
+// 初期表示は日本語
+langContents.forEach(el => el.style.display = el.getAttribute("data-lang")==="ja"?"block":"none");
+
+// 言語切替用関数
+function setLanguage(lang){
+  langContents.forEach(el => {
+    el.style.display = el.getAttribute("data-lang")===lang ? "block" : "none";
+  });
+}
+</script>
+
 </body>
 </html>
