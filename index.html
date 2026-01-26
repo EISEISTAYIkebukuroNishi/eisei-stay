@@ -79,87 +79,105 @@ main { position: relative; margin-top: 100vh; }
   box-sizing: border-box;
 }
 
-/* セクション */
-section { scroll-margin-top: var(--header-height-pc); padding:60px 0; }
-section h2 { font-size:28px; margin-bottom:20px; text-align:center; }
-section p { max-width:700px; font-size:16px; line-height:1.8; margin: 0 auto; text-align:center; }
+/* =========================
+   セクション共通
+   ========================= */
+section {
+  scroll-margin-top: var(--header-height-pc);
+  padding: 60px 0;
+}
 
-/* FACILITIES */
+section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+section p {
+  max-width: 700px;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* =========================
+   FACILITIES : ROOMS
+   ========================= */
 .room-flex-wrapper {
   display: flex;
-  justify-content: center; /* 全体中央寄せ */
+  justify-content: center;
   align-items: flex-start;
-  gap: 40px; /* 文字と画像の間隔 */
-  flex-wrap: nowrap; /* 改行しない */
-  margin-bottom: 30px;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.room-text {
+  max-width: 420px;
 }
 
 .room-text p {
   text-align: left;
 }
+
 .room-img-box {
-  flex: 0 0 400px; /* 画像ブロックの幅固定 */
+  width: 380px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .room-img-box img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 /* =========================
-   LUGGAGE LOCKER（完成版）
+   FACILITIES : LUGGAGE LOCKER（完成・安定）
    ========================= */
-
-/* 全体ラッパー：画像左／文章右を固定 */
 .locker-flex-wrapper {
   display: flex;
-  justify-content: center;   /* セクション中央に配置 */
+  justify-content: center;
   align-items: flex-start;
   gap: 40px;
   margin: 40px 0;
-  width: 100%;
-  flex-wrap: nowrap;         /* AREA GUIDE などに影響させない */
 }
 
 /* 左：画像 */
 .locker-img-box {
-  flex: 0 0 380px;
+  width: 380px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .locker-img-box img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  display: block;
 }
 
-/* 右：文章（★マスター指定を完全保持） */
-.locker-text,
-.locker-text p,
-.locker-text ul,
-.locker-text li {
-  text-align: left !important;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-/* 文章ブロック自体の幅制御 */
+/* 右：文章（完全左揃え・中央化解除） */
 .locker-text {
-  flex: 0 0 420px;
+  max-width: 420px;
+  text-align: left;
 }
 
-/* 本文 */
 .locker-text p {
+  text-align: left;
   line-height: 1.8;
-  margin-bottom: 14px;
+  margin: 0 0 14px 0;
 }
 
-/* 箇条書き */
 .locker-text ul {
   padding-left: 1.2em;
-  margin: 10px 0 14px 0;
+  margin: 0 0 14px 0;
+  text-align: left;
 }
 
 .locker-text li {
@@ -167,7 +185,7 @@ section p { max-width:700px; font-size:16px; line-height:1.8; margin: 0 auto; te
   margin-bottom: 6px;
 }
 
-/* How To Use リンク */
+/* How To Use */
 .howto-link {
   font-weight: 700;
   color: #FF6600;
@@ -179,42 +197,89 @@ section p { max-width:700px; font-size:16px; line-height:1.8; margin: 0 auto; te
 }
 
 /* =========================
-   SP（スマホ）対応
+   AREA GUIDE（横並び暴走防止）
+   ========================= */
+.area-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;   /* ← これが超重要 */
+}
+
+.area-item {
+  max-width: 360px;
+  text-align: center;
+}
+
+.area-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.area-item img:hover {
+  transform: scale(1.03);
+}
+
+/* =========================
+   LOCATION
+   ========================= */
+.map-link {
+  margin-top: 20px;
+}
+
+.map-link a {
+  display: inline-block;
+  text-decoration: none;
+  background: #ff6600;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.map-link a:hover {
+  background: #e95500;
+}
+
+/* =========================
+   SP（スマホ）
    ========================= */
 @media (max-width: 768px) {
+
+  section {
+    scroll-margin-top: var(--header-height-sp);
+  }
+
+  .room-flex-wrapper,
   .locker-flex-wrapper {
     flex-direction: column;
     align-items: center;
   }
 
-  .locker-img-box,
+  .room-img-box,
+  .locker-img-box {
+    width: 90%;
+    max-width: 420px;
+    height: 240px;
+  }
+
+  .room-text,
   .locker-text {
-    flex: none;
     width: 90%;
     max-width: 500px;
   }
-}
 
-/* リンク */
-.howto-link {
-  font-weight: 700;
-  color: #FF6600;
-  text-decoration: none;
-}
-
-/* ===== SP対応 ===== */
-@media screen and (max-width: 768px) {
-  .locker-flex-wrapper {
-    flex-direction: column;   /* ← スマホは縦 */
+  .area-gallery {
+    flex-direction: column;
     align-items: center;
   }
-
-  .locker-img-box,
-  .locker-text {
-    max-width: 100%;
-  }
 }
-
 /* AREA GUIDE */
 .area-gallery { display:flex; justify-content:center; align-items:flex-start; gap:20px; margin-top:30px; flex-wrap:wrap; }
 .area-item img { width:100%; height:220px; object-fit:cover; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease; cursor:pointer; }
