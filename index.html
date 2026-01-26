@@ -107,6 +107,114 @@ section p { max-width:700px; font-size:16px; line-height:1.8; margin: 0 auto; te
   object-fit: cover;
 }
 
+/* =========================
+   LUGGAGE LOCKER（完成版）
+   ========================= */
+
+/* 全体ラッパー：画像左／文章右を固定 */
+.locker-flex-wrapper {
+  display: flex;
+  justify-content: center;   /* セクション中央に配置 */
+  align-items: flex-start;
+  gap: 40px;
+  margin: 40px 0;
+  width: 100%;
+  flex-wrap: nowrap;         /* AREA GUIDE などに影響させない */
+}
+
+/* 左：画像 */
+.locker-img-box {
+  flex: 0 0 380px;
+}
+
+.locker-img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 右：文章（★マスター指定を完全保持） */
+.locker-text,
+.locker-text p,
+.locker-text ul,
+.locker-text li {
+  text-align: left !important;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* 文章ブロック自体の幅制御 */
+.locker-text {
+  flex: 0 0 420px;
+}
+
+/* 本文 */
+.locker-text p {
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+/* 箇条書き */
+.locker-text ul {
+  padding-left: 1.2em;
+  margin: 10px 0 14px 0;
+}
+
+.locker-text li {
+  list-style: disc;
+  margin-bottom: 6px;
+}
+
+/* How To Use リンク */
+.howto-link {
+  font-weight: 700;
+  color: #FF6600;
+  text-decoration: none;
+}
+
+.howto-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   SP（スマホ）対応
+   ========================= */
+@media (max-width: 768px) {
+  .locker-flex-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .locker-img-box,
+  .locker-text {
+    flex: none;
+    width: 90%;
+    max-width: 500px;
+  }
+}
+
+/* リンク */
+.howto-link {
+  font-weight: 700;
+  color: #FF6600;
+  text-decoration: none;
+}
+
+/* ===== SP対応 ===== */
+@media screen and (max-width: 768px) {
+  .locker-flex-wrapper {
+    flex-direction: column;   /* ← スマホは縦 */
+    align-items: center;
+  }
+
+  .locker-img-box,
+  .locker-text {
+    max-width: 100%;
+  }
+}
+
 /* AREA GUIDE */
 .area-gallery { display:flex; justify-content:center; align-items:flex-start; gap:20px; margin-top:30px; flex-wrap:wrap; }
 .area-item img { width:100%; height:220px; object-fit:cover; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease; cursor:pointer; }
@@ -284,42 +392,73 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
       <p class="facility-note" data-lang-content data-lang="en">Luggage Locker</p>
       <p class="facility-note" data-lang-content data-lang="zh">Luggage Locker<br>行李寄存柜</p>
 
-      <div class="facility-details" data-lang-content data-lang="ja">
-        <p>
-          チェックイン前やチェックアウト後も身軽に観光をお楽しみいただけるよう<br>
-          1Fフロント横にロッカーをご用意しております。<br><br>
-          ・ダイヤル式ロッカーで安心のセキュリティ<br>
-          ・大きなスーツケースもワイヤーロックでしっかり施錠<br>
-          ・無料でご利用いただけます<br><br>
-          どうぞご旅行の合間にご活用ください。<br>
-          <a href="images/howtouse.pdf" target="_blank" style="font-weight:700;color:#FF6600;text-decoration:none;">How To Use &gt;&gt;</a>
-        </p>
-      </div>
-      <div class="facility-details" data-lang-content data-lang="en">
-        <p>
-          To make your stay more comfortable, we provide lockers<br>
-          next to the front desk on the 1st floor.<br>
-          They are perfect for keeping your luggage safe before check-in or<br>
-          after check-out, so you can enjoy sightseeing hands-free.<br><br>
-          ・Secure dial-lock system for peace of mind<br>
-          ・Large suitcases can also be safely fastened with a wire lock<br>
-          ・Free of charge for all our guests<br><br>
-          Enjoy exploring the city while we keep your belongings safe.<br>
-          <a href="images/howtouse.pdf" target="_blank" style="font-weight:700;color:#FF6600;text-decoration:none;">How To Use &gt;&gt;</a>
-        </p>
-      </div>
-      <div class="facility-details" data-lang-content data-lang="zh">
-        <p>
-          为了让您的入住更加轻松便利，我们在1楼前台旁提供了行李寄存柜。<br>
-          您可以在入住前或退房后将行李安全存放，轻松游览周边景点。<br><br>
-          ・旋钮式锁，安全可靠<br>
-          ・大行李也可使用钢丝锁妥善锁好<br>
-          ・免费提供给所有住客<br><br>
-          请在旅行间隙随意使用。<br>
-          <a href="images/howtouse.pdf" target="_blank" style="font-weight:700;color:#FF6600;text-decoration:none;">How To Use &gt;&gt;</a>
-        </p>
-      </div>
-    </section>
+      <div class="locker-flex-wrapper">
+
+  <!-- 左：画像 -->
+  <div class="locker-img-box">
+    <img src="images/locker.jpg" alt="Luggage Locker">
+  </div>
+
+  <!-- 右：文章（日本語） -->
+  <div class="locker-text" data-lang-content data-lang="ja">
+    <p>
+      チェックイン前やチェックアウト後も身軽に観光を<br>
+      お楽しみいただけるよう1Fフロント横にロッカーを<br>
+      ご用意しております。
+    </p>
+    <ul>
+      <li>ダイヤル式ロッカーで安心のセキュリティ</li>
+      <li>大きなスーツケースもワイヤーロックでしっかり施錠</li>
+      <li>無料でご利用いただけます</li>
+    </ul>
+    <p>
+      どうぞご旅行の合間にご活用ください。<br>
+      <a href="images/howtouse.pdf" target="_blank" class="howto-link">
+        How To Use &gt;&gt;
+      </a>
+    </p>
+  </div>
+
+  <!-- 英語 -->
+  <div class="locker-text" data-lang-content data-lang="en">
+    <p>
+      To make your stay more comfortable, we provide lockers next to the front desk
+      on the 1st floor.
+    </p>
+    <ul>
+      <li>Secure dial-lock system for peace of mind</li>
+      <li>Large suitcases can be safely fastened with a wire lock</li>
+      <li>Free of charge for all our guests</li>
+    </ul>
+    <p>
+      Enjoy exploring the city while we keep your belongings safe.<br>
+      <a href="images/howtouse.pdf" target="_blank" class="howto-link">
+        How To Use &gt;&gt;
+      </a>
+    </p>
+  </div>
+
+  <!-- 中国語 -->
+  <div class="locker-text" data-lang-content data-lang="zh">
+    <p>
+      为了让您的入住更加轻松便利，我们在1楼前台旁提供了行李寄存柜。
+    </p>
+    <ul>
+      <li>旋钮式锁，安全可靠</li>
+      <li>大行李也可使用钢丝锁妥善锁好</li>
+      <li>免费提供给所有住客</li>
+    </ul>
+    <p>
+      请在旅行间隙随意使用。<br>
+      <a href="images/howtouse.pdf" target="_blank" class="howto-link">
+        How To Use &gt;&gt;
+      </a>
+    </p>
+  </div>
+
+</div>
+
+
 
     <!-- AREA GUIDE -->
     <section id="rooms">
