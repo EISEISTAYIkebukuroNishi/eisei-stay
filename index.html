@@ -135,6 +135,51 @@ footer { background-color:#fff; color:#333; text-align:center; padding:30px 10px
   .room-text, .room-img-box img { max-width:90%; width:100%; white-space:normal; }
   .area-gallery { flex-direction:column; align-items:center; }
 }
+
+.reserve-banner {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 160px;
+  height: 60px;
+  background: #ff6600;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reserve-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.reserve-text {
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.reserve-sub {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+/* SPサイズ調整 */
+@media (max-width: 768px) {
+  .reserve-banner {
+    width: 140px;
+    height: 56px;
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -358,6 +403,11 @@ menuOverlay.addEventListener("click",()=>{
   menuOverlay.classList.remove("active");
 });
 </script>
+
+<a href="https://go-es-group.reservation.jp/ja/hotels/es-nishi" class="reserve-banner" target="_blank">
+  <span class="reserve-text">RESERVE</span>
+  <span class="reserve-sub">ご予約はこちら</span>
+</a>
 
 </body>
 </html>
